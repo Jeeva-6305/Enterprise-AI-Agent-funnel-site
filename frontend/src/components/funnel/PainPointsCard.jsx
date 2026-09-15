@@ -17,27 +17,28 @@ export default function PainPointsCard() {
   ];
 
   return (
-    <section className="purpose-built-section" aria-labelledby="purpose-built-heading">
+    <div className="purpose-built-container-card">
       <div className="purpose-built-header">
-        <h2 id="purpose-built-heading" className="purpose-built-title">
+        <h2 className="purpose-built-title">
           Purpose-Built for This Problem
         </h2>
         <p className="purpose-built-subtitle">
           If any of this is true of your business, Enterprise AI Agents was made to solve these problems:
         </p>
       </div>
-      
-      <div className="purpose-built-grid">
+
+      <div className="purpose-built-items-list">
         {painPoints.map((point, index) => (
-          <div key={index} className="purpose-built-card">
+          <div key={index} className="purpose-built-item-row">
             <div className="purpose-built-icon-wrap">
               <span className="purpose-built-emoji" role="img" aria-hidden="true">{point.emoji}</span>
             </div>
-            <span className="purpose-built-card-text">{point.title}</span>
+            <span className="purpose-built-item-text">{point.title}</span>
           </div>
         ))}
       </div>
-    </section>
+    </div>
   );
 }
+
 

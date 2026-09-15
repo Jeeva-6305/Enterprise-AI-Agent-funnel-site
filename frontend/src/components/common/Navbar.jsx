@@ -1,7 +1,7 @@
 import React from 'react';
 import BrandLogo from './BrandLogo';
 
-export default function Navbar() {
+export default function Navbar({ onGetDemoClick }) {
   return (
     <header className="funnel-header">
       <div className="container header-container">
@@ -15,7 +15,20 @@ export default function Navbar() {
             Adople AI
           </span>
         </div>
+
+        {/* Right side Get a Demo action button */}
+        <div className="nav-actions">
+          <button 
+            type="button"
+            id="btn-navbar-get-demo"
+            className="navbar-get-demo-btn"
+            onClick={onGetDemoClick}
+          >
+            Get a Demo
+          </button>
+        </div>
       </div>
     </header>
   );
 }
+

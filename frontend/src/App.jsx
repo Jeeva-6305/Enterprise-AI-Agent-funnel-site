@@ -6,8 +6,8 @@ import Footer from './components/common/Footer';
 import Toast from './components/common/Toast';
 import FunnelHero from './components/funnel/FunnelHero';
 import VideoPlayer from './components/funnel/VideoPlayer';
+import LeadForm from './components/funnel/LeadForm';
 import PainPointsCard from './components/funnel/PainPointsCard';
-import LeadFormModal from './components/funnel/LeadFormModal';
 import SuccessModal from './components/funnel/SuccessModal';
 import VideoModal from './components/funnel/VideoModal';
 
@@ -17,7 +17,6 @@ import './styles/funnel.css';
 export default function App() {
   const [submittedLead, setSubmittedLead] = useState(null);
   const [isDemoUnlocked, setIsDemoUnlocked] = useState(false);
-  const [isLeadFormModalOpen, setIsLeadFormModalOpen] = useState(false);
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
   const [toasts, setToasts] = useState([]);
 
@@ -34,33 +33,37 @@ export default function App() {
   };
 
   /**
-   * Video-gating handler:
-   * When user clicks video/play button:
-   * - If locked: opens lead capture form modal.
-   * - If unlocked: opens video player modal.
+   * Video & "Get a Demo" trigger handler:
+   * - If unlocked: opens video player modal directly.
+   * - If locked: prompts user to complete lead form and scrolls to form.
    */
-  const handleVideoCardClick = () => {
+  const handleAccessDemo = () => {
     if (isDemoUnlocked) {
       setIsVideoModalOpen(true);
     } else {
-      setIsLeadFormModalOpen(true);
+      showToast('The demo video is locked. Please fill in and submit the form to unlock and watch.', 'info');
+      const formInput = document.getElementById('input-full-name');
+      if (formInput) {
+        formInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        setTimeout(() => {
+          formInput.focus();
+        }, 400);
+      }
     }
   };
 
   /**
-   * Called only after successful form submission and SQL persistence:
-   * Unlocks demo, closes form modal, and displays unlocked confirmation / video.
+   * Called only after successful form submission and SQL persistence
    */
   const handleLeadSuccess = (lead) => {
     setIsDemoUnlocked(true);
-    setIsLeadFormModalOpen(false);
     setSubmittedLead(lead);
   };
 
   return (
     <div className="app-root">
-      {/* Top Global Navigation */}
-      <Navbar />
+      {/* Top Global Navigation with Brand & "Get a Demo" Button */}
+      <Navbar onGetDemoClick={handleAccessDemo} />
 
       {/* Announcement Ribbon */}
       <AnnouncementBar />
@@ -68,37 +71,51 @@ export default function App() {
       {/* Enterprise Moving Logo Carousel */}
       <TrustBar />
 
-      {/* Main Hero Funnel Section */}
-      <main className="hero-section">
-        <div className="container">
-          <div className="hero-grid">
-            {/* Left Column: Eyebrow, Headline, Subtext, Checklist */}
-            <FunnelHero />
+      {/* Main Funnel Page Content */}
+      <main className="funnel-main-content">
+        {/* 1. Hero Section (Left: Content, Right: Lead Form) */}
+        <section className="hero-section">
+          <div className="container">
+            <div className="hero-grid">
+              {/* Left Column: Hero Content & 4 Checkmarks */}
+              <FunnelHero />
 
-            {/* Right Column: Hero Video Preview Player with balanced height */}
-            <div className="hero-video-card">
-              <VideoPlayer 
-                isUnlocked={isDemoUnlocked} 
-                onPlayClick={handleVideoCardClick} 
-              />
+              {/* Right Column: Lead Form Card */}
+              <div className="hero-form-card" id="lead-form-section">
+                <LeadForm 
+                  onSuccessLead={handleLeadSuccess} 
+                  showToast={showToast} 
+                />
+              </div>
             </div>
           </div>
+        </section>
 
-          {/* Purpose-Built for This Problem - Wide Horizontal Section */}
-          <PainPointsCard />
-        </div>
+        {/* 2. Section Below Hero (Left: Purpose-Built, Right: Demo Video - Equal Width & Height) */}
+        <section className="below-hero-section">
+          <div className="container">
+            <div className="below-hero-grid">
+              {/* Left Column: Purpose-Built for This Problem */}
+              <div className="below-hero-col">
+                <PainPointsCard />
+              </div>
+
+              {/* Right Column: Demo Video Preview Card */}
+              <div className="below-hero-col">
+                <div className="demo-video-card-container">
+                  <VideoPlayer 
+                    isUnlocked={isDemoUnlocked} 
+                    onPlayClick={handleAccessDemo} 
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
 
-      {/* Footer with Credentials */}
+      {/* Footer with Credentials - Kept exactly unchanged */}
       <Footer />
-
-      {/* Lead Capture Modal triggered by clicking the Video / Play button */}
-      <LeadFormModal
-        isOpen={isLeadFormModalOpen}
-        onClose={() => setIsLeadFormModalOpen(false)}
-        onSuccessLead={handleLeadSuccess}
-        showToast={showToast}
-      />
 
       {/* Success Modal */}
       <SuccessModal
@@ -121,4 +138,5 @@ export default function App() {
     </div>
   );
 }
+
 
