@@ -1,0 +1,20 @@
+{
+  "name": "enterprise-funnel-backend",
+  "version": "1.0.0",
+  "description": "Backend API with SQL database for Enterprise AI Agent Funnel Site",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "seed": "node database/seed.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "sqlite3": "^5.1.7"
+  },
+  "keywords": ["express", "sql", "sqlite", "leads", "react18"],
+  "author": "22nd Century Technologies",
+  "license": "ISC"
+}
