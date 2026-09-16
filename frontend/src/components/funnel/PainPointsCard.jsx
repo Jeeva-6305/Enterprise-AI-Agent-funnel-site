@@ -1,65 +1,62 @@
 import React from 'react';
-import { Shield, Zap, FileSpreadsheet, CheckCircle } from 'lucide-react';
+import { Clock, FileText, SearchCheck, Zap, CheckCircle, Shield } from 'lucide-react';
 
 export default function PainPointsCard() {
   const painPoints = [
     {
       title: 'Manual Data Entry',
       description: 'Stop spending hours entering document data manually.',
-      emoji: '🕐'
+      icon: <Clock size={20} className="template-item-icon" />
     },
     {
       title: 'Messy Documents',
       description: 'Process PDFs, scans, invoices, and forms without the usual hassle.',
-      emoji: '📄'
+      icon: <FileText size={20} className="template-item-icon" />
     },
     {
       title: 'Need Reliable Data',
       description: 'Get accurate, structured information you can actually use.',
-      emoji: '🔍'
+      icon: <SearchCheck size={20} className="template-item-icon" />
     }
   ];
 
   return (
-    <div className="purpose-built-container-card">
+    <div className="purpose-built-template-card">
       <div>
-        <div className="purpose-built-header">
-          <span className="purpose-built-badge">DOCUMENT INTELLIGENCE</span>
-          <h2 className="purpose-built-title">
-            Built to Make Document Processing Easier
-          </h2>
-          <p className="purpose-built-subtitle">
-            If manual document processing is slowing you down, Adople AI can help.
-          </p>
-        </div>
+        <h3 className="template-card-title">
+          Purpose-built for today's complexity
+        </h3>
+        <p className="template-card-subtitle">
+          If your organization is dealing with these structural bottlenecks, this platform is built for you:
+        </p>
 
-        <div className="purpose-built-items-list">
+        <div className="template-items-list">
           {painPoints.map((point, index) => (
-            <div key={index} className="purpose-built-item-row">
-              <div className="purpose-built-icon-wrap">
-                <span className="purpose-built-emoji" role="img" aria-hidden="true">{point.emoji}</span>
+            <div key={index} className="template-item-row">
+              <div className="template-icon-container">
+                {point.icon}
               </div>
-              <div className="purpose-built-text-group">
-                <span className="purpose-built-item-text">{point.title}</span>
-                <p className="purpose-built-item-desc">{point.description}</p>
+              <div className="template-text-container">
+                <p className="template-item-title">{point.title}</p>
+                <p className="template-item-desc">{point.description}</p>
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Value Metrics Highlight at bottom */}
+      {/* Bottom Value Badges */}
       <div className="purpose-built-footer-metrics">
         <div className="metric-pill">
-          <Zap size={15} className="metric-icon" />
+          <Zap size={14} className="metric-icon" />
           <span><strong>10x</strong> Faster Turnaround</span>
         </div>
         <div className="metric-pill">
-          <CheckCircle size={15} className="metric-icon" />
+          <CheckCircle size={14} className="metric-icon" />
           <span><strong>99.4%</strong> Field Accuracy</span>
         </div>
         <div className="metric-pill">
-          <Shield size={15} className="metric-icon" />
+          <Shield size={14} className="metric-icon" />
           <span><strong>SOC2</strong> Type II Ready</span>
         </div>
       </div>
