@@ -4,68 +4,68 @@ const COMPANIES = [
   {
     name: 'Lilly',
     fullName: 'Eli Lilly and Company',
-    logoSrc: '/logos/lilly.svg',
-    height: '30px'
+    logoSrc: '/logos/lilly.webp',
+    height: '28px'
   },
   {
     name: 'Broadridge',
     fullName: 'Broadridge Financial Solutions',
-    logoSrc: '/logos/broadridge.svg',
+    logoSrc: '/logos/Broadridge.webp',
     height: '26px'
   },
   {
     name: 'Confluence',
     fullName: 'Confluence (Atlassian)',
-    logoSrc: '/logos/confluence.svg',
-    height: '22px'
+    logoSrc: '/logos/confluence.webp',
+    height: '40px'
   },
   {
     name: 'Syngenta',
     fullName: 'Syngenta Group',
-    logoSrc: '/logos/syngenta.svg',
+    logoSrc: '/logos/syngenta.webp',
     height: '26px'
   },
   {
     name: 'Crocs',
     fullName: 'Crocs, Inc.',
-    logoSrc: '/logos/crocs.svg',
+    logoSrc: '/logos/crocs.webp',
     height: '26px'
   },
   {
     name: 'NHS',
     fullName: 'National Health Service',
-    logoSrc: '/logos/nhs.svg',
+    logoSrc: '/logos/nhs.jpg',
     height: '26px'
   },
   {
     name: 'Randstad',
     fullName: 'Randstad N.V.',
-    logoSrc: '/logos/randstad.svg',
-    height: '26px'
+    logoSrc: '/logos/randstad.webp',
+    height: '32px'
   },
   {
     name: 'Elevance Health',
     fullName: 'Elevance Health, Inc.',
-    logoSrc: '/logos/elevance-health.svg',
+    logoSrc: '/logos/Elevance Health.webp',
     height: '28px'
   },
   {
     name: 'Vodafone',
     fullName: 'Vodafone Group',
-    logoSrc: '/logos/vodafone.svg',
+    logoSrc: '/logos/vodofone.webp',
     height: '28px'
   },
   {
     name: 'AT&T',
     fullName: 'AT&T Inc.',
-    logoSrc: '/logos/att.svg',
+    logoSrc: '/logos/Att.webp',
     height: '26px'
   },
   {
     name: 'Syra Health',
     fullName: 'Syra Health Corp',
     logoSrc: '/logos/syra-health.png',
-    height: '34px'
+    height: '50px'
   }
 ];
 
