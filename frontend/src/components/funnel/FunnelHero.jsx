@@ -1,40 +1,41 @@
 import React from 'react';
-import { Check } from 'lucide-react';
+import { Check, Sparkles } from 'lucide-react';
 
 export default function FunnelHero() {
   const bulletPoints = [
-    'Extract structured data with 99%+ accuracy from complex, multi-format documents',
-    'Automate ingestion of invoices, receipts, contracts, and scanned forms',
-    'Enterprise-grade privacy, encryption, and strict SOC2 Type II compliance',
-    'Seamlessly integrate into your existing ERP, CRM, and workflow pipelines'
+    '99%+ Field-Level Extraction Accuracy',
+    'Automated PDFs, Scans, Invoices & Faxes',
+    'SOC2 Type II Governed & Encrypted',
+    'Instant Integration with ERP / CRM / SQL'
   ];
 
   return (
-    <div className="hero-left">
-      {/* Eyebrow Tag */}
+    <div className="hero-centered-content">
+      {/* Title Eyebrow Pill */}
       <div className="hero-badge-pill">
-        AI Document Extraction
+        <Sparkles size={13} style={{ marginRight: '6px' }} />
+        Agentic Document Extraction
       </div>
 
-      {/* Headline */}
-      <h1 className="hero-title">
-        Turning Unstructured Documents into{' '}
-        <span className="title-highlight">Accurate, Actionable Data</span>
+      {/* Main Heading */}
+      <h1 className="hero-title-centered">
+        Automatically Convert Any Document to{' '}
+        <span className="title-highlight">Clean, Structured Data</span>
       </h1>
 
-      {/* Subheadline */}
-      <p className="hero-subtext">
-        Automate document processing end-to-end. Our Intelligent Document Extraction platform reads, understands, and extracts critical data points from PDFs, scanned images, and tables with unmatched speed and precision.
+      {/* Content / Subheadline */}
+      <p className="hero-subtext-centered">
+        Adople AI’s autonomous agents read, understand, and extract data from even your messiest documents — faxes, scans, PDFs, and forms — and convert them into audit-ready structured data in seconds.
       </p>
 
-      {/* 4 Bullet Points with Checkmarks */}
-      <div className="hero-checklist">
+      {/* 4 Feature Badges in Balanced Horizontal Grid */}
+      <div className="hero-checklist-horizontal">
         {bulletPoints.map((point, index) => (
-          <div key={index} className="checklist-item">
-            <div className="check-icon-wrap">
-              <Check size={14} strokeWidth={3.5} />
+          <div key={index} className="checklist-pill-item">
+            <div className="check-icon-wrap-sm">
+              <Check size={12} strokeWidth={3.5} />
             </div>
-            <span className="checklist-text">{point}</span>
+            <span className="checklist-pill-text">{point}</span>
           </div>
         ))}
       </div>

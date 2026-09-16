@@ -73,39 +73,37 @@ export default function App() {
 
       {/* Main Funnel Page Content */}
       <main className="funnel-main-content">
-        {/* 1. Hero Section (Left: Content, Right: Lead Form) */}
-        <section className="hero-section">
+        {/* 1. Centered Hero Header Section (Ambient Glow & Centered Typography) */}
+        <section className="hero-header-section">
           <div className="container">
-            <div className="hero-grid">
-              {/* Left Column: Hero Content & 4 Checkmarks */}
-              <FunnelHero />
-
-              {/* Right Column: Lead Form Card */}
-              <div className="hero-form-card" id="lead-form-section">
-                <LeadForm 
-                  onSuccessLead={handleLeadSuccess} 
-                  showToast={showToast} 
-                />
-              </div>
-            </div>
+            <FunnelHero />
           </div>
         </section>
 
-        {/* 2. Section Below Hero (Left: Purpose-Built, Right: Demo Video - Equal Width & Height) */}
-        <section className="below-hero-section">
+        {/* 2. Main 2-Column Section: Left (Purpose-Built), Right (Video + Lead Form) */}
+        <section className="hero-action-section">
           <div className="container">
-            <div className="below-hero-grid">
-              {/* Left Column: Purpose-Built for This Problem */}
-              <div className="below-hero-col">
+            <div className="action-grid">
+              {/* Left Column: Purpose-Built for This Problem (Equal Height with Right Column) */}
+              <div className="action-left-col">
                 <PainPointsCard />
               </div>
 
-              {/* Right Column: Demo Video Preview Card */}
-              <div className="below-hero-col">
-                <div className="demo-video-card-container">
+              {/* Right Column: Compact Video Player on Top + Lead Form Directly Below */}
+              <div className="action-right-col" id="lead-form-section">
+                {/* Demo Video Preview (Reduced Height / Compact Card) */}
+                <div className="compact-video-card">
                   <VideoPlayer 
                     isUnlocked={isDemoUnlocked} 
                     onPlayClick={handleAccessDemo} 
+                  />
+                </div>
+
+                {/* Lead Form placed directly below video */}
+                <div className="hero-form-card">
+                  <LeadForm 
+                    onSuccessLead={handleLeadSuccess} 
+                    showToast={showToast} 
                   />
                 </div>
               </div>
