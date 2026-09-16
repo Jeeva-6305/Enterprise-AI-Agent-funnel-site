@@ -7,7 +7,7 @@ const leadRoutes = require('./routes/leadRoutes');
 const { db } = require('./config/database');
 
 const app = express();
-const PORT = process.env.PORT || 5002;
+const PORT = process.env.PORT || 9035;
 
 // Middlewares
 app.use(cors({
@@ -36,14 +36,18 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// Serve frontend build in production if available
-const frontendBuildPath = path.join(__dirname, '..', 'frontend', 'dist');
-if (require('fs').existsSync(frontendBuildPath)) {
-  app.use(express.static(frontendBuildPath));
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(frontendBuildPath, 'index.html'));
+// Root Backend API status route
+app.get('/', (req, res) => {
+  res.json({
+    service: 'SEC Analyzer Backend API Server',
+    status: 'running',
+    port: PORT,
+    endpoints: {
+      health: '/api/health',
+      leads: '/api/leads'
+    }
   });
-}
+});
 
 // Global error handler
 app.use((err, req, res, next) => {
