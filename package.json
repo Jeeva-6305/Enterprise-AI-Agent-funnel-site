@@ -1,0 +1,17 @@
+{
+  "name": "document-extraction-funnel-site-root",
+  "version": "1.0.0",
+  "description": "Full-stack Document Extraction Funnel Site with React 18 frontend, Node.js Express backend, and SQL (SQLite) lead database",
+  "scripts": {
+    "dev": "node -e \"const { spawn } = require('child_process'); spawn('npm', ['run', 'dev'], { cwd: 'backend', stdio: 'inherit', shell: true }); spawn('npm', ['run', 'dev'], { cwd: 'frontend', stdio: 'inherit', shell: true });\"",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "dev:backend": "npm --prefix backend run dev",
+    "start": "npm --prefix backend start",
+    "build:frontend": "npm --prefix frontend run build",
+    "install:all": "npm --prefix backend install && npm --prefix frontend install",
+    "leads": "node view-leads.js"
+  },
+  "keywords": ["react18", "sqlite", "express", "enterprise-funnel", "lead-generation"],
+  "author": "22nd Century Technologies",
+  "license": "ISC"
+}

@@ -1,0 +1,1 @@
+-- No dummy or sample seed data. Database starts completely empty.
