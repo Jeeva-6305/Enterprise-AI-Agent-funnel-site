@@ -54,7 +54,7 @@ Enterprise-AI-Agent-funnel-site/
 │
 └── frontend/                            # Frontend React 18 Application
     ├── package.json                     # Frontend dependencies (react 18, lucide-react, vite)
-    ├── vite.config.js                   # Vite configuration with proxy to backend port 5000
+    ├── vite.config.js                   # Vite configuration with proxy to backend port 9015
     ├── index.html                       # HTML5 template with Google Fonts (Plus Jakarta Sans, Inter)
     ├── public/
     │   └── favicon.svg                  # Vector SVG favicon
@@ -147,8 +147,8 @@ npm run install:all
 # In project root:
 npm run dev
 ```
-- **Frontend (React 18)**: [http://localhost:3000](http://localhost:3000)
-- **Backend API (SQL Database)**: [http://localhost:5000](http://localhost:5000)
+- **Frontend (React 18)**: [http://localhost:9010](http://localhost:9010)
+- **Backend API (SQL Database)**: [http://localhost:9015](http://localhost:9015)
 
 ### 3. Or Run Individually
 ```bash
@@ -160,5 +160,5 @@ npm run dev:frontend
 ```
 
 ### 4. Direct Links & Navigation
-- **Funnel Landing Page**: [http://localhost:3000](http://localhost:3000)
-- **Admin Lead Review Portal**: [http://localhost:3000/#admin](http://localhost:3000/#admin) (or click the *"Admin Leads Portal"* button in the top navigation bar).
+- **Funnel Landing Page**: [http://localhost:9010](http://localhost:9010)
+- **Admin Lead Review Portal**: [http://localhost:9010/#admin](http://localhost:9010/#admin) (or click the *"Admin Leads Portal"* button in the top navigation bar).
