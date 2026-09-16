@@ -1,18 +1,25 @@
 import React from 'react';
+import { Wallet, Network, EyeOff } from 'lucide-react';
 
 export default function PainPointsCard() {
-  const painPoints = [
+  const bottlenecks = [
     {
-      title: 'Unintegrated and Isolated Solutions',
-      emoji: '🧩'
+      title: 'Missed Revenue Opportunities',
+      description:
+        'Treating payments strictly as a transactional function leaves millions in potential overnight interest earnings on the table.',
+      icon: Wallet
     },
     {
-      title: 'Too Much Information, No Transparency',
-      emoji: '🌀'
+      title: 'Decentralized Payment Authority',
+      description:
+        'Managing multi-bank payment releases directly in bank portals rather than centralizing authority inside your ERP.',
+      icon: Network
     },
     {
-      title: 'Generic AI that Does Not Address Business Risks',
-      emoji: '🔒'
+      title: 'Lack of Lifecycle Transparency',
+      description:
+        'Operating without real-time transparency spanning from payment initiation all the way to final reconciliation.',
+      icon: EyeOff
     }
   ];
 
@@ -20,25 +27,29 @@ export default function PainPointsCard() {
     <div className="purpose-built-container-card">
       <div className="purpose-built-header">
         <h2 className="purpose-built-title">
-          Purpose-Built for This Problem
+          Purpose-built for today's complexity
         </h2>
         <p className="purpose-built-subtitle">
-          If any of this is true of your business, Enterprise AI Agents was made to solve these problems:
+          If your organization is dealing with these structural bottlenecks, this platform is built for you:
         </p>
       </div>
 
       <div className="purpose-built-items-list">
-        {painPoints.map((point, index) => (
-          <div key={index} className="purpose-built-item-row">
-            <div className="purpose-built-icon-wrap">
-              <span className="purpose-built-emoji" role="img" aria-hidden="true">{point.emoji}</span>
+        {bottlenecks.map((item, index) => {
+          const IconComponent = item.icon;
+          return (
+            <div key={index} className="purpose-built-item-row">
+              <div className="purpose-built-icon-wrap error-tint">
+                <IconComponent size={20} className="purpose-built-error-icon" />
+              </div>
+              <div className="purpose-built-item-content">
+                <h4 className="purpose-built-item-heading">{item.title}</h4>
+                <p className="purpose-built-item-desc">{item.description}</p>
+              </div>
             </div>
-            <span className="purpose-built-item-text">{point.title}</span>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
 }
-
-
