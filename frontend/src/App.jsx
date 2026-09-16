@@ -89,22 +89,24 @@ export default function App() {
                 <PainPointsCard />
               </div>
 
-              {/* Right Column: Compact Video Player on Top + Lead Form Directly Below */}
+              {/* Right Column: Unified Card with Video seamlessly attached above Lead Form */}
               <div className="action-right-col" id="lead-form-section">
-                {/* Demo Video Preview (Reduced Height / Compact Card) */}
-                <div className="compact-video-card">
-                  <VideoPlayer 
-                    isUnlocked={isDemoUnlocked} 
-                    onPlayClick={handleAccessDemo} 
-                  />
-                </div>
+                <div className="unified-action-card">
+                  {/* Demo Video Preview attached at top */}
+                  <div className="attached-video-wrap">
+                    <VideoPlayer 
+                      isUnlocked={isDemoUnlocked} 
+                      onPlayClick={handleAccessDemo} 
+                    />
+                  </div>
 
-                {/* Lead Form placed directly below video */}
-                <div className="hero-form-card">
-                  <LeadForm 
-                    onSuccessLead={handleLeadSuccess} 
-                    showToast={showToast} 
-                  />
+                  {/* Lead Form seamlessly attached below video */}
+                  <div className="attached-form-wrap">
+                    <LeadForm 
+                      onSuccessLead={handleLeadSuccess} 
+                      showToast={showToast} 
+                    />
+                  </div>
                 </div>
               </div>
             </div>
