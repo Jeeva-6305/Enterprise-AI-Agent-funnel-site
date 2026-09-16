@@ -7,7 +7,7 @@ const leadRoutes = require('./routes/leadRoutes');
 const { db } = require('./config/database');
 
 const app = express();
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 9025;
 
 // Middlewares
 app.use(cors({
