@@ -2,44 +2,46 @@ import React from 'react';
 import { Check, Sparkles } from 'lucide-react';
 
 export default function FunnelHero() {
-  const bulletPoints = [
-    'Enterprise Multi-Agent Orchestration',
-    'Full SOC2 & HIPAA Compliant Governance',
-    'Zero-Code Integration with Existing CRM & ERP',
-    'Human-In-The-Loop Autonomous Execution'
+  const checklistItems = [
+    'Ask about any 10-K or 10-Q and get immediate answers with references',
+    'Every file is organized into 10 ready-to-analyze categories automatically',
+    'The next question always relates to the report - without need for re-upload',
+    'Works in parallel with your progress and saved session state'
   ];
 
   return (
-    <div className="hero-centered-content">
-      {/* Title Eyebrow Pill */}
-      <div className="hero-badge-pill">
-        <Sparkles size={13} style={{ marginRight: '6px' }} />
-        Autonomous Enterprise AI Agents
+    <div className="screenshot-hero-content">
+      {/* Centered Eyebrow Pill with Sparkles */}
+      <div className="screenshot-badge-pill">
+        <Sparkles size={13} strokeWidth={2.2} />
+        <span>SEC ANALYZER</span>
       </div>
 
-      {/* Main Heading */}
-      <h1 className="hero-title-centered">
-        Scale Enterprise Operations with{' '}
-        <span className="title-highlight">Autonomous AI Agents</span>
+      {/* Main Centered Headline */}
+      <h1 className="screenshot-hero-title">
+        Turning SEC Documents into<br />
+        <span className="screenshot-highlight-accent">Decisions, Answers &amp; Insights</span>
       </h1>
 
-      {/* Content / Subheadline */}
-      <p className="hero-subtext-centered">
-        Adople AI’s multi-agent system orchestrates complex enterprise workflows, analyzes cross-functional data, and automates high-volume business operations with complete human-in-the-loop governance and auditability.
+      {/* Centered Subtext Paragraph */}
+      <p className="screenshot-hero-subtext">
+        SEC-Mind uses an organized set of AI agents to automate the fetching, analyzing, and structuring of 10-K and 10-Q documents, so that analysts can get factual information from SEC, instead of having to sift through hundreds of pages manually.
       </p>
 
-      {/* 4 Feature Badges in Balanced Horizontal Grid */}
-      <div className="hero-checklist-horizontal">
-        {bulletPoints.map((point, index) => (
-          <div key={index} className="checklist-pill-item">
-            <div className="check-icon-wrap-sm">
-              <Check size={12} strokeWidth={3.5} />
+      {/* Centered Horizontal Feature Badges / Pills */}
+      <div className="hero-pill-badges-wrap">
+        {checklistItems.map((text, idx) => (
+          <div key={idx} className="hero-feature-pill">
+            <div className="hero-pill-check-icon">
+              <Check size={11} strokeWidth={3.5} />
             </div>
-            <span className="checklist-pill-text">{point}</span>
+            <span>{text}</span>
           </div>
         ))}
       </div>
     </div>
   );
 }
+
+
 

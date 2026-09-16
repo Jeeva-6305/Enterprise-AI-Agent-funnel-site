@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 3002,
+    strictPort: true,
     open: false,
     watch: {
       ignored: ['**/*.mp4', '**/*.webm']

@@ -33,7 +33,7 @@ export default function SuccessModal({ lead, onClose, onOpenVideo }) {
         </h3>
 
         <p style={{ color: '#475569', fontSize: '0.9375rem', marginBottom: '1.5rem', lineHeight: '1.5' }}>
-          Thank you, <strong>{lead.full_name || lead.fullName}</strong>. Your organization (<strong>{lead.company_name || lead.companyName}</strong>) has been registered. You can now watch the full Enterprise AI Agents platform demonstration.
+          Thank you, <strong>{lead.full_name || lead.fullName}</strong>. Your organization (<strong>{lead.company_name || lead.companyName}</strong>) has been registered. You can now watch the full SEC Analyzer platform demonstration.
         </p>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>

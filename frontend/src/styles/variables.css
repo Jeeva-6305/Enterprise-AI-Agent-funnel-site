@@ -1,31 +1,31 @@
 :root {
-  /* Brand Palette - Dark Blue & Violet */
-  --color-primary-navy: #0a0f1d;
-  --color-primary-dark: #060b18;
-  --color-navy-surface: #0f172a;
-  --color-navy-muted: #1e1b4b;
-  --color-top-banner: #0a0f1d;
+  /* Brand Palette - Radiant Sky & Ice Blue Gradient Theme */
+  --color-primary-navy: #09101f;
+  --color-primary-dark: #060b16;
+  --color-navy-surface: #0f1a30;
+  --color-navy-muted: #1e293b;
+  --color-top-banner: #09101f;
 
-  /* Violet & Dark Blue Accent Colors */
-  --color-violet-primary: #7c3aed;
-  --color-violet-hover: #6d28d9;
-  --color-violet-light: #f5f3ff;
-  --color-violet-border: #c4b5fd;
-  --color-violet-glow: rgba(124, 58, 237, 0.32);
+  /* Blue & Ice Radiant Accent Colors */
+  --color-blue-primary: #2563eb;
+  --color-blue-hover: #1d4ed8;
+  --color-blue-light: #eff6ff;
+  --color-blue-border: #bfdbfe;
+  --color-blue-glow: rgba(37, 99, 235, 0.32);
 
-  /* Primary Theme Aliases (Dark Blue & Violet) */
-  --color-blue-primary: #7c3aed;
-  --color-blue-hover: #6d28d9;
-  --color-blue-light: #f5f3ff;
-  --color-blue-border: #c4b5fd;
-  --color-blue-glow: rgba(124, 58, 237, 0.32);
+  /* Violet & Dark Blue Aliases */
+  --color-violet-primary: #2563eb;
+  --color-violet-hover: #1d4ed8;
+  --color-violet-light: #eff6ff;
+  --color-violet-border: #bfdbfe;
+  --color-violet-glow: rgba(37, 99, 235, 0.32);
 
-  /* Aliased for backward compatibility with components */
-  --color-orange-primary: #7c3aed;
-  --color-orange-hover: #6d28d9;
-  --color-orange-light: #f5f3ff;
-  --color-orange-border: #c4b5fd;
-  --color-orange-glow: rgba(124, 58, 237, 0.32);
+  /* Aliased for backward compatibility */
+  --color-orange-primary: #2563eb;
+  --color-orange-hover: #1d4ed8;
+  --color-orange-light: #eff6ff;
+  --color-orange-border: #bfdbfe;
+  --color-orange-glow: rgba(37, 99, 235, 0.32);
 
   /* Status & Accents */
   --color-danger-red: #dc2626;

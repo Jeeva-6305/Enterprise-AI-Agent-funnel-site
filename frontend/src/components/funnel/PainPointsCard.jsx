@@ -1,67 +1,57 @@
 import React from 'react';
-import { Network, Zap, ShieldCheck, CheckCircle, Shield, Clock } from 'lucide-react';
+import { Cpu, Layers, MessageSquareText } from 'lucide-react';
 
 export default function PainPointsCard() {
-  const painPoints = [
+  const solutions = [
     {
-      title: 'Fragmented Enterprise Workflows',
-      description: 'Stop losing critical hours coordinating multi-step tasks across disconnected software systems.',
-      icon: <Network size={20} className="template-item-icon" />
+      title: 'Automated Intelligence for Filings',
+      desc: 'All 10-K and 10-Q filings are automatically parsed and categorized according to standard financial classifications the moment you ask for it.',
+      icon: <Cpu size={18} />
     },
     {
-      title: 'Slow Operational Turnaround',
-      description: 'Automate routine and complex business processes with real-time autonomous agent execution.',
-      icon: <Clock size={20} className="template-item-icon" />
+      title: 'Unified Work Environment',
+      desc: 'Getting, summing up, and formatting all happens in the same pipeline, so no need to go from EDGAR to PDFs to Excel.',
+      icon: <Layers size={18} />
     },
     {
-      title: 'Governance & Compliance Risks',
-      description: 'Enforce ironclad data privacy, granular role permissions, and full auditable agent execution logs.',
-      icon: <ShieldCheck size={20} className="template-item-icon" />
+      title: 'Real-Time Q&A Grounded in Document Sections',
+      desc: 'Ask a question right from the filing and get a citation to the exact part of the document that gives an answer.',
+      icon: <MessageSquareText size={18} />
     }
   ];
 
   return (
-    <div className="purpose-built-template-card">
-      <div>
-        <h3 className="template-card-title">
-          Purpose-built for enterprise scale
-        </h3>
-        <p className="template-card-subtitle">
-          If your organization is dealing with these operational bottlenecks, our AI Agent platform is built for you:
+    <div className="screenshot-problems-wrapper">
+      <div className="container">
+        {/* Section Eyebrow */}
+        <div className="screenshot-problem-eyebrow">
+          The Solution
+        </div>
+
+        {/* Section Headline */}
+        <h2 className="screenshot-problems-title">
+          The SEC-Mind converts filing information into filing intelligence.
+        </h2>
+
+        {/* Purpose Statement */}
+        <p className="screenshot-problems-subtitle">
+          Every SEC filing holds all the information analysts require – it’s just hidden within dozens of pages of legal and financial terms. With SEC-Mind, we strive to ensure there are no important pieces of information left unattended, no wasted time moving from one tool to another, and all your questions are answered immediately with citations to the document itself.
         </p>
 
-        <div className="template-items-list">
-          {painPoints.map((point, index) => (
-            <div key={index} className="template-item-row">
-              <div className="template-icon-container">
-                {point.icon}
+        {/* 3 Horizontal Solution Cards Box */}
+        <div className="screenshot-problems-box">
+          {solutions.map((item, idx) => (
+            <div key={idx} className="screenshot-problem-card">
+              <div className="screenshot-problem-icon-circle">
+                {item.icon}
               </div>
-              <div className="template-text-container">
-                <p className="template-item-title">{point.title}</p>
-                <p className="template-item-desc">{point.description}</p>
-              </div>
+              <h3 className="screenshot-problem-card-title">{item.title}</h3>
+              <p className="screenshot-problem-card-desc">{item.desc}</p>
             </div>
           ))}
-        </div>
-      </div>
-
-      {/* Bottom Value Badges */}
-      <div className="purpose-built-footer-metrics">
-        <div className="metric-pill">
-          <Zap size={14} className="metric-icon" />
-          <span><strong>15x</strong> Faster Execution</span>
-        </div>
-        <div className="metric-pill">
-          <CheckCircle size={14} className="metric-icon" />
-          <span><strong>99.9%</strong> Field Accuracy</span>
-        </div>
-        <div className="metric-pill">
-          <Shield size={14} className="metric-icon" />
-          <span><strong>SOC2</strong> Type II Ready</span>
         </div>
       </div>
     </div>
   );
 }
-
 

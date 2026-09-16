@@ -26,13 +26,13 @@ export default function VideoModal({ isOpen, onClose }) {
           alignItems: 'center',
           justifyContent: 'space-between',
           padding: '1rem 1.5rem',
-          borderBottom: '1px solid rgba(124, 58, 237, 0.2)',
+          borderBottom: '1px solid rgba(37, 99, 235, 0.2)',
           backgroundColor: '#0a0f1d'
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#7c3aed', boxShadow: '0 0 8px rgba(124, 58, 237, 0.8)' }}></div>
+            <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#2563eb', boxShadow: '0 0 8px rgba(37, 99, 235, 0.8)' }}></div>
             <span style={{ fontWeight: 700, fontSize: '0.9375rem', letterSpacing: '0.02em', color: '#ffffff' }}>
-              Enterprise AI Agents — Platform Demonstration
+              SEC Analyzer — Platform Demonstration
             </span>
           </div>
           <button 
@@ -44,7 +44,10 @@ export default function VideoModal({ isOpen, onClose }) {
               justifyContent: 'center',
               padding: '4px',
               borderRadius: '6px',
-              transition: 'all 0.2s ease'
+              transition: 'all 0.2s ease',
+              background: 'transparent',
+              border: 'none',
+              cursor: 'pointer'
             }}
             title="Close video"
           >
@@ -74,8 +77,8 @@ export default function VideoModal({ isOpen, onClose }) {
               backgroundColor: '#000000'
             }}
           >
-            <source src="/Enterprise%20AI%20Agents.mp4" type="video/mp4" />
-            <source src="/Document%20Extraction.mp4" type="video/mp4" />
+            <source src="/Sec%20Analyzer%20Demo.mp4" type="video/mp4" />
+            <source src="/Sec Analyzer Demo.mp4" type="video/mp4" />
             <source src="/demo.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
@@ -88,10 +91,10 @@ export default function VideoModal({ isOpen, onClose }) {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          borderTop: '1px solid rgba(124, 58, 237, 0.2)'
+          borderTop: '1px solid rgba(37, 99, 235, 0.2)'
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#94a3b8', fontSize: '0.8125rem' }}>
-            <ShieldCheck size={16} color="#7c3aed" />
+            <ShieldCheck size={16} color="#2563eb" />
             <span>Enterprise-Grade Security &amp; SOC2 Type II Architecture</span>
           </div>
           <button 

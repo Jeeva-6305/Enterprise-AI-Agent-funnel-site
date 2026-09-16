@@ -72,49 +72,44 @@ export default function App() {
       <TrustBar />
 
       {/* Main Funnel Page Content */}
-      <main className="funnel-main-content">
-        {/* 1. Centered Hero Header Section (Ambient Glow & Centered Typography) */}
-        <section className="hero-header-section">
+      <main className="screenshot-template-root">
+        {/* 1. Hero Section */}
+        <section className="screenshot-hero-section">
           <div className="container">
-            <FunnelHero />
+            <FunnelHero onCtaClick={handleAccessDemo} />
           </div>
         </section>
 
-        {/* 2. Main 2-Column Section: Left (Purpose-Built), Right (Video + Lead Form) */}
-        <section className="hero-action-section">
+        {/* 2. Video Section and Lead Form */}
+        <section className="screenshot-demo-form-section" id="lead-form-section">
           <div className="container">
-            <div className="action-grid">
-              {/* Left Column: Purpose-Built for This Problem (Equal Height with Right Column) */}
-              <div className="action-left-col">
-                <PainPointsCard />
+            <div className="screenshot-action-split-grid">
+              {/* Left Column: Video Box */}
+              <div className="screenshot-split-left">
+                <VideoPlayer 
+                  isUnlocked={isDemoUnlocked} 
+                  onPlayClick={handleAccessDemo} 
+                />
               </div>
 
-              {/* Right Column: Unified Card with Video seamlessly attached above Lead Form */}
-              <div className="action-right-col" id="lead-form-section">
-                <div className="unified-action-card">
-                  {/* Demo Video Preview attached at top */}
-                  <div className="attached-video-wrap">
-                    <VideoPlayer 
-                      isUnlocked={isDemoUnlocked} 
-                      onPlayClick={handleAccessDemo} 
-                    />
-                  </div>
-
-                  {/* Lead Form seamlessly attached below video */}
-                  <div className="attached-form-wrap">
-                    <LeadForm 
-                      onSuccessLead={handleLeadSuccess} 
-                      showToast={showToast} 
-                    />
-                  </div>
-                </div>
+              {/* Right Column: Lead Form Card */}
+              <div className="screenshot-split-right">
+                <LeadForm 
+                  onSuccessLead={handleLeadSuccess} 
+                  showToast={showToast} 
+                />
               </div>
             </div>
           </div>
         </section>
+
+        {/* 3. Problem Section */}
+        <section className="screenshot-problems-section">
+          <PainPointsCard />
+        </section>
       </main>
 
-      {/* Footer with Credentials - Kept exactly unchanged */}
+      {/* Footer with Centered Brand */}
       <Footer />
 
       {/* Success Modal */}

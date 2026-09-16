@@ -103,38 +103,19 @@ export default function LeadForm({ onSuccessLead, showToast }) {
   const currentCountry = COUNTRY_CODES.find(c => c.code === formData.phoneCountryCode) || COUNTRY_CODES[0];
 
   return (
-    <div className="form-container" id="lead-form-section">
-      <div className="form-header-area">
-        <h2 className="form-heading">Ready to Deploy Autonomous AI Agents?</h2>
-        <p className="form-subheading">
-          Tell us about your organization's workflow needs, and we'll demonstrate how Adople AI integrates seamlessly into your operations — zero obligation.
+    <div className="screenshot-form-card" id="lead-form-section">
+      <div className="screenshot-form-header">
+        <h2 className="screenshot-form-title">Transform Any SEC Filing into Structured Intelligence</h2>
+        <p className="screenshot-form-subtitle">
+          See the demo, and discover how SEC-Mind turns a 10-K or 10-Q into structured financial information in seconds.
         </p>
       </div>
 
       <form onSubmit={handleSubmit} noValidate>
-        {/* CTA Button placed on top */}
-        <div className="form-cta-top">
-          <button
-            type="submit"
-            id="btn-unlock-demo"
-            className="btn-primary"
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? (
-              <>
-                <Loader2 className="animate-spin" size={18} />
-                <span>Saving &amp; Unlocking Demo...</span>
-              </>
-            ) : (
-              <span>Unlock Demo and Free Assessment</span>
-            )}
-          </button>
-        </div>
-
         {/* 2-Column Inputs Grid */}
-        <div className="form-grid">
+        <div className="screenshot-form-grid">
           {/* Full Name */}
-          <div className="form-group">
+          <div className="screenshot-form-group">
             <input
               type="text"
               id="input-full-name"
@@ -142,13 +123,13 @@ export default function LeadForm({ onSuccessLead, showToast }) {
               placeholder="Full Name *"
               value={formData.fullName}
               onChange={handleChange}
-              className={`form-input-control ${errors.fullName ? 'error' : ''}`}
+              className={`screenshot-form-input ${errors.fullName ? 'error' : ''}`}
             />
             {errors.fullName && <span className="form-error-msg">{errors.fullName}</span>}
           </div>
 
           {/* Work Email */}
-          <div className="form-group">
+          <div className="screenshot-form-group">
             <input
               type="email"
               id="input-work-email"
@@ -156,13 +137,13 @@ export default function LeadForm({ onSuccessLead, showToast }) {
               placeholder="Work Email *"
               value={formData.workEmail}
               onChange={handleChange}
-              className={`form-input-control ${errors.workEmail ? 'error' : ''}`}
+              className={`screenshot-form-input ${errors.workEmail ? 'error' : ''}`}
             />
             {errors.workEmail && <span className="form-error-msg">{errors.workEmail}</span>}
           </div>
 
           {/* Job Title */}
-          <div className="form-group">
+          <div className="screenshot-form-group">
             <input
               type="text"
               id="input-job-title"
@@ -170,13 +151,13 @@ export default function LeadForm({ onSuccessLead, showToast }) {
               placeholder="Job Title *"
               value={formData.jobTitle}
               onChange={handleChange}
-              className={`form-input-control ${errors.jobTitle ? 'error' : ''}`}
+              className={`screenshot-form-input ${errors.jobTitle ? 'error' : ''}`}
             />
             {errors.jobTitle && <span className="form-error-msg">{errors.jobTitle}</span>}
           </div>
 
           {/* Company Name */}
-          <div className="form-group">
+          <div className="screenshot-form-group">
             <input
               type="text"
               id="input-company-name"
@@ -184,20 +165,20 @@ export default function LeadForm({ onSuccessLead, showToast }) {
               placeholder="Company Name *"
               value={formData.companyName}
               onChange={handleChange}
-              className={`form-input-control ${errors.companyName ? 'error' : ''}`}
+              className={`screenshot-form-input ${errors.companyName ? 'error' : ''}`}
             />
             {errors.companyName && <span className="form-error-msg">{errors.companyName}</span>}
           </div>
 
           {/* Company Size Dropdown */}
-          <div className="form-group">
-            <div className="select-wrapper">
+          <div className="screenshot-form-group">
+            <div className="screenshot-select-wrap">
               <select
                 id="select-company-size"
                 name="companySize"
                 value={formData.companySize}
                 onChange={handleChange}
-                className={`form-input-control ${errors.companySize ? 'error' : ''}`}
+                className={`screenshot-form-input select ${errors.companySize ? 'error' : ''}`}
               >
                 <option value="" disabled hidden>Company Size *</option>
                 {COMPANY_SIZES.map((size) => (
@@ -206,22 +187,22 @@ export default function LeadForm({ onSuccessLead, showToast }) {
                   </option>
                 ))}
               </select>
-              <ChevronDown size={16} className="select-chevron" />
+              <ChevronDown size={16} className="screenshot-select-chevron" />
             </div>
             {errors.companySize && <span className="form-error-msg">{errors.companySize}</span>}
           </div>
 
           {/* Phone Number with Country Code */}
-          <div className="form-group">
-            <div className={`phone-input-group ${errors.phoneNumber ? 'error' : ''}`}>
-              <div className="country-code-select-wrap">
+          <div className="screenshot-form-group">
+            <div className={`screenshot-phone-group ${errors.phoneNumber ? 'error' : ''}`}>
+              <div className="screenshot-country-select-wrap">
                 <span className="country-flag-icon">{currentCountry.flag}</span>
                 <select
                   id="select-country-code"
                   name="phoneCountryCode"
                   value={formData.phoneCountryCode}
                   onChange={handleChange}
-                  className="country-code-select"
+                  className="screenshot-country-select"
                 >
                   {COUNTRY_CODES.map((c) => (
                     <option key={c.code} value={c.code}>
@@ -238,17 +219,36 @@ export default function LeadForm({ onSuccessLead, showToast }) {
                 placeholder="081234 56789"
                 value={formData.phoneNumber}
                 onChange={handleChange}
-                className="phone-number-input"
+                className="screenshot-phone-input"
               />
             </div>
             {errors.phoneNumber && <span className="form-error-msg">{errors.phoneNumber}</span>}
           </div>
         </div>
 
+        {/* CTA Button placed below inputs as shown in screenshot */}
+        <div className="screenshot-form-cta">
+          <button
+            type="submit"
+            id="btn-unlock-demo"
+            className="screenshot-btn-primary"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? (
+              <>
+                <Loader2 className="animate-spin" size={18} />
+                <span>Saving &amp; Unlocking Demo...</span>
+              </>
+            ) : (
+              <span>Unlock Demo and Free Filing Audit</span>
+            )}
+          </button>
+        </div>
+
         {/* Privacy Lock Note */}
-        <div className="form-privacy-note">
-          <Lock size={13} />
-          <span>No spam. No obligation.</span>
+        <div className="screenshot-privacy-note">
+          <Lock size={12} />
+          <span>No spam. No obligation</span>
         </div>
       </form>
     </div>
