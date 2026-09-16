@@ -36,13 +36,30 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// Serve frontend build in production if available
-const frontendBuildPath = path.join(__dirname, '..', 'frontend', 'dist');
-if (require('fs').existsSync(frontendBuildPath)) {
-  app.use(express.static(frontendBuildPath));
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(frontendBuildPath, 'index.html'));
+// Root API Info Endpoint (Port 9025)
+app.get('/', (req, res) => {
+  res.json({
+    service: 'Document Extraction Funnel Backend API (SQL/SQLite)',
+    status: 'online',
+    port: PORT,
+    endpoints: {
+      health: `http://localhost:${PORT}/api/health`,
+      leads: `http://localhost:${PORT}/api/leads`,
+      stats: `http://localhost:${PORT}/api/leads/stats`,
+      exportCsv: `http://localhost:${PORT}/api/leads/export/csv`
+    }
   });
+});
+
+// Serve frontend build only if explicitly in production mode
+if (process.env.NODE_ENV === 'production') {
+  const frontendBuildPath = path.join(__dirname, '..', 'frontend', 'dist');
+  if (require('fs').existsSync(frontendBuildPath)) {
+    app.use(express.static(frontendBuildPath));
+    app.get('*', (req, res) => {
+      res.sendFile(path.join(frontendBuildPath, 'index.html'));
+    });
+  }
 }
 
 // Global error handler
