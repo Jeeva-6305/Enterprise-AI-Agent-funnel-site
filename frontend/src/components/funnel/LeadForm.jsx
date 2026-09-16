@@ -105,9 +105,9 @@ export default function LeadForm({ onSuccessLead, showToast }) {
   return (
     <div className="form-container" id="lead-form-section">
       <div className="form-header-area">
-        <h2 className="form-heading">Automate Data Extraction from Complex Documents</h2>
+        <h2 className="form-heading">Ready to End Manual Document Processing</h2>
         <p className="form-subheading">
-          View the platform demo and see how AI Document Extraction transforms messy, unstructured documents into clean, structured data in seconds.
+          Just let us know more about what you need, and we'll be happy to demonstrate just how Adople AI fits into your workflow - no obligations necessary.
         </p>
       </div>
 
