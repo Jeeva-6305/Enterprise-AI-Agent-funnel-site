@@ -3,10 +3,10 @@ import { Check, Sparkles } from 'lucide-react';
 
 export default function FunnelHero() {
   const bulletPoints = [
-    '99%+ Field-Level Extraction Accuracy',
-    'Automated PDFs, Scans, Invoices & Faxes',
-    'SOC2 Type II Governed & Encrypted',
-    'Instant Integration with ERP / CRM / SQL'
+    'Auditable Data Every Time',
+    'Compatible With Epic, Cerner, Azure & AWS',
+    'No Manual Data Input Needed',
+    'Seamless Data Integration Into Your Existing Systems'
   ];
 
   return (
@@ -25,7 +25,7 @@ export default function FunnelHero() {
 
       {/* Content / Subheadline */}
       <p className="hero-subtext-centered">
-        Adople AI’s autonomous agents read, understand, and extract data from even your messiest documents, faxes, scans, PDFs, and forms, and convert them into audit-ready structured data in seconds.
+        Adople AI’s autonomous agents read, understand, and extract data from even your messiest documents, faxes, scans, PDFs, and forms, and convert them into audit ready structured data in seconds.
       </p>
 
       {/* 4 Feature Badges in Balanced Horizontal Grid */}

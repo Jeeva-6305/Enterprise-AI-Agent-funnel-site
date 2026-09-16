@@ -4,18 +4,18 @@ import { Shield, Zap, FileSpreadsheet, CheckCircle } from 'lucide-react';
 export default function PainPointsCard() {
   const painPoints = [
     {
-      title: 'Manual Data Entry Errors & Slow Turnaround',
-      description: 'Replace tedious manual transcription with autonomous agentic parsing that delivers structured results in sub-seconds.',
-      emoji: '⏱️'
+      title: 'Manual Data Entry',
+      description: 'Stop spending hours entering document data manually.',
+      emoji: '🕐'
     },
     {
-      title: 'Complex, Multi-Page PDFs, Invoices & Scans',
-      description: 'Handles non-standard tables, varied headers, rotated scans, and nested line items without breaking template rules.',
+      title: 'Messy Documents',
+      description: 'Process PDFs, scans, invoices, and forms without the usual hassle.',
       emoji: '📄'
     },
     {
-      title: 'Lack of Custom Rules & Verification Controls',
-      description: 'Enforce mathematical checksums, schema validation, and human-in-the-loop flags on low confidence scores.',
+      title: 'Need Reliable Data',
+      description: 'Get accurate, structured information you can actually use.',
       emoji: '🔍'
     }
   ];
@@ -24,12 +24,12 @@ export default function PainPointsCard() {
     <div className="purpose-built-container-card">
       <div>
         <div className="purpose-built-header">
-          <span className="purpose-built-badge">Enterprise Document Intelligence</span>
+          <span className="purpose-built-badge">DOCUMENT INTELLIGENCE</span>
           <h2 className="purpose-built-title">
-            Purpose-Built for This Problem
+            Built to Make Document Processing Easier
           </h2>
           <p className="purpose-built-subtitle">
-            If any of this is true for your operations, Adople AI’s Document Extraction platform was engineered to solve it:
+            If manual document processing is slowing you down, Adople AI can help.
           </p>
         </div>
 
