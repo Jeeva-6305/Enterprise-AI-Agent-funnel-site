@@ -121,21 +121,29 @@
 
 .carousel-logo-card {
   flex-shrink: 0;
-  padding: 0.5rem 2rem;
+  padding: 0.5rem 2.25rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  filter: grayscale(8%) contrast(96%);
-  opacity: 0.9;
+  opacity: 0.95;
   transition: transform var(--transition-fast), opacity var(--transition-fast);
   user-select: none;
 }
 
 .carousel-logo-card:hover {
   opacity: 1;
-  filter: none;
   transform: scale(1.05);
 }
+
+.trust-bar-company-logo {
+  width: auto;
+  max-width: 160px;
+  object-fit: contain;
+  display: block;
+  pointer-events: none;
+  image-rendering: -webkit-optimize-contrast;
+}
+
 
 /* Main Funnel Wrapper */
 .funnel-main-content {
