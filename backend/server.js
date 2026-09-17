@@ -9,11 +9,26 @@ const { db } = require('./config/database');
 const app = express();
 const PORT = process.env.PORT || 9025;
 
-// Middlewares
+const allowedOrigins = [
+  'http://13.201.92.234:9020',
+  'http://13.201.92.234:9025',
+  'http://localhost:9020',
+  'http://localhost:9025',
+  'http://127.0.0.1:9020',
+  'http://127.0.0.1:9025'
+];
+
 app.use(cors({
-  origin: '*',
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin) || origin.includes('13.201.92.234')) {
+      callback(null, true);
+    } else {
+      callback(null, true);
+    }
+  },
   methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
