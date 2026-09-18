@@ -39,6 +39,32 @@ app.use((req, res, next) => {
   next();
 });
 
+// API Key Validation Middleware for POST /api/leads
+app.use('/api/leads', (req, res, next) => {
+  if (req.method === 'POST') {
+    const apiKey = req.headers['x-api-key'];
+    const validApiKey = process.env.VITE_FUNNEL_API_KEY;
+
+    if (!validApiKey) {
+      console.error('❌ VITE_FUNNEL_API_KEY not configured in .env');
+      return res.status(500).json({ error: 'Server configuration error' });
+    }
+
+    if (!apiKey) {
+      console.warn('❌ Request rejected: Missing X-API-Key header');
+      return res.status(401).json({ error: 'Unauthorized: Missing X-API-Key header' });
+    }
+
+    if (apiKey !== validApiKey) {
+      console.warn(`❌ Request rejected: Invalid API key received`);
+      return res.status(401).json({ error: 'Unauthorized: Invalid API key' });
+    }
+
+    console.log('✅ API Key validated successfully');
+  }
+  next();
+});
+
 // API Routes
 app.use('/api/leads', leadRoutes);
 

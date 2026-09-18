@@ -2,7 +2,7 @@
 -- Compatible with SQLite, PostgreSQL, MySQL
 
 CREATE TABLE IF NOT EXISTS leads (
-    id SERIAL PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     funnel_id VARCHAR(100) NOT NULL,
     funnel_source VARCHAR(100) NOT NULL,
     full_name VARCHAR(255) NOT NULL,
@@ -16,9 +16,9 @@ CREATE TABLE IF NOT EXISTS leads (
     status VARCHAR(50) DEFAULT 'New',
     source_url TEXT,
     ip_address VARCHAR(45),
-    created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
-    raw_payload JSONB DEFAULT '{}'::jsonb
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    raw_payload TEXT DEFAULT '{}'
 );
 
 -- Indexes for fast searching and filtering
