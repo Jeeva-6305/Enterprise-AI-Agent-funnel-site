@@ -6,37 +6,45 @@ class LeadModel {
    */
   static async create(data) {
     const {
-      fullName,
-      workEmail,
-      jobTitle,
-      companyName,
-      companySize,
-      phoneCountryCode = '+91',
-      phoneNumber,
-      sourceCampaign = 'SEC Analysis Funnel',
-      ipAddress = null,
-      notes = null
+      funnel_id,
+      funnel_source,
+      full_name,
+      email,
+      phone = null,
+      company = null,
+      job_title = null,
+      use_case = null,
+      message = null,
+      campaign = null,
+      status = 'New',
+      source_url = null,
+      ip_address = null,
+      raw_payload = {}
     } = data;
 
     const sql = `
       INSERT INTO leads (
-        full_name, work_email, job_title, company_name, 
-        company_size, phone_country_code, phone_number, 
-        source_campaign, ip_address, notes
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        funnel_id, funnel_source, full_name, email, phone, company,
+        job_title, use_case, message, campaign, status, source_url,
+        ip_address, raw_payload, created_at, updated_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
     `;
 
     const params = [
-      fullName.trim(),
-      workEmail.trim().toLowerCase(),
-      jobTitle.trim(),
-      companyName.trim(),
-      companySize.trim(),
-      phoneCountryCode.trim(),
-      phoneNumber.trim(),
-      sourceCampaign,
-      ipAddress,
-      notes
+      funnel_id,
+      funnel_source,
+      full_name.trim(),
+      email.trim().toLowerCase(),
+      phone ? phone.trim() : null,
+      company ? company.trim() : null,
+      job_title ? job_title.trim() : null,
+      use_case || null,
+      message || null,
+      campaign || null,
+      status,
+      source_url || null,
+      ip_address || null,
+      JSON.stringify(raw_payload)
     ];
 
     const result = await runQuery(sql, params);
@@ -76,11 +84,11 @@ class LeadModel {
 
     if (search && search.trim() !== '') {
       whereClauses.push(`(
-        full_name LIKE ? OR 
-        work_email LIKE ? OR 
-        company_name LIKE ? OR 
-        job_title LIKE ? OR 
-        phone_number LIKE ?
+        full_name LIKE ? OR
+        email LIKE ? OR
+        company LIKE ? OR
+        job_title LIKE ? OR
+        phone LIKE ?
       )`);
       const searchParam = `%${search.trim()}%`;
       params.push(searchParam, searchParam, searchParam, searchParam, searchParam);
@@ -99,7 +107,7 @@ class LeadModel {
     const whereSql = whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : '';
 
     // Validate sort column to avoid SQL injection
-    const allowedSortCols = ['id', 'full_name', 'work_email', 'job_title', 'company_name', 'company_size', 'status', 'created_at'];
+    const allowedSortCols = ['id', 'full_name', 'email', 'job_title', 'company', 'funnel_id', 'status', 'created_at'];
     const validSortCol = allowedSortCols.includes(sortBy) ? sortBy : 'created_at';
     const validSortOrder = sortOrder.toUpperCase() === 'ASC' ? 'ASC' : 'DESC';
 

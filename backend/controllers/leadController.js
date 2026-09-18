@@ -8,59 +8,60 @@ class LeadController {
   static async createLead(req, res) {
     try {
       const {
-        fullName,
-        workEmail,
-        jobTitle,
-        companyName,
-        companySize,
-        phoneCountryCode,
-        phoneNumber,
-        notes
+        funnel_id,
+        funnel_source,
+        full_name,
+        email,
+        phone,
+        company,
+        job_title,
+        use_case,
+        message,
+        campaign,
+        status = 'New'
       } = req.body;
 
       // Validation
-      if (!fullName || !fullName.trim()) {
+      if (!funnel_id || !funnel_id.trim()) {
+        return res.status(400).json({ error: 'Funnel ID is required.' });
+      }
+      if (!funnel_source || !funnel_source.trim()) {
+        return res.status(400).json({ error: 'Funnel source is required.' });
+      }
+      if (!full_name || !full_name.trim()) {
         return res.status(400).json({ error: 'Full Name is required.' });
       }
-      if (!workEmail || !workEmail.trim()) {
-        return res.status(400).json({ error: 'Work Email is required.' });
-      }
-      
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(workEmail.trim())) {
-        return res.status(400).json({ error: 'Please provide a valid business email address.' });
+      if (!email || !email.trim()) {
+        return res.status(400).json({ error: 'Email is required.' });
       }
 
-      if (!jobTitle || !jobTitle.trim()) {
-        return res.status(400).json({ error: 'Job Title is required.' });
-      }
-      if (!companyName || !companyName.trim()) {
-        return res.status(400).json({ error: 'Company Name is required.' });
-      }
-      if (!companySize || !companySize.trim()) {
-        return res.status(400).json({ error: 'Company Size selection is required.' });
-      }
-      if (!phoneNumber || !phoneNumber.trim()) {
-        return res.status(400).json({ error: 'Phone Number is required.' });
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email.trim())) {
+        return res.status(400).json({ error: 'Please provide a valid email address.' });
       }
 
       const clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress || null;
+      const rawPayload = req.body;
 
       const newLead = await LeadModel.create({
-        fullName,
-        workEmail,
-        jobTitle,
-        companyName,
-        companySize,
-        phoneCountryCode: phoneCountryCode || '+91',
-        phoneNumber,
-        ipAddress: clientIp,
-        notes
+        funnel_id,
+        funnel_source,
+        full_name,
+        email,
+        phone: phone || null,
+        company: company || null,
+        job_title: job_title || null,
+        use_case: use_case || null,
+        message: message || null,
+        campaign: campaign || null,
+        status,
+        ip_address: clientIp,
+        raw_payload: rawPayload
       });
 
       return res.status(201).json({
-        success: true,
-        message: 'Lead submitted successfully and saved to SQL database.',
+        ok: true,
+        message: 'Lead submitted successfully.',
         lead: newLead
       });
     } catch (error) {
@@ -208,16 +209,17 @@ class LeadController {
       // CSV Header
       const headers = [
         'ID',
+        'Funnel ID',
+        'Funnel Source',
         'Full Name',
-        'Work Email',
+        'Email',
+        'Phone',
+        'Company',
         'Job Title',
-        'Company Name',
-        'Company Size',
-        'Country Code',
-        'Phone Number',
-        'Status',
+        'Use Case',
+        'Message',
         'Campaign',
-        'Notes',
+        'Status',
         'Created At'
       ];
 
@@ -227,16 +229,17 @@ class LeadController {
       for (const lead of leads) {
         const values = [
           lead.id,
+          (lead.funnel_id || '').replace(/"/g, '""'),
+          (lead.funnel_source || '').replace(/"/g, '""'),
           (lead.full_name || '').replace(/"/g, '""'),
-          (lead.work_email || '').replace(/"/g, '""'),
+          (lead.email || '').replace(/"/g, '""'),
+          (lead.phone || '').replace(/"/g, '""'),
+          (lead.company || '').replace(/"/g, '""'),
           (lead.job_title || '').replace(/"/g, '""'),
-          (lead.company_name || '').replace(/"/g, '""'),
-          (lead.company_size || '').replace(/"/g, '""'),
-          (lead.phone_country_code || '').replace(/"/g, '""'),
-          (lead.phone_number || '').replace(/"/g, '""'),
+          (lead.use_case || '').replace(/"/g, '""'),
+          (lead.message || '').replace(/"/g, '""'),
+          (lead.campaign || '').replace(/"/g, '""'),
           (lead.status || '').replace(/"/g, '""'),
-          (lead.source_campaign || '').replace(/"/g, '""'),
-          (lead.notes || '').replace(/"/g, '""'),
           lead.created_at
         ];
         csvRows.push(values.map(v => `"${v}"`).join(','));

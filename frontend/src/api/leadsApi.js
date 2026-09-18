@@ -2,7 +2,7 @@
  * Frontend API client for Leads Backend - Now using centralized API
  */
 
-const INGEST_URL = 'http://localhost:9035/api/ingest/leads';
+const INGEST_URL = 'http://localhost:9000/api/ingest/leads';
 const BASE_URL = '/api/leads';
 
 export const leadsApi = {
