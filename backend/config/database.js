@@ -1,80 +1,98 @@
-const sqlite3 = require('sqlite3').verbose();
-const path = require('path');
-const fs = require('fs');
+const { Pool } = require('pg');
+require('dotenv').config();
 
-const DB_PATH = process.env.DB_PATH || path.join(__dirname, '..', 'database', 'leads.db');
-
-// Ensure database directory exists
-const dbDir = path.dirname(DB_PATH);
-if (!fs.existsSync(dbDir)) {
-  fs.mkdirSync(dbDir, { recursive: true });
-}
-
-// Initialize SQLite database instance
-const db = new sqlite3.Database(DB_PATH, (err) => {
-  if (err) {
-    console.error('❌ Error opening SQLite database:', err.message);
-  } else {
-    console.log(`✅ Connected to SQLite database at: ${DB_PATH}`);
-    initDatabaseSchema();
-  }
+const pool = new Pool({
+  host: process.env.CENTRAL_DB_HOST,
+  port: process.env.CENTRAL_DB_PORT || 5432,
+  database: process.env.CENTRAL_DB_NAME,
+  user: process.env.CENTRAL_DB_USER,
+  password: process.env.CENTRAL_DB_PASSWORD,
+  ssl: process.env.CENTRAL_DB_SSL === 'true' ? { rejectUnauthorized: false } : false,
+  max: 20,
+  idleTimeoutMillis: 30000,
+  connectionTimeoutMillis: 2000,
 });
 
-/**
- * Initialize database schema from schema.sql
- */
-function initDatabaseSchema() {
-  const schemaPath = path.join(__dirname, '..', 'database', 'schema.sql');
-  if (fs.existsSync(schemaPath)) {
-    const schemaSql = fs.readFileSync(schemaPath, 'utf8');
-    db.exec(schemaSql, (err) => {
-      if (err) {
-        console.error('❌ Error executing database schema:', err.message);
-      } else {
-        console.log('✅ Database schema verified and initialized.');
-      }
-    });
+pool.on('connect', () => {
+  console.log('✅ Connected to PostgreSQL (Neon) database');
+});
+
+pool.on('error', (err) => {
+  console.error('❌ Unexpected error on idle client', err);
+  process.exit(-1);
+});
+
+async function initDatabaseSchema() {
+  try {
+    const schemaSQL = `
+      CREATE TABLE IF NOT EXISTS leads (
+        id SERIAL PRIMARY KEY,
+        funnel_id VARCHAR(100) NOT NULL,
+        funnel_source VARCHAR(100) NOT NULL,
+        full_name VARCHAR(255) NOT NULL,
+        email VARCHAR(255) NOT NULL,
+        phone VARCHAR(50),
+        company VARCHAR(255),
+        job_title VARCHAR(255),
+        use_case TEXT,
+        message TEXT,
+        campaign VARCHAR(255),
+        status VARCHAR(50) DEFAULT 'New',
+        source_url TEXT,
+        ip_address VARCHAR(45),
+        created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+        raw_payload JSONB DEFAULT '{}'::jsonb
+      );
+
+      CREATE INDEX IF NOT EXISTS idx_leads_funnel_id ON leads(funnel_id);
+      CREATE INDEX IF NOT EXISTS idx_leads_email ON leads(email);
+      CREATE INDEX IF NOT EXISTS idx_leads_status ON leads(status);
+      CREATE INDEX IF NOT EXISTS idx_leads_created_at ON leads(created_at);
+      CREATE INDEX IF NOT EXISTS idx_leads_company ON leads(company);
+    `;
+
+    await pool.query(schemaSQL);
+    console.log('✅ Database schema verified and initialized.');
+  } catch (err) {
+    console.error('❌ Error executing database schema:', err.message);
   }
 }
 
-/**
- * Helper method for executing SQL queries returning multiple rows
- */
+initDatabaseSchema();
+
 function queryAll(sql, params = []) {
   return new Promise((resolve, reject) => {
-    db.all(sql, params, (err, rows) => {
+    pool.query(sql, params, (err, result) => {
       if (err) return reject(err);
-      resolve(rows);
+      resolve(result.rows);
     });
   });
 }
 
-/**
- * Helper method for executing SQL query returning a single row
- */
 function queryOne(sql, params = []) {
   return new Promise((resolve, reject) => {
-    db.get(sql, params, (err, row) => {
+    pool.query(sql, params, (err, result) => {
       if (err) return reject(err);
-      resolve(row);
+      resolve(result.rows[0]);
     });
   });
 }
 
-/**
- * Helper method for executing INSERT, UPDATE, DELETE with lastID and changes
- */
 function runQuery(sql, params = []) {
   return new Promise((resolve, reject) => {
-    db.run(sql, params, function (err) {
+    pool.query(sql, params, (err, result) => {
       if (err) return reject(err);
-      resolve({ lastID: this.lastID, changes: this.changes });
+      resolve({
+        lastID: result.rows[0]?.id,
+        changes: result.rowCount
+      });
     });
   });
 }
 
 module.exports = {
-  db,
+  pool,
   queryAll,
   queryOne,
   runQuery

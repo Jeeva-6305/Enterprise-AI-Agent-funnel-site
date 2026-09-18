@@ -12,9 +12,15 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
-    "sqlite3": "^5.1.7"
+    "pg": "^8.23.0"
   },
-  "keywords": ["express", "sql", "sqlite", "leads", "react18"],
+  "keywords": [
+    "express",
+    "sql",
+    "sqlite",
+    "leads",
+    "react18"
+  ],
   "author": "22nd Century Technologies",
   "license": "ISC"
 }
