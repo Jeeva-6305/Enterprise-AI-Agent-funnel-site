@@ -57,6 +57,8 @@ export default function LeadForm({ onSuccessLead, showToast }) {
     if (!formData.companySize) errs.companySize = 'Please select company size';
     if (!formData.phoneNumber.trim()) errs.phoneNumber = 'Phone number is required';
 
+    console.log('Form validation errors:', errs);
+    console.log('Form data:', formData);
     setErrors(errs);
     return Object.keys(errs).length === 0;
   };
