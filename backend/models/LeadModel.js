@@ -2,7 +2,7 @@ const { queryAll, queryOne, runQuery } = require('../config/database');
 
 class LeadModel {
   /**
-   * Insert a new lead into SQL database
+   * Insert a new lead into PostgreSQL database
    */
   static async create(data) {
     const {
@@ -26,8 +26,9 @@ class LeadModel {
       INSERT INTO leads (
         funnel_id, funnel_source, full_name, email, phone, company,
         job_title, use_case, message, campaign, status, source_url,
-        ip_address, raw_payload, created_at, updated_at
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+        ip_address, raw_payload
+      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)
+      RETURNING id
     `;
 
     const params = [
@@ -55,15 +56,15 @@ class LeadModel {
    * Find lead by ID
    */
   static async findById(id) {
-    const sql = `SELECT * FROM leads WHERE id = ?`;
+    const sql = `SELECT * FROM leads WHERE id = $1`;
     return queryOne(sql, [id]);
   }
 
   /**
-   * Find lead by Work Email
+   * Find lead by Email
    */
   static async findByEmail(email) {
-    const sql = `SELECT * FROM leads WHERE LOWER(work_email) = ? ORDER BY created_at DESC LIMIT 1`;
+    const sql = `SELECT * FROM leads WHERE LOWER(email) = LOWER($1) ORDER BY created_at DESC LIMIT 1`;
     return queryOne(sql, [email.toLowerCase().trim()]);
   }
 
@@ -81,27 +82,31 @@ class LeadModel {
   } = {}) {
     const whereClauses = [];
     const params = [];
+    let paramCount = 1;
 
     if (search && search.trim() !== '') {
       whereClauses.push(`(
-        full_name LIKE ? OR
-        email LIKE ? OR
-        company LIKE ? OR
-        job_title LIKE ? OR
-        phone LIKE ?
+        full_name ILIKE $${paramCount} OR
+        email ILIKE $${paramCount + 1} OR
+        company ILIKE $${paramCount + 2} OR
+        job_title ILIKE $${paramCount + 3} OR
+        phone ILIKE $${paramCount + 4}
       )`);
       const searchParam = `%${search.trim()}%`;
       params.push(searchParam, searchParam, searchParam, searchParam, searchParam);
+      paramCount += 5;
     }
 
     if (status && status.trim() !== '' && status !== 'ALL') {
-      whereClauses.push(`status = ?`);
+      whereClauses.push(`status = $${paramCount}`);
       params.push(status.trim());
+      paramCount++;
     }
 
     if (companySize && companySize.trim() !== '' && companySize !== 'ALL') {
-      whereClauses.push(`company_size = ?`);
+      whereClauses.push(`funnel_id = $${paramCount}`);
       params.push(companySize.trim());
+      paramCount++;
     }
 
     const whereSql = whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : '';
@@ -114,15 +119,15 @@ class LeadModel {
     // Count total query
     const countSql = `SELECT COUNT(*) as total FROM leads ${whereSql}`;
     const countRow = await queryOne(countSql, params);
-    const total = countRow ? countRow.total : 0;
+    const total = countRow ? parseInt(countRow.total) : 0;
 
     // Data query with pagination
     const offset = (Math.max(1, parseInt(page)) - 1) * parseInt(limit);
     const dataSql = `
-      SELECT * FROM leads 
-      ${whereSql} 
-      ORDER BY ${validSortCol} ${validSortOrder} 
-      LIMIT ? OFFSET ?
+      SELECT * FROM leads
+      ${whereSql}
+      ORDER BY ${validSortCol} ${validSortOrder}
+      LIMIT $${paramCount + 1} OFFSET $${paramCount + 2}
     `;
 
     const dataParams = [...params, parseInt(limit), offset];
@@ -145,21 +150,24 @@ class LeadModel {
   static async updateStatus(id, { status, notes }) {
     const sets = [];
     const params = [];
+    let paramCount = 1;
 
     if (status) {
-      sets.push('status = ?');
+      sets.push(`status = $${paramCount}`);
       params.push(status);
+      paramCount++;
     }
 
     if (notes !== undefined) {
-      sets.push('notes = ?');
+      sets.push(`notes = $${paramCount}`);
       params.push(notes);
+      paramCount++;
     }
 
-    sets.push('updated_at = CURRENT_TIMESTAMP');
+    sets.push(`updated_at = CURRENT_TIMESTAMP`);
     params.push(id);
 
-    const sql = `UPDATE leads SET ${sets.join(', ')} WHERE id = ?`;
+    const sql = `UPDATE leads SET ${sets.join(', ')} WHERE id = $${paramCount} RETURNING *`;
     await runQuery(sql, params);
     return this.findById(id);
   }
@@ -168,7 +176,7 @@ class LeadModel {
    * Delete lead by ID
    */
   static async delete(id) {
-    const sql = `DELETE FROM leads WHERE id = ?`;
+    const sql = `DELETE FROM leads WHERE id = $1`;
     const result = await runQuery(sql, [id]);
     return result.changes > 0;
   }
@@ -180,31 +188,31 @@ class LeadModel {
     const totalLeadsRow = await queryOne(`SELECT COUNT(*) as total FROM leads`);
     const newLeadsRow = await queryOne(`SELECT COUNT(*) as count FROM leads WHERE status = 'New'`);
     const qualifiedRow = await queryOne(`SELECT COUNT(*) as count FROM leads WHERE status IN ('Qualified', 'Demo Scheduled')`);
-    
+
     const statusCounts = await queryAll(`
-      SELECT status, COUNT(*) as count 
-      FROM leads 
-      GROUP BY status 
+      SELECT status, COUNT(*) as count
+      FROM leads
+      GROUP BY status
       ORDER BY count DESC
     `);
 
     const companySizeBreakdown = await queryAll(`
-      SELECT company_size, COUNT(*) as count 
-      FROM leads 
-      GROUP BY company_size 
+      SELECT funnel_id, COUNT(*) as count
+      FROM leads
+      GROUP BY funnel_id
       ORDER BY count DESC
     `);
 
     const recentLeads = await queryAll(`
-      SELECT * FROM leads 
-      ORDER BY created_at DESC 
+      SELECT * FROM leads
+      ORDER BY created_at DESC
       LIMIT 5
     `);
 
     return {
-      totalLeads: totalLeadsRow ? totalLeadsRow.total : 0,
-      newLeads: newLeadsRow ? newLeadsRow.count : 0,
-      qualifiedLeads: qualifiedRow ? qualifiedRow.count : 0,
+      totalLeads: totalLeadsRow ? parseInt(totalLeadsRow.total) : 0,
+      newLeads: newLeadsRow ? parseInt(newLeadsRow.count) : 0,
+      qualifiedLeads: qualifiedRow ? parseInt(qualifiedRow.count) : 0,
       statusCounts,
       companySizeBreakdown,
       recentLeads

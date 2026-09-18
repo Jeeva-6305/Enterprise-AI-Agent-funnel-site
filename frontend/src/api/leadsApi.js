@@ -1,13 +1,12 @@
 /**
- * Frontend API client for Leads Backend - Now using centralized API
+ * Frontend API client for Leads Backend - Local backend on port 9035
  */
 
-const INGEST_URL = 'http://localhost:9000/api/ingest/leads';
-const BASE_URL = '/api/leads';
+const BASE_URL = 'http://localhost:9035/api/leads';
 
 export const leadsApi = {
   /**
-   * Submit lead from Funnel Form - Uses centralized API with authentication
+   * Submit lead from Funnel Form - Posts to local backend on port 9035
    */
   async submitLead(leadData) {
     const apiKey = import.meta.env.VITE_FUNNEL_API_KEY;
@@ -15,7 +14,7 @@ export const leadsApi = {
       throw new Error('API key not configured. Please check .env file.');
     }
 
-    const response = await fetch(INGEST_URL, {
+    const response = await fetch(BASE_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
