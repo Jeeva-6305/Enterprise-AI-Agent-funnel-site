@@ -28,7 +28,7 @@ class LeadModel {
         job_title, use_case, message, campaign, status, source_url,
         ip_address, raw_payload
       ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)
-      RETURNING id
+      RETURNING *
     `;
 
     const params = [
@@ -48,8 +48,8 @@ class LeadModel {
       JSON.stringify(raw_payload)
     ];
 
-    const result = await runQuery(sql, params);
-    return this.findById(result.lastID);
+    const newLead = await queryOne(sql, params);
+    return newLead;
   }
 
   /**
