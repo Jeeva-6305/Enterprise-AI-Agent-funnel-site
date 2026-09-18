@@ -4,7 +4,7 @@ const path = require('path');
 require('dotenv').config();
 
 const leadRoutes = require('./routes/leadRoutes');
-const { db } = require('./config/database');
+require('./config/database');
 
 const app = express();
 const PORT = process.env.PORT || 9035;
@@ -27,7 +27,7 @@ app.use(cors({
     }
   },
   methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-API-Key'],
   credentials: true
 }));
 app.use(express.json());
