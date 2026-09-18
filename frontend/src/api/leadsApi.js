@@ -2,7 +2,7 @@
  * Frontend API client for Leads Backend - Now using centralized API
  */
 
-const INGEST_URL = 'http://localhost:9000/api/ingest/leads';
+const INGEST_URL = 'http://localhost:9035/api/ingest/leads';
 const BASE_URL = '/api/leads';
 
 export const leadsApi = {
@@ -22,11 +22,15 @@ export const leadsApi = {
         'X-API-Key': apiKey
       },
       body: JSON.stringify({
+        funnel_id: "sec_analysis",
+        funnel_source: "SEC Analysis",
         full_name: leadData.fullName,
         email: leadData.workEmail,
         phone: leadData.phoneNumber,
         company: leadData.companyName,
-        job_title: leadData.jobTitle
+        job_title: leadData.jobTitle,
+        use_case: leadData.sourceCampaign || "",
+        message: ""
       })
     });
 
