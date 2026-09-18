@@ -1,25 +1,38 @@
 /**
- * Frontend API client for Leads Backend
+ * Frontend API client for Leads Backend - Now using centralized API
  */
 
+const INGEST_URL = 'http://localhost:9000/api/ingest/leads';
 const BASE_URL = '/api/leads';
 
 export const leadsApi = {
   /**
-   * Submit lead from Funnel Form
+   * Submit lead from Funnel Form - Uses centralized API with authentication
    */
   async submitLead(leadData) {
-    const response = await fetch(BASE_URL, {
+    const apiKey = import.meta.env.VITE_FUNNEL_API_KEY;
+    if (!apiKey) {
+      throw new Error('API key not configured. Please check .env file.');
+    }
+
+    const response = await fetch(INGEST_URL, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'X-API-Key': apiKey
       },
-      body: JSON.stringify(leadData)
+      body: JSON.stringify({
+        full_name: leadData.fullName,
+        email: leadData.workEmail,
+        phone: leadData.phoneNumber,
+        company: leadData.companyName,
+        job_title: leadData.jobTitle
+      })
     });
 
     const data = await response.json();
     if (!response.ok) {
-      throw new Error(data.error || 'Failed to submit lead.');
+      throw new Error(data.error || data.message || 'Failed to submit lead.');
     }
     return data;
   },
