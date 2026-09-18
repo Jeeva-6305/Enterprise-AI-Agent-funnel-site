@@ -22,11 +22,15 @@ export const leadsApi = {
         'X-API-Key': apiKey
       },
       body: JSON.stringify({
+        funnel_id: "doc_extraction",
+        funnel_source: "Agentic Document Extraction",
         full_name: leadData.fullName,
         email: leadData.workEmail,
         phone: leadData.phoneNumber,
         company: leadData.companyName,
-        job_title: leadData.jobTitle
+        job_title: leadData.jobTitle,
+        use_case: leadData.sourceCampaign || "",
+        message: ""
       })
     });
 
