@@ -19,7 +19,7 @@ export default function SuccessModal({ lead, onClose, onOpenVideo }) {
           height: '64px',
           borderRadius: '50%',
           backgroundColor: '#eff6ff',
-          color: '#0052cc',
+          color: '#1D4ED8',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',

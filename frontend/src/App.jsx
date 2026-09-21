@@ -10,6 +10,8 @@ import LeadForm from './components/funnel/LeadForm';
 import PainPointsCard from './components/funnel/PainPointsCard';
 import SuccessModal from './components/funnel/SuccessModal';
 import VideoModal from './components/funnel/VideoModal';
+import WhatItDoes from './components/funnel/WhatItDoes';
+import UseCases from './components/funnel/UseCases';
 
 import './styles/global.css';
 import './styles/funnel.css';
@@ -61,7 +63,7 @@ export default function App() {
   };
 
   return (
-    <div className="app-root">
+    <div className="app-root" data-theme="enterprise">
       {/* Top Global Navigation with Brand & "Get a Demo" Button */}
       <Navbar onGetDemoClick={handleAccessDemo} />
 
@@ -73,14 +75,14 @@ export default function App() {
 
       {/* Main Funnel Page Content */}
       <main className="funnel-main-content">
-        {/* 1. Hero Section (Left: Content, Right: Lead Form) */}
+        {/* 1. Hero Section (All Centered: Content, 4 Checkbox Pills, and Matching Form) */}
         <section className="hero-section">
           <div className="container">
-            <div className="hero-grid">
-              {/* Left Column: Hero Content & 4 Checkmarks */}
+            <div className="hero-centered-layout">
+              {/* Centered Hero Content & 4 Checkbox Pills */}
               <FunnelHero />
 
-              {/* Right Column: Lead Form Card */}
+              {/* Centered Lead Form Card - Matching Width/Length */}
               <div className="hero-form-card" id="lead-form-section">
                 <LeadForm 
                   onSuccessLead={handleLeadSuccess} 
@@ -112,6 +114,12 @@ export default function App() {
             </div>
           </div>
         </section>
+
+        {/* 3. Section: What It Does */}
+        <WhatItDoes />
+
+        {/* 4. Section: Use Cases */}
+        <UseCases />
       </main>
 
       {/* Footer with Credentials - Kept exactly unchanged */}

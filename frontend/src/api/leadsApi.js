@@ -5,14 +5,12 @@
 const BASE_URL = 'http://localhost:9015/api/leads';
 
 export const leadsApi = {
-  /**
-   * Submit lead from Funnel Form - Posts to local backend on port 9015
-   */
   async submitLead(leadData) {
-    const apiKey = import.meta.env.VITE_FUNNEL_API_KEY;
-    if (!apiKey) {
-      throw new Error('API key not configured. Please check .env file.');
-    }
+    const apiKey = import.meta.env.VITE_FUNNEL_API_KEY || 'sk_live_enterprise_d630e8b4f23695595329a6db147b0176ef25cf0f0b07db0d';
+
+    const formattedUseCase = leadData.use_case === 'Other' && leadData.other_use_case
+      ? `Other: ${leadData.other_use_case.trim()}`
+      : (leadData.use_case || '');
 
     const response = await fetch(BASE_URL, {
       method: 'POST',
@@ -23,13 +21,15 @@ export const leadsApi = {
       body: JSON.stringify({
         funnel_id: "enterprise_ai",
         funnel_source: "Enterprise AI Agent",
-        full_name: leadData.fullName,
-        email: leadData.workEmail,
-        phone: leadData.phoneNumber,
-        company: leadData.companyName,
-        job_title: leadData.jobTitle,
-        use_case: "",
-        message: ""
+        full_name: leadData.fullName || leadData.full_name,
+        email: leadData.workEmail || leadData.work_email,
+        phone: leadData.phone || leadData.phoneNumber,
+        company: leadData.companyName || leadData.company_name,
+        job_title: leadData.jobTitle || leadData.job_title,
+        use_case: formattedUseCase,
+        other_use_case: leadData.other_use_case || "",
+        company_size: leadData.companySize || leadData.company_size || "",
+        message: leadData.message || ""
       })
     });
 

@@ -27,10 +27,10 @@ export default function VideoModal({ isOpen, onClose }) {
           justifyContent: 'space-between',
           padding: '1rem 1.5rem',
           borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
-          backgroundColor: '#090d16'
+          backgroundColor: '#0B1220'
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#0052cc' }}></div>
+            <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#1D4ED8' }}></div>
             <span style={{ fontWeight: 700, fontSize: '0.9375rem', letterSpacing: '0.02em', color: '#ffffff' }}>
               Enterprise AI Agents — Platform Demonstration
             </span>
@@ -83,14 +83,14 @@ export default function VideoModal({ isOpen, onClose }) {
         {/* Footer info bar */}
         <div style={{
           padding: '1rem 1.5rem',
-          backgroundColor: '#090d16',
+          backgroundColor: '#0B1220',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
           borderTop: '1px solid rgba(255, 255, 255, 0.1)'
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#94a3b8', fontSize: '0.8125rem' }}>
-            <ShieldCheck size={16} color="#0052cc" />
+            <ShieldCheck size={16} color="#06B6D4" />
             <span>Enterprise-Grade Security &amp; SOC2 Type II Architecture</span>
           </div>
           <button 

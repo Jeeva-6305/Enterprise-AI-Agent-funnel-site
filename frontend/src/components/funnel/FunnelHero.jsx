@@ -1,5 +1,5 @@
 import React from 'react';
-import { Check } from 'lucide-react';
+import { Check, Sparkles } from 'lucide-react';
 
 export default function FunnelHero() {
   const bulletPoints = [
@@ -10,29 +10,30 @@ export default function FunnelHero() {
   ];
 
   return (
-    <div className="hero-left">
-      {/* Eyebrow Tag */}
+    <div className="hero-center-content">
+      {/* Centered Eyebrow Tag */}
       <div className="hero-badge-pill">
-        Enterprise AI Agents
+        <Sparkles size={14} className="hero-badge-icon" />
+        <span>Enterprise AI Agents</span>
       </div>
 
-      {/* Headline */}
+      {/* Centered Headline */}
       <h1 className="hero-title">
         Turning Enterprise Intelligence into{' '}
         <span className="title-highlight">Decisions, Action, and Knowledge</span>
       </h1>
 
-      {/* Subheadline */}
+      {/* Centered Subheadline */}
       <p className="hero-subtext">
         Enterprise AI Agents help you bring all your scattered documents and applications together to work as one cohesive intelligent system that thinks, searches and answers like your best employee does.
       </p>
 
-      {/* 4 Bullet Points with Blue Checkmarks */}
-      <div className="hero-checklist">
+      {/* 4 Checkbox Points in Horizontal Pill Badges */}
+      <div className="hero-checklist-pills">
         {bulletPoints.map((point, index) => (
-          <div key={index} className="checklist-item">
+          <div key={index} className="checklist-pill-item">
             <div className="check-icon-wrap">
-              <Check size={14} strokeWidth={3.5} />
+              <Check size={12} strokeWidth={3.5} />
             </div>
             <span className="checklist-text">{point}</span>
           </div>

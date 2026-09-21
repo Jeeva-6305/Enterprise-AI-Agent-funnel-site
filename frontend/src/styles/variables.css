@@ -1,32 +1,46 @@
-:root {
-  /* Brand Palette - Blue & Black */
-  --color-primary-navy: #090d16;
+:root,
+[data-theme="enterprise"] {
+  /* Enterprise AI Agent – Cobalt + Cyan Palette */
+  --brand: #1D4ED8;
+  --brand-hover: #1E40AF;
+  --brand-deep: #1E3A8A;
+  --accent: #06B6D4;
+  --tint: #EFF6FF;
+  --cta-text: #FFFFFF;
+  --hero-grad: linear-gradient(135deg, #EFF6FF 0%, #FFFFFF 55%, #CFFAFE 100%);
+  --dark-section: #0B1220;
+
+  /* Mapped Brand Colors */
+  --color-primary-navy: #0B1220;
   --color-primary-dark: #000000;
   --color-navy-surface: #0f172a;
   --color-navy-muted: #1e293b;
-  --color-top-banner: #090d16;
+  --color-top-banner: #0B1220;
 
-  /* Blue Accent Colors */
-  --color-blue-primary: #0052cc;
-  --color-blue-hover: #0041a8;
-  --color-blue-light: #eff6ff;
+  /* Blue / Cobalt Accent Colors */
+  --color-blue-primary: var(--brand);
+  --color-blue-hover: var(--brand-hover);
+  --color-blue-deep: var(--brand-deep);
+  --color-accent-cyan: var(--accent);
+  --color-blue-light: var(--tint);
   --color-blue-border: #bfdbfe;
-  --color-blue-glow: rgba(0, 82, 204, 0.25);
+  --color-blue-glow: rgba(29, 78, 216, 0.25);
+  --color-accent-glow: rgba(6, 182, 212, 0.35);
 
   /* Aliased for backward compatibility with components */
-  --color-orange-primary: #0052cc;
-  --color-orange-hover: #0041a8;
-  --color-orange-light: #eff6ff;
+  --color-orange-primary: var(--brand);
+  --color-orange-hover: var(--brand-hover);
+  --color-orange-light: var(--tint);
   --color-orange-border: #bfdbfe;
-  --color-orange-glow: rgba(0, 82, 204, 0.25);
+  --color-orange-glow: rgba(29, 78, 216, 0.25);
 
   /* Status & Accents */
   --color-danger-red: #dc2626;
   --color-danger-bg: #fef2f2;
   --color-success-green: #16a34a;
   --color-success-bg: #f0fdf4;
-  --color-blue-info: #0284c7;
-  --color-blue-bg: #f0f9ff;
+  --color-blue-info: var(--accent);
+  --color-blue-bg: #ecfeff;
   --color-gold-warning: #d97706;
   --color-gold-bg: #fffbeb;
 
