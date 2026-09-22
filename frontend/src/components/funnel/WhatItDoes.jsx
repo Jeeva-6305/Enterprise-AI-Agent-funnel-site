@@ -26,25 +26,29 @@ export default function WhatItDoes() {
   ];
 
   return (
-    <section className="what-it-does-section">
+    <section className="what-it-does-section" id="what-it-does">
       <div className="container">
-        <div className="section-header-center">
-          <h2 className="section-title">One assistant for everything your company knows</h2>
-          <p className="section-subtitle">
+        {/* Left-Aligned Editorial Section Header */}
+        <div className="what-it-does-header-left">
+          <h2 className="what-it-does-main-title">
+            One assistant for everything your company knows
+          </h2>
+          <p className="what-it-does-main-subtitle">
             Enterprise AI Agent connects your documents, apps, and teams in one simple chat.
           </p>
         </div>
 
-        <div className="what-it-does-grid">
+        {/* 4 Clean Modern Feature Cards Grid */}
+        <div className="what-it-does-cards-grid">
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
-              <div key={index} className="what-it-does-card">
-                <div className="what-it-does-icon-box">
-                  <Icon size={18} className="what-it-does-icon" />
+              <div key={index} className="what-it-does-feature-card">
+                <div className="feature-card-icon-box">
+                  <Icon size={20} className="feature-card-icon" />
                 </div>
-                <h3 className="what-it-does-card-title">{feature.title}</h3>
-                <p className="what-it-does-card-text">{feature.description}</p>
+                <h3 className="feature-card-title">{feature.title}</h3>
+                <p className="feature-card-description">{feature.description}</p>
               </div>
             );
           })}
