@@ -1,45 +1,66 @@
-:root {
-  /* Brand Palette - Dark Blue & Black */
-  --color-primary-navy: #050914;
-  --color-primary-dark: #000000;
-  --color-navy-surface: #0a1020;
-  --color-navy-muted: #101c36;
-  --color-top-banner: #050914;
+:root,
+[data-theme="docs"] {
+  /* ── Agentic Document Extraction – Burnt Orange + Sky ───── */
+  --brand: #C2410C;
+  --brand-hover: #9A3412;
+  --brand-deep: #431407;
+  --accent: #0EA5E9;
+  --tint: #FFF7ED;
+  --cta-text: #FFFFFF;
+  --hero-grad: linear-gradient(120deg, #FFF7ED 0%, #FFFFFF 50%, #E0F2FE 100%);
 
-  /* Dark Blue Accent Colors */
-  --color-blue-primary: #0f2b5c;
-  --color-blue-hover: #091c3e;
-  --color-blue-light: #edf2f9;
-  --color-blue-border: #9ab4db;
-  --color-blue-glow: rgba(15, 43, 92, 0.28);
+  /* Brand Palette - Deep Rich Espresso/Dark */
+  --color-primary-navy: #431407;
+  --color-primary-dark: #270B04;
+  --color-navy-surface: #360E05;
+  --color-navy-muted: #541B0B;
+  --color-top-banner: #431407;
 
-  /* Aliased for backward compatibility with components */
-  --color-orange-primary: #0f2b5c;
-  --color-orange-hover: #091c3e;
-  --color-orange-light: #edf2f9;
-  --color-orange-border: #9ab4db;
-  --color-orange-glow: rgba(15, 43, 92, 0.28);
+  /* Primary Brand & CTA Accent (Burnt Orange) */
+  --color-blue-primary: #C2410C;
+  --color-blue-hover: #9A3412;
+  --color-blue-light: #FFF7ED;
+  --color-blue-border: #FDBA74;
+  --color-blue-glow: rgba(194, 65, 12, 0.28);
+
+  /* Aliased for backward compatibility */
+  --color-orange-primary: #C2410C;
+  --color-orange-hover: #9A3412;
+  --color-orange-light: #FFF7ED;
+  --color-orange-border: #FDBA74;
+  --color-orange-glow: rgba(194, 65, 12, 0.28);
+
+  /* Sky Blue Accent (Clean & Structured Output) */
+  --color-accent: #0EA5E9;
+  --color-accent-hover: #0284C7;
+  --color-accent-light: #E0F2FE;
+  --color-accent-border: #BAE6FD;
+  --color-accent-glow: rgba(14, 165, 233, 0.28);
+
+  /* Warm Tint (Alternate Backgrounds & Cards) */
+  --color-tint: #FFF7ED;
+  --color-tint-border: #FED7AA;
 
   /* Status & Accents */
-  --color-danger-red: #dc2626;
-  --color-danger-bg: #fef2f2;
-  --color-success-green: #16a34a;
-  --color-success-bg: #f0fdf4;
-  --color-blue-info: #0284c7;
-  --color-blue-bg: #f0f9ff;
-  --color-gold-warning: #d97706;
-  --color-gold-bg: #fffbeb;
+  --color-danger-red: #DC2626;
+  --color-danger-bg: #FEF2F2;
+  --color-success-green: #0EA5E9;
+  --color-success-bg: #F0F9FF;
+  --color-blue-info: #0EA5E9;
+  --color-blue-bg: #E0F2FE;
+  --color-gold-warning: #D97706;
+  --color-gold-bg: #FFFBEB;
 
   /* Neutrals & Text */
-  --color-text-heading: #000000;
+  --color-text-heading: #431407;
   --color-text-body: #334155;
-  --color-text-muted: #64748b;
-  --color-text-light: #94a3b8;
-  --color-bg-page: #f8fafc;
-  --color-bg-card: #ffffff;
-  --color-bg-subtle: #f1f5f9;
-  --color-border: #e2e8f0;
-  --color-border-hover: #cbd5e1;
+  --color-text-muted: #64748B;
+  --color-text-light: #94A3B8;
+  --color-bg-page: #FFFFFF;
+  --color-bg-card: #FFFFFF;
+  --color-bg-subtle: #FFF7ED;
+  --color-border: #FED7AA;
+  --color-border-hover: #FDBA74;
 
   /* Typography */
   --font-heading: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -53,11 +74,11 @@
   --radius-pill: 9999px;
 
   /* Shadows */
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
-  --shadow-card: 0 12px 36px rgba(0, 0, 0, 0.08);
+  --shadow-sm: 0 1px 3px rgba(67, 20, 7, 0.05), 0 1px 2px rgba(67, 20, 7, 0.03);
+  --shadow-md: 0 4px 6px -1px rgba(67, 20, 7, 0.07), 0 2px 4px -2px rgba(67, 20, 7, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(67, 20, 7, 0.08), 0 4px 6px -4px rgba(67, 20, 7, 0.04);
+  --shadow-xl: 0 20px 25px -5px rgba(67, 20, 7, 0.1), 0 8px 10px -6px rgba(67, 20, 7, 0.05);
+  --shadow-card: 0 12px 36px rgba(67, 20, 7, 0.08);
 
   /* Transitions */
   --transition-fast: 150ms ease;

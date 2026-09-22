@@ -18,14 +18,14 @@ export default function SuccessModal({ lead, onClose, onOpenVideo }) {
           width: '64px',
           height: '64px',
           borderRadius: '50%',
-          backgroundColor: '#edf2f9',
-          color: '#0f2b5c',
+          backgroundColor: '#FFF7ED',
+          color: 'var(--brand, #C2410C)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           margin: '0 auto 1.25rem'
         }}>
-          <CheckCircle2 size={36} />
+          <CheckCircle2 size={36} color="var(--accent, #0EA5E9)" />
         </div>
 
         <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#000000', marginBottom: '0.5rem' }}>

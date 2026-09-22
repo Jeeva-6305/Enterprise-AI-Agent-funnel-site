@@ -1,14 +1,13 @@
 import React from 'react';
-import { Check, Sparkles } from 'lucide-react';
+import { Sparkles, Zap, CheckCircle2, Shield } from 'lucide-react';
+
+const metrics = [
+  { icon: Zap,          stat: '10x',   label: 'Faster Turnaround' },
+  { icon: CheckCircle2, stat: '99.4%', label: 'Field Accuracy' },
+  { icon: Shield,       stat: 'SOC2',  label: 'Type II Ready' },
+];
 
 export default function FunnelHero() {
-  const bulletPoints = [
-    'Auditable Data Every Time',
-    'Compatible With Epic, Cerner, Azure & AWS',
-    'No Manual Data Input Needed',
-    'Seamless Data Integration Into Your Existing Systems'
-  ];
-
   return (
     <div className="hero-centered-content">
       {/* Title Eyebrow Pill */}
@@ -25,21 +24,20 @@ export default function FunnelHero() {
 
       {/* Content / Subheadline */}
       <p className="hero-subtext-centered">
-        Adople AI’s autonomous agents read, understand, and extract data from even your messiest documents, faxes, scans, PDFs, and forms, and convert them into audit ready structured data in seconds.
+        Adople AI's autonomous agents read, understand, and extract data from even your messiest documents, faxes, scans, PDFs, and forms, and convert them into audit ready structured data in seconds.
       </p>
 
-      {/* 4 Feature Badges in Balanced Horizontal Grid */}
-      <div className="hero-checklist-horizontal">
-        {bulletPoints.map((point, index) => (
-          <div key={index} className="checklist-pill-item">
-            <div className="check-icon-wrap-sm">
-              <Check size={12} strokeWidth={3.5} />
-            </div>
-            <span className="checklist-pill-text">{point}</span>
+      {/* 3 Metric Stat Pills */}
+      <div className="hero-metrics-row">
+        {metrics.map(({ icon: Icon, stat, label }) => (
+          <div key={stat} className="hero-metric-pill">
+            <Icon size={15} strokeWidth={2} className="hero-metric-icon" />
+            <span className="hero-metric-text">
+              <strong>{stat}</strong> {label}
+            </span>
           </div>
         ))}
       </div>
     </div>
   );
 }
-

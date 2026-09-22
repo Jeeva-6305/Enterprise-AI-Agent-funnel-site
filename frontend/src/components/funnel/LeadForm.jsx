@@ -1,17 +1,7 @@
 import React, { useState } from 'react';
-import { ChevronDown, Lock, Loader2, CheckCircle2 } from 'lucide-react';
+import { ChevronDown, Lock, Loader2 } from 'lucide-react';
 import { leadsApi } from '../../api/leadsApi';
-
-const COUNTRY_CODES = [
-  { code: '+91', flag: '🇮🇳', name: 'India' },
-  { code: '+1', flag: '🇺🇸', name: 'USA/Canada' },
-  { code: '+44', flag: '🇬🇧', name: 'UK' },
-  { code: '+61', flag: '🇦🇺', name: 'Australia' },
-  { code: '+49', flag: '🇩🇪', name: 'Germany' },
-  { code: '+971', flag: '🇦🇪', name: 'UAE' },
-  { code: '+65', flag: '🇸🇬', name: 'Singapore' },
-  { code: '+81', flag: '🇯🇵', name: 'Japan' }
-];
+import PhoneInputWrapper from '../common/PhoneInputWrapper';
 
 const COMPANY_SIZES = [
   '1-50 employees',
@@ -29,8 +19,7 @@ export default function LeadForm({ onSuccessLead, showToast }) {
     jobTitle: '',
     companyName: '',
     companySize: '',
-    phoneCountryCode: '+91',
-    phoneNumber: ''
+    phone: ''
   });
 
   const [errors, setErrors] = useState({});
@@ -55,10 +44,10 @@ export default function LeadForm({ onSuccessLead, showToast }) {
     if (!formData.jobTitle.trim()) errs.jobTitle = 'Job title is required';
     if (!formData.companyName.trim()) errs.companyName = 'Company name is required';
     if (!formData.companySize) errs.companySize = 'Please select company size';
-    if (!formData.phoneNumber.trim()) errs.phoneNumber = 'Phone number is required';
+    if (!formData.phone || formData.phone.replace(/\D/g, '').length < 6) {
+      errs.phone = 'Phone number is required';
+    }
 
-    console.log('Form validation errors:', errs);
-    console.log('Form data:', formData);
     setErrors(errs);
     return Object.keys(errs).length === 0;
   };
@@ -74,10 +63,11 @@ export default function LeadForm({ onSuccessLead, showToast }) {
     try {
       const response = await leadsApi.submitLead({
         ...formData,
+        phoneNumber: formData.phone,
         sourceCampaign: 'Document Extraction Funnel'
       });
       if (showToast) {
-        showToast('Demo Unlocked! Lead saved to SQL database.', 'success');
+        showToast('Demo Unlocked! Starting platform demonstration.', 'success');
       }
       if (onSuccessLead) {
         onSuccessLead(response.lead);
@@ -89,8 +79,7 @@ export default function LeadForm({ onSuccessLead, showToast }) {
         jobTitle: '',
         companyName: '',
         companySize: '',
-        phoneCountryCode: '+91',
-        phoneNumber: ''
+        phone: ''
       });
     } catch (err) {
       console.error('Submission error:', err);
@@ -102,8 +91,6 @@ export default function LeadForm({ onSuccessLead, showToast }) {
     }
   };
 
-  const currentCountry = COUNTRY_CODES.find(c => c.code === formData.phoneCountryCode) || COUNTRY_CODES[0];
-
   return (
     <div className="form-container" id="lead-form-section">
       <div className="form-header-area">
@@ -114,25 +101,6 @@ export default function LeadForm({ onSuccessLead, showToast }) {
       </div>
 
       <form onSubmit={handleSubmit} noValidate>
-        {/* CTA Button placed on top as displayed in screenshot */}
-        <div className="form-cta-top">
-          <button
-            type="submit"
-            id="btn-unlock-demo"
-            className="btn-primary"
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? (
-              <>
-                <Loader2 className="animate-spin" size={18} />
-                <span>Saving &amp; Unlocking Demo...</span>
-              </>
-            ) : (
-              <span>Unlock Demo and Free Assessment</span>
-            )}
-          </button>
-        </div>
-
         {/* 2-Column Inputs Grid */}
         <div className="form-grid">
           {/* Full Name */}
@@ -213,38 +181,41 @@ export default function LeadForm({ onSuccessLead, showToast }) {
             {errors.companySize && <span className="form-error-msg">{errors.companySize}</span>}
           </div>
 
-          {/* Phone Number with Country Code */}
+          {/* Phone Number with Custom Country Code Selector */}
           <div className="form-group">
-            <div className={`phone-input-group ${errors.phoneNumber ? 'error' : ''}`}>
-              <div className="country-code-select-wrap">
-                <span className="country-flag-icon">{currentCountry.flag}</span>
-                <select
-                  id="select-country-code"
-                  name="phoneCountryCode"
-                  value={formData.phoneCountryCode}
-                  onChange={handleChange}
-                  className="country-code-select"
-                >
-                  {COUNTRY_CODES.map((c) => (
-                    <option key={c.code} value={c.code}>
-                      {c.code}
-                    </option>
-                  ))}
-                </select>
-                <ChevronDown size={12} style={{ color: '#64748b' }} />
-              </div>
-              <input
-                type="tel"
-                id="input-phone-number"
-                name="phoneNumber"
-                placeholder="081234 56789"
-                value={formData.phoneNumber}
-                onChange={handleChange}
-                className="phone-number-input"
-              />
-            </div>
-            {errors.phoneNumber && <span className="form-error-msg">{errors.phoneNumber}</span>}
+            <PhoneInputWrapper
+              value={formData.phone}
+              onChange={(phone) => {
+                setFormData((prev) => ({ ...prev, phone }));
+                if (errors.phone) {
+                  setErrors((prev) => ({ ...prev, phone: null }));
+                }
+              }}
+              hasError={!!errors.phone}
+              placeholder="081234 56789"
+              required
+            />
+            {errors.phone && <span className="form-error-msg">{errors.phone}</span>}
           </div>
+        </div>
+
+        {/* Action Button positioned below the form inputs with refined size */}
+        <div className="form-cta-bottom">
+          <button
+            type="submit"
+            id="btn-unlock-demo"
+            className="btn-primary btn-form-submit"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? (
+              <>
+                <Loader2 className="animate-spin" size={16} />
+                <span>Unlocking Demo...</span>
+              </>
+            ) : (
+              <span>Watch a Demo</span>
+            )}
+          </button>
         </div>
 
         {/* Privacy Lock Note */}

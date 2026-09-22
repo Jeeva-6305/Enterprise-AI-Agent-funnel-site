@@ -8,6 +8,10 @@ import FunnelHero from './components/funnel/FunnelHero';
 import VideoPlayer from './components/funnel/VideoPlayer';
 import LeadForm from './components/funnel/LeadForm';
 import PainPointsCard from './components/funnel/PainPointsCard';
+import WhyChooseSection from './components/funnel/WhyChooseSection';
+import HowItWorksSection from './components/funnel/HowItWorksSection';
+import TrustSection from './components/funnel/TrustSection';
+import FaqSection from './components/funnel/FaqSection';
 import SuccessModal from './components/funnel/SuccessModal';
 import VideoModal from './components/funnel/VideoModal';
 
@@ -57,7 +61,8 @@ export default function App() {
    */
   const handleLeadSuccess = (lead) => {
     setIsDemoUnlocked(true);
-    setSubmittedLead(lead);
+    setSubmittedLead(null);
+    setIsVideoModalOpen(true);
   };
 
   return (
@@ -80,42 +85,71 @@ export default function App() {
           </div>
         </section>
 
-        {/* 2. Main 2-Column Section: Left (Purpose-Built), Right (Video + Lead Form) */}
+        {/* 2. Main 2-Column Section: Left (Lead Form), Right (Demo Video Player) */}
         <section className="hero-action-section">
           <div className="container">
             <div className="action-grid">
-              {/* Left Column: Purpose-Built for This Problem (Equal Height with Right Column) */}
-              <div className="action-left-col">
-                <PainPointsCard />
+              {/* Left Column: Form */}
+              <div className="action-left-col" id="lead-form-section">
+                <div className="form-card-wrapper">
+                  <LeadForm 
+                    onSuccessLead={handleLeadSuccess} 
+                    showToast={showToast} 
+                  />
+                </div>
               </div>
 
-              {/* Right Column: Unified Card with Video seamlessly attached above Lead Form */}
-              <div className="action-right-col" id="lead-form-section">
-                <div className="unified-action-card">
-                  {/* Demo Video Preview attached at top */}
-                  <div className="attached-video-wrap">
-                    <VideoPlayer 
-                      isUnlocked={isDemoUnlocked} 
-                      onPlayClick={handleAccessDemo} 
-                    />
-                  </div>
-
-                  {/* Lead Form seamlessly attached below video */}
-                  <div className="attached-form-wrap">
-                    <LeadForm 
-                      onSuccessLead={handleLeadSuccess} 
-                      showToast={showToast} 
-                    />
-                  </div>
+              {/* Right Column: Demo Video Player */}
+              <div className="action-right-col" id="demo-video-section">
+                <div className="video-card-wrapper">
+                  <VideoPlayer 
+                    isUnlocked={isDemoUnlocked} 
+                    onPlayClick={handleAccessDemo} 
+                  />
                 </div>
               </div>
             </div>
           </div>
         </section>
+
+        {/* 3. Purpose-Built Section (Horizontal 3-Card Grid below Form + Video) */}
+        <section className="purpose-built-standalone-section">
+          <div className="container">
+            <PainPointsCard />
+          </div>
+        </section>
+
+        {/* 4. Why Teams Choose Adople AI — Asymmetric Bento Grid */}
+        <section className="why-choose-standalone-section">
+          <div className="container">
+            <WhyChooseSection />
+          </div>
+        </section>
+
+        {/* 5. How It Works — Horizontal Step Timeline */}
+        <section className="hiw-standalone-section">
+          <div className="container">
+            <HowItWorksSection />
+          </div>
+        </section>
+
+        {/* 6. Responsible AI, Security & Trust */}
+        <section className="trust-standalone-section">
+          <div className="container">
+            <TrustSection />
+          </div>
+        </section>
+
+        {/* 7. Common Questions (FAQ Section) */}
+        <section className="faq-standalone-section">
+          <div className="container">
+            <FaqSection />
+          </div>
+        </section>
       </main>
 
-      {/* Footer with Credentials - Kept exactly unchanged */}
-      <Footer />
+      {/* Product-Specific Enterprise Footer */}
+      <Footer onGetDemoClick={handleAccessDemo} />
 
       {/* Success Modal */}
       <SuccessModal
@@ -138,5 +172,3 @@ export default function App() {
     </div>
   );
 }
-
-

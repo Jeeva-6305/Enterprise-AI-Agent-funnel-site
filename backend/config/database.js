@@ -18,8 +18,7 @@ pool.on('connect', () => {
 });
 
 pool.on('error', (err) => {
-  console.error('❌ Unexpected error on idle client', err);
-  process.exit(-1);
+  console.warn('⚠️ Idle PostgreSQL pool notification:', err.message);
 });
 
 async function initDatabaseSchema() {

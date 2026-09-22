@@ -52,6 +52,8 @@ build/
 *.sqlite3
 leads.db
 voice_leads.json
+local_leads.json
+backend/database/local_leads.json
 
 # IDEs & Editors
 .vscode/*

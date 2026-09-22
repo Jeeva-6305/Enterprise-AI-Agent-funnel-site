@@ -30,7 +30,7 @@ export default function VideoModal({ isOpen, onClose }) {
           backgroundColor: '#050914'
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#0f2b5c' }}></div>
+            <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: 'var(--brand, #C2410C)' }}></div>
             <span style={{ fontWeight: 700, fontSize: '0.9375rem', letterSpacing: '0.02em', color: '#ffffff' }}>
               AI Document Extraction — Platform Demonstration
             </span>
@@ -91,7 +91,7 @@ export default function VideoModal({ isOpen, onClose }) {
           borderTop: '1px solid rgba(255, 255, 255, 0.1)'
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#94a3b8', fontSize: '0.8125rem' }}>
-            <ShieldCheck size={16} color="#0f2b5c" />
+            <ShieldCheck size={16} color="var(--brand, #C2410C)" />
             <span>Enterprise-Grade Security &amp; SOC2 Type II Architecture</span>
           </div>
           <button 
