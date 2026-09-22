@@ -8,6 +8,12 @@ import FunnelHero from './components/funnel/FunnelHero';
 import VideoPlayer from './components/funnel/VideoPlayer';
 import LeadForm from './components/funnel/LeadForm';
 import PainPointsCard from './components/funnel/PainPointsCard';
+import HowSecMindWorks from './components/funnel/HowSecMindWorks';
+import AnalysisCategories from './components/funnel/AnalysisCategories';
+import MultiAgentWorkflow from './components/funnel/MultiAgentWorkflow';
+import WhoItsFor from './components/funnel/WhoItsFor';
+import FinalCta from './components/funnel/FinalCta';
+import InteractiveQa from './components/funnel/InteractiveQa';
 import SuccessModal from './components/funnel/SuccessModal';
 import VideoModal from './components/funnel/VideoModal';
 
@@ -107,6 +113,25 @@ export default function App() {
         <section className="screenshot-problems-section">
           <PainPointsCard />
         </section>
+
+        {/* 4. SEC-Mind Workflow Section */}
+        <HowSecMindWorks />
+
+        {/* 5. Analysis Categories Section */}
+        <AnalysisCategories />
+
+        {/* 6. Interactive Q&A Section */}
+        <InteractiveQa />
+
+        {/* 7. Multi-Agent Workflow Section */}
+        <MultiAgentWorkflow />
+
+        {/* 8. Who It's For Section */}
+        <WhoItsFor />
+
+        {/* 9. Final CTA Section */}
+        <FinalCta onRequestDemo={handleAccessDemo} />
+
       </main>
 
       {/* Footer with Centered Brand */}

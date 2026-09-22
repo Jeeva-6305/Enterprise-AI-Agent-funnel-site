@@ -9,6 +9,17 @@ export default function VideoPlayer({ isUnlocked = false, onPlayClick }) {
         onClick={onPlayClick} 
         title="Click to watch Platform Demo"
       >
+        <video
+          className="screenshot-video-backdrop"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-hidden="true"
+        >
+          <source src="/Sec%20Analyzer%20Demo.mp4" type="video/mp4" />
+        </video>
         <div className="video-grid-pattern"></div>
         
         {/* Platform Demo Badge */}

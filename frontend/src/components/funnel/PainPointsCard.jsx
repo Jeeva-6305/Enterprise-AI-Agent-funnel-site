@@ -41,7 +41,7 @@ export default function PainPointsCard() {
         {/* 3 Horizontal Solution Cards Box */}
         <div className="screenshot-problems-box">
           {solutions.map((item, idx) => (
-            <div key={idx} className="screenshot-problem-card">
+            <div key={idx} className="screenshot-problem-card" tabIndex={0}>
               <div className="screenshot-problem-icon-circle">
                 {item.icon}
               </div>
