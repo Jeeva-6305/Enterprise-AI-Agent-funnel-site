@@ -82,7 +82,7 @@
 
 .announcement-highlight {
   font-weight: 600;
-  color: var(--accent);
+  color: #ffffff;
 }
 
 /* Trust Bar / Moving Infinite Logo Carousel */
@@ -151,29 +151,28 @@
   background-color: #ffffff;
 }
 
-/* 1. Hero Section (Centered Layout with Horizontal Pill Benefits & Matching Form) */
+/* 1. Hero Section (Centered Heading + Two-Column Split: Checklist | Form) */
 .hero-section {
-  padding: 3.5rem 0 3rem;
+  padding: 4.5rem 0 4rem;
   background: var(--hero-grad);
   border-bottom: 1px solid #e0f2fe;
 }
 
-.hero-centered-layout {
+.hero-layout-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
   width: 100%;
 }
 
-/* Centered Hero Content */
-.hero-center-content {
+/* Centered Top Heading & Supporting Content */
+.hero-top-centered {
+  text-align: center;
+  max-width: 960px;
+  margin: 0 auto 2.75rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-  max-width: 980px;
-  margin: 0 auto;
 }
 
 .hero-badge-pill {
@@ -215,74 +214,115 @@
 }
 
 .hero-subtext {
-  font-size: 1rem;
+  font-size: 1.05rem;
   line-height: 1.6;
   color: #334155;
-  margin: 0 auto 1.75rem;
-  max-width: 840px;
+  margin: 0 auto;
+  max-width: 860px;
   text-align: center;
 }
 
-/* 4 Checkbox Points in Horizontal Pill Badges (Exactly like Screenshot 2) */
-.hero-checklist-pills {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 0.75rem 0.9rem;
-  max-width: 940px;
+/* Two-Column Grid: Left: 4 Checklist Points | Right: Lead Form */
+.hero-two-column-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: stretch;
+  max-width: 1160px;
+  width: 100%;
   margin: 0 auto;
 }
 
-.checklist-pill-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+/* Left Column: 4 Checklist / Benefit Points Container */
+.hero-benefits-card {
   background-color: #ffffff;
-  border: 1px solid #dbeafe;
-  border-radius: var(--radius-pill);
-  padding: 0.45rem 1rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 16px 40px -8px rgba(15, 23, 42, 0.12), 0 6px 18px -4px rgba(15, 23, 42, 0.06), 0 0 0 1px rgba(255, 255, 255, 0.9);
+  padding: 1.75rem 1.85rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+  transition: box-shadow var(--transition-normal);
+}
+
+.hero-benefits-card:hover {
+  box-shadow: 0 20px 48px -10px rgba(15, 23, 42, 0.15), 0 8px 24px -4px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.9);
+}
+
+.hero-benefits-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  gap: 0.95rem;
+}
+
+.hero-benefit-item {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-lg);
+  padding: 1.2rem 1.25rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.95rem;
+  flex: 1;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
   transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-.checklist-pill-item:hover {
-  transform: translateY(-1px);
+.hero-benefit-item:hover {
+  transform: translateY(-2px);
   border-color: #93c5fd;
-  box-shadow: 0 4px 12px rgba(29, 78, 216, 0.08);
+  box-shadow: 0 6px 16px -4px rgba(29, 78, 216, 0.1);
+  background-color: #ffffff;
 }
 
-.checklist-pill-item .check-icon-wrap {
-  width: 18px;
-  height: 18px;
-  min-width: 18px;
+.benefit-check-icon-wrap {
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
   border-radius: 50%;
   background-color: var(--brand);
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 1px 3px rgba(29, 78, 216, 0.25);
+  margin-top: 1px;
+  box-shadow: 0 2px 6px rgba(29, 78, 216, 0.3);
+  flex-shrink: 0;
 }
 
-.checklist-pill-item .checklist-text {
-  font-size: 0.84rem;
+.benefit-item-text {
+  font-size: 0.9375rem;
   font-weight: 600;
   color: #0f172a;
-  line-height: 1.35;
+  line-height: 1.45;
+  margin: 0;
+  text-align: left;
 }
 
-/* Centered Lead Form Card - Matching Width/Length & Evenly Aligned */
+/* Right Column: Lead Form Card */
 .hero-form-card {
-  max-width: 860px;
   width: 100%;
-  margin: 2.25rem auto 0;
+  margin: 0;
   background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  border: 1px solid rgba(226, 232, 240, 0.9);
   border-radius: var(--radius-xl);
-  box-shadow: 0 8px 30px -4px rgba(15, 23, 42, 0.08), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+  box-shadow: 0 16px 40px -8px rgba(15, 23, 42, 0.12), 0 6px 18px -4px rgba(15, 23, 42, 0.06), 0 0 0 1px rgba(255, 255, 255, 0.9);
   overflow: hidden;
   text-align: left;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: box-shadow var(--transition-normal);
+}
+
+.hero-form-card:hover {
+  box-shadow: 0 20px 48px -10px rgba(15, 23, 42, 0.15), 0 8px 24px -4px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.9);
 }
 
 /* Lead Form Section Styling */
@@ -676,7 +716,7 @@
 
 /* 2. Section Below Hero (Left: Purpose-Built, Right: Demo Video) */
 .below-hero-section {
-  padding: 2.75rem 0 3.5rem;
+  padding: 4.5rem 0;
   background-color: #ffffff;
 }
 
@@ -813,7 +853,7 @@
 
 /* Video Preview Container with Image Thumbnail */
 .video-preview-box {
-  background-color: var(--dark-section);
+  background-color: #0B1220;
   width: 100%;
   flex: 1;
   min-height: 0;
@@ -834,41 +874,46 @@
   object-fit: cover;
   object-position: center;
   transition: transform var(--transition-normal), filter var(--transition-normal);
-  filter: brightness(0.85);
+  filter: brightness(0.95);
   z-index: 0;
 }
 
 .video-dark-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(11, 18, 32, 0.3) 0%, rgba(11, 18, 32, 0.7) 100%);
+  background: rgba(11, 18, 32, 0.15);
   transition: background 0.3s ease;
   z-index: 1;
 }
 
 .video-preview-box:hover .video-thumbnail-img {
-  transform: scale(1.03);
-  filter: brightness(0.95);
+  transform: scale(1.02);
+  filter: brightness(1);
 }
 
 .video-preview-box:hover .video-dark-overlay {
-  background: linear-gradient(180deg, rgba(11, 18, 32, 0.15) 0%, rgba(11, 18, 32, 0.5) 100%);
+  background: rgba(11, 18, 32, 0.05);
 }
 
 .video-preview-box:hover .play-btn-circle {
-  transform: scale(1.1);
-  box-shadow: 0 0 28px rgba(6, 182, 212, 0.65);
+  transform: scale(1.08);
+  background: rgba(29, 78, 216, 0.95);
+  border-color: #ffffff;
+  box-shadow: 0 0 0 12px rgba(29, 78, 216, 0.35), 0 0 32px rgba(6, 182, 212, 0.65);
 }
 
 .play-btn-circle {
   width: 66px;
   height: 66px;
   border-radius: 50%;
-  background-color: #ffffff;
+  background: rgba(11, 18, 32, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 2px solid rgba(255, 255, 255, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 5px 22px rgba(0, 0, 0, 0.42);
+  box-shadow: 0 0 0 10px rgba(11, 18, 32, 0.45), 0 8px 30px rgba(0, 0, 0, 0.6);
   transition: all var(--transition-fast);
   z-index: 2;
 }
@@ -876,10 +921,10 @@
 .play-icon-triangle {
   width: 0;
   height: 0;
-  border-top: 10px solid transparent;
-  border-bottom: 10px solid transparent;
-  border-left: 17px solid var(--brand);
-  margin-left: 3px;
+  border-top: 11px solid transparent;
+  border-bottom: 11px solid transparent;
+  border-left: 18px solid #ffffff;
+  margin-left: 4px;
 }
 
 .video-badge-tag {
@@ -922,7 +967,7 @@
 .funnel-footer {
   background-color: var(--dark-section);
   color: #ffffff;
-  padding: 3rem 0 2.5rem;
+  padding: 3.5rem 0 2.5rem;
   text-align: center;
 }
 
@@ -955,7 +1000,7 @@
 .section-header-center {
   text-align: center;
   max-width: 680px;
-  margin: 0 auto 2.25rem;
+  margin: 0 auto 2.5rem;
 }
 
 .section-title {
@@ -980,7 +1025,7 @@
    ========================================================================== */
 .what-it-does-section {
   background-color: #ffffff;
-  padding: 3.75rem 0;
+  padding: 4.5rem 0;
   border-top: 1px solid var(--color-border);
 }
 
@@ -988,6 +1033,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.25rem;
+  align-items: stretch;
 }
 
 .what-it-does-card {
@@ -998,6 +1044,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  height: 100%;
+  margin: 0;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
   transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
@@ -1041,15 +1089,16 @@
    ========================================================================== */
 .use-cases-section {
   background-color: var(--tint);
-  padding: 3.75rem 0;
+  padding: 4.5rem 0;
   border-top: 1px solid #e2e8f0;
 }
 
 .use-cases-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: 1.25rem;
   margin-bottom: 1.25rem;
+  align-items: stretch;
 }
 
 .use-case-card {
@@ -1060,6 +1109,7 @@
   display: flex;
   align-items: flex-start;
   gap: 1.1rem;
+  height: 100%;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
   transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
@@ -1107,30 +1157,34 @@
 
 .use-cases-industry-strip {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: 1.25rem;
+  align-items: stretch;
 }
 
 .industry-box {
   background-color: #ffffff;
   border: 1px dashed #cbd5e1;
   border-radius: var(--radius-lg);
-  padding: 0.85rem 1.15rem;
+  padding: 0.95rem 1.25rem;
   display: flex;
   align-items: center;
   gap: 0.9rem;
+  height: 100%;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
 }
 
 .industry-tag-wrap {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
   background-color: #ecfeff;
   color: #0891b2;
   font-size: 0.8125rem;
   font-weight: 700;
-  padding: 0.3rem 0.65rem;
+  padding: 0.35rem 0.75rem;
+  min-width: 110px;
   border-radius: var(--radius-sm);
   border: 1px solid #a5f3fc;
   flex-shrink: 0;
@@ -1148,6 +1202,11 @@
 @media (max-width: 1024px) {
   .hero-title {
     font-size: 2.25rem;
+  }
+
+  .hero-two-column-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
 
   .below-hero-grid {
@@ -1188,7 +1247,7 @@
   }
 
   .hero-section {
-    padding: 2.5rem 0 2rem;
+    padding: 2.75rem 0 2.25rem;
   }
 
   .hero-title {
@@ -1196,23 +1255,15 @@
   }
 
   .hero-subtext {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
   }
 
-  .hero-checklist-pills {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.5rem;
+  .hero-benefits-card {
+    padding: 1.35rem 1.15rem;
   }
 
-  .checklist-pill-item {
-    width: 100%;
-    justify-content: flex-start;
-    border-radius: var(--radius-md);
-  }
-
-  .hero-form-card {
-    margin-top: 1.75rem;
+  .hero-benefit-item {
+    padding: 1rem 1.1rem;
   }
 
   .trust-logos-grid {

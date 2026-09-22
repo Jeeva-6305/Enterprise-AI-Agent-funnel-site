@@ -75,21 +75,13 @@ export default function App() {
 
       {/* Main Funnel Page Content */}
       <main className="funnel-main-content">
-        {/* 1. Hero Section (All Centered: Content, 4 Checkbox Pills, and Matching Form) */}
+        {/* 1. Hero Section (Centered Top Header + Left Checklist | Right Lead Form) */}
         <section className="hero-section">
           <div className="container">
-            <div className="hero-centered-layout">
-              {/* Centered Hero Content & 4 Checkbox Pills */}
-              <FunnelHero />
-
-              {/* Centered Lead Form Card - Matching Width/Length */}
-              <div className="hero-form-card" id="lead-form-section">
-                <LeadForm 
-                  onSuccessLead={handleLeadSuccess} 
-                  showToast={showToast} 
-                />
-              </div>
-            </div>
+            <FunnelHero 
+              onSuccessLead={handleLeadSuccess} 
+              showToast={showToast} 
+            />
           </div>
         </section>
 
