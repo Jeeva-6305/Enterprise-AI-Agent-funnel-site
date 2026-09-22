@@ -111,12 +111,19 @@ export default function PhoneInputWrapper({
     };
   }, [showDropdown]);
 
-  // Auto-focus search input when dropdown opens
+  const optionsListRef = useRef(null);
+
+  // Auto-focus search input and reset list scroll when dropdown opens
   useEffect(() => {
-    if (showDropdown && searchInputRef.current) {
-      setTimeout(() => {
-        searchInputRef.current?.focus();
-      }, 50);
+    if (showDropdown) {
+      if (optionsListRef.current) {
+        optionsListRef.current.scrollTop = 0;
+      }
+      if (searchInputRef.current) {
+        setTimeout(() => {
+          searchInputRef.current?.focus();
+        }, 50);
+      }
     }
   }, [showDropdown]);
 
@@ -162,7 +169,7 @@ export default function PhoneInputWrapper({
       className={`phone-input-wrapper-container ${hasError ? 'error' : ''}`}
       style={{ position: 'relative' }}
     >
-      {/* Dropdown Menu (Positioned above the input field) */}
+      {/* Dropdown Menu (Positioned cleanly below the input field) */}
       {showDropdown && (
         <div
           ref={dropdownRef}
@@ -200,7 +207,7 @@ export default function PhoneInputWrapper({
           </div>
 
           {/* Countries Scrollable List */}
-          <div className="phone-country-options-list">
+          <div ref={optionsListRef} className="phone-country-options-list">
             {filteredCountries.length === 0 ? (
               <div className="phone-no-countries">No country found</div>
             ) : (
@@ -218,7 +225,7 @@ export default function PhoneInputWrapper({
                       srcSet={`https://flagcdn.com/w80/${country.isoCode.toLowerCase()}.png 2x`}
                       alt={`${country.name} flag`}
                       className="phone-flag-img"
-                      loading="lazy"
+                      loading="eager"
                     />
                     <span className="phone-country-name">{country.name}</span>
                     <span className="phone-country-dial">{country.dial}</span>
