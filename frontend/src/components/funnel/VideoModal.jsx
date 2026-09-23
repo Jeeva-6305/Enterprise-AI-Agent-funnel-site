@@ -1,7 +1,24 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { X, ShieldCheck } from 'lucide-react';
 
 export default function VideoModal({ isOpen, onClose }) {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    if (isOpen && videoRef.current) {
+      videoRef.current.currentTime = 0;
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((err) => {
+          // Autoplay policy may require user interaction; controls are visible
+          console.warn('Video autoplay prevented by browser policy:', err);
+        });
+      }
+    } else if (!isOpen && videoRef.current) {
+      videoRef.current.pause();
+    }
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   return (
@@ -64,9 +81,12 @@ export default function VideoModal({ isOpen, onClose }) {
           maxHeight: '520px'
         }}>
           <video
+            ref={videoRef}
             controls
             autoPlay
             playsInline
+            preload="auto"
+            poster="/demo-video-thumbnail.jpg"
             style={{
               width: '100%',
               height: '100%',
@@ -74,8 +94,8 @@ export default function VideoModal({ isOpen, onClose }) {
               backgroundColor: '#000000'
             }}
           >
-            <source src="/Enterprise%20AI%20Agents.mp4" type="video/mp4" />
             <source src="/demo.mp4" type="video/mp4" />
+            <source src="/Enterprise%20AI%20Agents.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>

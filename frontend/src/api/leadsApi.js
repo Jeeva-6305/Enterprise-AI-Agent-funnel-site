@@ -2,7 +2,9 @@
  * Frontend API client for Leads Backend - Local backend on port 9015
  */
 
-const BASE_URL = 'http://localhost:9015/api/leads';
+const BASE_URL = import.meta.env.VITE_API_URL || ((typeof window !== 'undefined' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1')
+  ? '/api/leads'
+  : 'http://localhost:9015/api/leads');
 
 export const leadsApi = {
   async submitLead(leadData) {

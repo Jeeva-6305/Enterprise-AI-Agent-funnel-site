@@ -127,7 +127,7 @@ class LeadModel {
       SELECT * FROM leads
       ${whereSql}
       ORDER BY ${validSortCol} ${validSortOrder}
-      LIMIT $${paramCount + 1} OFFSET $${paramCount + 2}
+      LIMIT $${paramCount} OFFSET $${paramCount + 1}
     `;
 
     const dataParams = [...params, parseInt(limit), offset];
