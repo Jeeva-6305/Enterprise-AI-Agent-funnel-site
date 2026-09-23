@@ -1,0 +1,66 @@
+:root {
+  /* ─── Light Theme Backgrounds ─── */
+  --bg-root:         #FFFFFF;
+  --bg-surface:      #F8FAFC;
+  --bg-alt:          #F0FDFA;  /* Mint tint for teal theme */
+  --bg-card:         #FFFFFF;
+  --bg-footer:       #042F2E;  /* Teal deep */
+
+  /* ─── Glassmorphism Backgrounds ─── */
+  --glass-bg:        rgba(255, 255, 255, 0.75);
+  --glass-bg-strong: rgba(255, 255, 255, 0.85);
+  --glass-bg-teal:   rgba(240, 253, 250, 0.8);
+  --glass-border:    rgba(255, 255, 255, 0.5);
+
+  /* ─── Brand Teal (Data Analyst Theme) ─── */
+  --color-primary:        #0F766E;  /* Teal */
+  --color-primary-dark:   #115E59;  /* Teal dark */
+  --color-primary-light:  #F0FDFA;  /* Mint light */
+  --color-primary-mid:    #CCEBE7;  /* Teal mid */
+  --color-primary-deep:   #042F2E;  /* Teal very dark */
+  --color-accent:         #F59E0B;  /* Amber accent */
+  --color-green:          #10B981;
+  --color-red:            #EF4444;
+
+  /* ─── Hero Gradient ─── */
+  --hero-gradient: linear-gradient(135deg, #F0FDFA 0%, #FFFFFF 55%, #FEF3C7 100%);
+
+  /* ─── Text ─── */
+  --text-heading:      #0F172A;
+  --text-body:         #334155;
+  --text-muted:        #64748B;
+  --text-placeholder:  #94A3B8;
+  --text-inverse:      #FFFFFF;
+
+  /* ─── Borders & Dividers ─── */
+  --border-default:   #E2E8F0;
+  --border-strong:    #CBD5E1;
+  --border-focus:     #0F766E;
+
+  /* ─── Shadows ─── */
+  --shadow-card:      0 2px 12px rgba(15, 23, 42, 0.06);
+  --shadow-hover:     0 8px 28px rgba(15, 23, 42, 0.10);
+  --shadow-modal:     0 24px 56px rgba(15, 23, 42, 0.20);
+  --shadow-btn:       0 4px 14px rgba(15, 118, 110, 0.28);
+  --shadow-btn-hover: 0 6px 20px rgba(15, 118, 110, 0.40);
+  --shadow-glass:     0 8px 32px rgba(15, 118, 110, 0.12);
+
+  /* ─── Form (kept light — already matched screenshot) ─── */
+  --form-input-bg:           #FFFFFF;
+  --form-input-border:       #E2E8F0;
+  --form-input-border-focus: #0F766E;
+  --form-input-text:         #0F172A;
+  --form-input-placeholder:  #94A3B8;
+  --form-country-bg:         #F1F5F9;
+
+  /* ─── Typography ─── */
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* ─── Radius ─── */
+  --radius-sm:   6px;
+  --radius-md:   10px;
+  --radius-lg:   16px;
+  --radius-xl:   24px;
+  --radius-full: 9999px;
+}

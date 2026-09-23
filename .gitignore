@@ -1,0 +1,99 @@
+# ============================================
+# Agentic Data Analyst Funnel - .gitignore
+# ============================================
+
+# Environment Variables (NEVER commit these!)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.env
+
+# Dependencies
+node_modules/
+jspm_packages/
+.pnpm-store/
+
+# Python Virtual Environments (IMPORTANT: Excluded from Vite watching)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+backend/venv/
+ENV/
+env.bak/
+venv.bak/
+.pytest_cache/
+*.egg-info/
+.eggs/
+
+# Database Files
+*.db
+*.sqlite
+*.sqlite3
+leads.db
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+backend.log
+frontend.log
+
+# Build Outputs
+dist/
+dist-ssr/
+build/
+out/
+*.local
+
+# Diagnostic Reports
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Testing
+coverage/
+.nyc_output/
+*.lcov
+
+# IDEs and Editors
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json.example
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.swp
+*.swo
+*~
+
+# OS Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary Files
+scratch/
+.system_generated/
+tmp/
+temp/
+*.tmp
+
+# API Keys & Secrets (Extra protection)
+*secret*
+*key*.json
+credentials.json
+
+# Lock Files (optional - uncomment if you want to ignore)
+# package-lock.json
+# yarn.lock
