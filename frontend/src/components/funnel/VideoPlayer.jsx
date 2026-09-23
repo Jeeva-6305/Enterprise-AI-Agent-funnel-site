@@ -19,6 +19,7 @@ export default function VideoPlayer({ isUnlocked = false, onPlayClick }) {
           aria-hidden="true"
         >
           <source src="/Sec%20Analyzer%20Demo.mp4" type="video/mp4" />
+          <source src="/demo.mp4" type="video/mp4" />
         </video>
         <div className="video-grid-pattern"></div>
         

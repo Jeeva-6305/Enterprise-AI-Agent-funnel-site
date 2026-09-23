@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 9030,
+    allowedHosts: true,
     strictPort: true,
     open: false,
     watch: {
