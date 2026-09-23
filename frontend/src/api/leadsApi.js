@@ -2,7 +2,9 @@
  * Frontend API client for Leads Backend - Local backend on port 9025
  */
 
-const BASE_URL = 'http://localhost:9025/api/leads';
+const BASE_URL = import.meta.env.VITE_API_URL || ((typeof window !== 'undefined' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1')
+  ? '/api/leads'
+  : 'http://localhost:9025/api/leads');
 const DEFAULT_API_KEY = 'sk_live_agenticdo_878a80ac90a06d3bb61ae527fdc59d4e24c06582ada81a70';
 
 export const leadsApi = {

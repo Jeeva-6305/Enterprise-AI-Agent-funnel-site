@@ -11,12 +11,16 @@ echo "=================================================="
 echo "🚀 Production-Safe Persistent Launcher for $FUNNEL_NAME"
 echo "=================================================="
 
-# 1. Install dependencies
-echo "📦 Installing backend dependencies..."
-(cd backend && npm install)
+# 1. Install dependencies if needed
+if [ ! -d "backend/node_modules" ]; then
+    echo "📦 Installing backend dependencies..."
+    (cd backend && npm install)
+fi
 
-echo "📦 Installing frontend dependencies..."
-(cd frontend && npm install)
+if [ ! -d "frontend/node_modules" ]; then
+    echo "📦 Installing frontend dependencies..."
+    (cd frontend && npm install)
+fi
 
 # 2. Seed database if available
 if [ -f "backend/database/seed.js" ]; then

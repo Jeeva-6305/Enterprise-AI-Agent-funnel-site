@@ -9,7 +9,14 @@ require('./config/database');
 const app = express();
 const PORT = process.env.PORT || 9025;
 
+const envOrigins = (process.env.ALLOWED_ORIGINS || '').split(',').map(s => s.trim()).filter(Boolean);
+const envSubdomain = process.env.SUBDOMAIN;
+const envPublicUrl = process.env.PUBLIC_URL;
+
 const allowedOrigins = [
+  ...envOrigins,
+  ...(envPublicUrl ? [envPublicUrl] : []),
+  ...(envSubdomain ? [`https://${envSubdomain}`, `http://${envSubdomain}`] : []),
   'http://13.201.92.234:9020',
   'http://13.201.92.234:9025',
   'http://localhost:9020',
@@ -20,7 +27,7 @@ const allowedOrigins = [
 
 app.use(cors({
   origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin) || origin.includes('13.201.92.234')) {
+    if (!origin || allowedOrigins.includes(origin) || origin.includes('13.201.92.234') || (envSubdomain && origin.includes(envSubdomain)) || origin.includes('adople.in')) {
       callback(null, true);
     } else {
       callback(null, true);
