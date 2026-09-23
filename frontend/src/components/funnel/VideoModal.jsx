@@ -22,15 +22,15 @@ export default function VideoModal({ isOpen, onClose }) {
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div 
-        className="modal-content" 
-        onClick={(e) => e.stopPropagation()} 
-        style={{ 
-          maxWidth: '920px', 
+      <div
+        className="modal-content"
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          maxWidth: '920px',
           width: '95%',
-          padding: '0', 
-          overflow: 'hidden', 
-          backgroundColor: '#000000', 
+          padding: '0',
+          overflow: 'hidden',
+          backgroundColor: '#000000',
           color: '#ffffff',
           borderRadius: '16px',
           boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.75)'
@@ -42,21 +42,21 @@ export default function VideoModal({ isOpen, onClose }) {
           alignItems: 'center',
           justifyContent: 'space-between',
           padding: '1rem 1.5rem',
-          borderBottom: '1px solid rgba(37, 99, 235, 0.2)',
-          backgroundColor: '#0a0f1d'
+          borderBottom: '1px solid rgba(245, 179, 1, 0.25)',
+          backgroundColor: '#111827'
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#2563eb', boxShadow: '0 0 8px rgba(37, 99, 235, 0.8)' }}></div>
+            <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#F5B301', boxShadow: '0 0 8px rgba(245, 179, 1, 0.8)' }}></div>
             <span style={{ fontWeight: 700, fontSize: '0.9375rem', letterSpacing: '0.02em', color: '#ffffff' }}>
               SEC Analyzer — Platform Demonstration
             </span>
           </div>
-          <button 
-            onClick={onClose} 
-            style={{ 
-              color: '#94a3b8', 
-              display: 'flex', 
-              alignItems: 'center', 
+          <button
+            onClick={onClose}
+            style={{
+              color: '#94a3b8',
+              display: 'flex',
+              alignItems: 'center',
               justifyContent: 'center',
               padding: '4px',
               borderRadius: '6px',
@@ -104,19 +104,19 @@ export default function VideoModal({ isOpen, onClose }) {
         {/* Footer info bar */}
         <div style={{
           padding: '1rem 1.5rem',
-          backgroundColor: '#0a0f1d',
+          backgroundColor: '#111827',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          borderTop: '1px solid rgba(37, 99, 235, 0.2)'
+          borderTop: '1px solid rgba(245, 179, 1, 0.25)'
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#94a3b8', fontSize: '0.8125rem' }}>
-            <ShieldCheck size={16} color="#2563eb" />
+            <ShieldCheck size={16} color="#F5B301" />
             <span>Enterprise-Grade Security &amp; SOC2 Type II Architecture</span>
           </div>
-          <button 
-            className="btn-primary" 
-            onClick={onClose} 
+          <button
+            className="btn-primary"
+            onClick={onClose}
             style={{ width: 'auto', padding: '0.5rem 1.25rem', fontSize: '0.875rem' }}
           >
             Close Video

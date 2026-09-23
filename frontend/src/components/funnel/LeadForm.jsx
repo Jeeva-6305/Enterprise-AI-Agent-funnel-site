@@ -105,9 +105,9 @@ export default function LeadForm({ onSuccessLead, showToast }) {
   return (
     <div className="screenshot-form-card" id="lead-form-section">
       <div className="screenshot-form-header">
-        <h2 className="screenshot-form-title">Transform Any SEC Filing into Structured Intelligence</h2>
+        <h2 className="screenshot-form-title">Watch a Demo</h2>
         <p className="screenshot-form-subtitle">
-          See the demo, and discover how SEC-Mind turns a 10-K or 10-Q into structured financial information in seconds.
+          Enter your details below to access the interactive SEC-Mind product demo.
         </p>
       </div>
 
@@ -236,11 +236,11 @@ export default function LeadForm({ onSuccessLead, showToast }) {
           >
             {isSubmitting ? (
               <>
-                <Loader2 className="animate-spin" size={18} />
-                <span>Saving &amp; Unlocking Demo...</span>
+                <Loader2 className="animate-spin" size={16} />
+                <span>Loading Demo...</span>
               </>
             ) : (
-              <span>Unlock Demo and Free Filing Audit</span>
+              <span>Watch a Demo</span>
             )}
           </button>
         </div>

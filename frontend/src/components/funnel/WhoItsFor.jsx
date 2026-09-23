@@ -40,6 +40,7 @@ const audiences = [
 export default function WhoItsFor() {
   const sectionRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [activeTab, setActiveTab] = useState(0);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -48,16 +49,22 @@ export default function WhoItsFor() {
       return undefined;
     }
 
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        setIsVisible(true);
-        observer.disconnect();
-      }
-    }, { threshold: 0.16 });
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
 
     observer.observe(section);
     return () => observer.disconnect();
   }, []);
+
+  const activeAudience = audiences[activeTab];
+  const ActiveIcon = activeAudience.icon;
 
   return (
     <section
@@ -67,36 +74,68 @@ export default function WhoItsFor() {
     >
       <div className="container who-its-for-container">
         <div className="who-its-for-header">
-          <div className="who-its-for-eyebrow">WHO IT&apos;S FOR</div>
+          <div className="who-its-for-eyebrow">
+            <span className="who-its-for-eyebrow-dot" aria-hidden="true">•</span>
+            <span>WHO IT'S FOR</span>
+          </div>
           <h2 id="who-its-for-title" className="who-its-for-title">
-            Built for Teams That Work With Financial Intelligence
+            Built for teams that work with financial intelligence.
           </h2>
           <p className="who-its-for-subtitle">
             SEC-Mind helps financial professionals transform complex SEC filings into structured, queryable, and actionable financial intelligence.
           </p>
         </div>
 
-        <div className="who-its-for-grid">
-          {audiences.map(({ number, title, description, icon: Icon, capabilities }, index) => (
-            <article className="who-its-for-card" key={title} style={{ '--audience-index': index }}>
-              <div className="who-its-for-card-topline">
-                <span className="who-its-for-number">{number}</span>
-                <div className="who-its-for-icon" aria-hidden="true">
-                  <Icon size={21} strokeWidth={1.8} />
-                </div>
-              </div>
-              <h3>{title}</h3>
-              <p>{description}</p>
-              <div className="who-its-for-tags" aria-label={`${title} capabilities`}>
-                {capabilities.map((capability) => <span key={capability}>{capability}</span>)}
-              </div>
-            </article>
-          ))}
-        </div>
+        <div className="who-its-for-tabs-wrapper">
+          {/* Left: Vertical Persona Tabs */}
+          <div className="who-its-for-tab-list" role="tablist" aria-label="Who It's For Personas">
+            {audiences.map((audience, index) => {
+              const isActive = index === activeTab;
+              return (
+                <button
+                  type="button"
+                  key={audience.number}
+                  role="tab"
+                  id={`who-tab-${audience.number}`}
+                  aria-selected={isActive}
+                  aria-controls={`who-panel-${audience.number}`}
+                  tabIndex={isActive ? 0 : -1}
+                  className={`who-its-for-tab-btn ${isActive ? 'is-active' : ''}`}
+                  onClick={() => setActiveTab(index)}
+                >
+                  <span className="who-its-for-tab-number">{audience.number}</span>
+                  <span className="who-its-for-tab-label">{audience.title}</span>
+                </button>
+              );
+            })}
+          </div>
 
-        <div className="who-its-for-message">
-          <strong>One Platform. Different Perspectives on the Same Filing.</strong>
-          <span>Whether you&apos;re analyzing financial performance, reviewing disclosures, examining risks, or accessing executive-level insights, SEC-Mind organizes complex SEC filings into a more usable format.</span>
+          {/* Right: Active Persona Detail Card */}
+          <div
+            className="who-its-for-tab-panel"
+            role="tabpanel"
+            id={`who-panel-${activeAudience.number}`}
+            aria-labelledby={`who-tab-${activeAudience.number}`}
+            key={activeAudience.number}
+          >
+            <div className="who-its-for-panel-icon" aria-hidden="true">
+              <ActiveIcon size={22} strokeWidth={1.8} />
+            </div>
+
+            <h3 className="who-its-for-panel-title">{activeAudience.title}</h3>
+
+            <p className="who-its-for-panel-description">
+              {activeAudience.description}
+            </p>
+
+            <div className="who-its-for-panel-tags" aria-label={`${activeAudience.title} capabilities`}>
+              {activeAudience.capabilities.map((cap) => (
+                <span key={cap} className="who-its-for-panel-tag">
+                  {cap}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

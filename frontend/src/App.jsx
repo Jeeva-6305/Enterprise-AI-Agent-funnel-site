@@ -8,10 +8,10 @@ import FunnelHero from './components/funnel/FunnelHero';
 import VideoPlayer from './components/funnel/VideoPlayer';
 import LeadForm from './components/funnel/LeadForm';
 import PainPointsCard from './components/funnel/PainPointsCard';
-import HowSecMindWorks from './components/funnel/HowSecMindWorks';
 import AnalysisCategories from './components/funnel/AnalysisCategories';
 import MultiAgentWorkflow from './components/funnel/MultiAgentWorkflow';
 import WhoItsFor from './components/funnel/WhoItsFor';
+import FaqSection from './components/funnel/FaqSection';
 import FinalCta from './components/funnel/FinalCta';
 import InteractiveQa from './components/funnel/InteractiveQa';
 import SuccessModal from './components/funnel/SuccessModal';
@@ -114,9 +114,6 @@ export default function App() {
           <PainPointsCard />
         </section>
 
-        {/* 4. SEC-Mind Workflow Section */}
-        <HowSecMindWorks />
-
         {/* 5. Analysis Categories Section */}
         <AnalysisCategories />
 
@@ -129,7 +126,10 @@ export default function App() {
         {/* 8. Who It's For Section */}
         <WhoItsFor />
 
-        {/* 9. Final CTA Section */}
+        {/* 9. Frequently Asked Questions Section */}
+        <FaqSection />
+
+        {/* 10. Final CTA Section */}
         <FinalCta onRequestDemo={handleAccessDemo} />
 
       </main>
