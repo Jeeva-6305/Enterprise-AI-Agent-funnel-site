@@ -60,13 +60,13 @@ export const InteractiveDashboardDemo: React.FC = () => {
             name: 'North America',
             type: 'bar',
             data: [420000, 580000, 720000, 890000],
-            itemStyle: { color: '#0F766E', borderRadius: [4, 4, 0, 0] }
+            itemStyle: { color: '#2B2D6E', borderRadius: [4, 4, 0, 0] }
           },
           {
             name: 'APAC',
             type: 'bar',
             data: [310000, 470000, 640000, 810000],
-            itemStyle: { color: '#F59E0B', borderRadius: [4, 4, 0, 0] }
+            itemStyle: { color: '#E8664C', borderRadius: [4, 4, 0, 0] }
           }
         ]
       };
@@ -100,10 +100,10 @@ export const InteractiveDashboardDemo: React.FC = () => {
             itemStyle: { borderRadius: 8, borderColor: '#FFFFFF', borderWidth: 3 },
             label: { show: false },
             data: [
-              { value: 1048, name: 'North America (42%)', itemStyle: { color: '#0F766E' } },
-              { value: 700, name: 'APAC (28%)', itemStyle: { color: '#F59E0B' } },
-              { value: 550, name: 'EMEA (22%)', itemStyle: { color: '#64748B' } },
-              { value: 200, name: 'Other (8%)', itemStyle: { color: '#E2E8F0' } }
+              { value: 1048, name: 'North America (42%)', itemStyle: { color: '#2B2D6E' } },
+              { value: 700, name: 'APAC (28%)', itemStyle: { color: '#E8664C' } },
+              { value: 550, name: 'EMEA (22%)', itemStyle: { color: '#55546B' } },
+              { value: 200, name: 'Other (8%)', itemStyle: { color: '#4C9A7A' } }
             ]
           }
         ]
@@ -111,17 +111,17 @@ export const InteractiveDashboardDemo: React.FC = () => {
     } else {
       return {
         ...base,
-        tooltip: { trigger: 'axis', backgroundColor: '#FFFFFF', borderColor: '#E2E8F0', textStyle: { color: '#334155' } },
+        tooltip: { trigger: 'axis', backgroundColor: '#FFFFFF', borderColor: 'rgba(28, 27, 46, 0.12)', textStyle: { color: '#1C1B2E' } },
         xAxis: {
           type: 'category',
           data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-          axisLabel: { color: '#64748B' },
-          axisLine: { lineStyle: { color: '#E2E8F0' } }
+          axisLabel: { color: '#55546B' },
+          axisLine: { lineStyle: { color: 'rgba(28, 27, 46, 0.12)' } }
         },
         yAxis: {
           type: 'value',
-          axisLabel: { color: '#64748B', formatter: (v: number) => `${v}%` },
-          splitLine: { lineStyle: { color: '#F1F5F9' } }
+          axisLabel: { color: '#55546B', formatter: (v: number) => `${v}%` },
+          splitLine: { lineStyle: { color: 'rgba(28, 27, 46, 0.08)' } }
         },
         series: [
           {
@@ -129,9 +129,9 @@ export const InteractiveDashboardDemo: React.FC = () => {
             type: 'line',
             smooth: true,
             data: [8.2, 11.4, 14.8, 17.2, 21.6, 24.8],
-            itemStyle: { color: '#0F766E' },
-            lineStyle: { color: '#0F766E', width: 3 },
-            areaStyle: { color: 'rgba(15,118,110,0.1)' }
+            itemStyle: { color: '#2B2D6E' },
+            lineStyle: { color: '#2B2D6E', width: 3 },
+            areaStyle: { color: 'rgba(43, 45, 110, 0.1)' }
           }
         ]
       };
@@ -196,14 +196,15 @@ export const InteractiveDashboardDemo: React.FC = () => {
           style={{
             background: 'var(--glass-bg-strong)',
             borderRadius: 'clamp(12px, 3vw, 20px)',
-            padding: 'clamp(1rem, 2.5vw, 1.75rem)',
+            padding: 'clamp(0.85rem, 2vw, 1.35rem)',
             boxShadow: 'var(--shadow-hover)',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0) scale(1)' : 'translateY(40px) scale(0.95)',
             transition: 'all 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s',
             marginBottom: 'clamp(1rem, 3vw, 0)', // Extra margin on mobile for CTA
             overflow: 'hidden',
-            maxWidth: '100%'
+            maxWidth: '860px',
+            margin: '0 auto'
           }}
         >
           {/* Chart control bar */}
@@ -213,8 +214,8 @@ export const InteractiveDashboardDemo: React.FC = () => {
             justifyContent: 'space-between',
             flexWrap: 'wrap',
             gap: 'clamp(0.75rem, 2vw, 1rem)',
-            marginBottom: 'clamp(1rem, 2.5vw, 1.5rem)',
-            paddingBottom: 'clamp(0.85rem, 2vw, 1.25rem)',
+            marginBottom: 'clamp(0.75rem, 2vw, 1.25rem)',
+            paddingBottom: 'clamp(0.65rem, 1.8vw, 1rem)',
             borderBottom: '1px solid var(--border-default)'
           }}>
             <div style={{
@@ -249,7 +250,7 @@ export const InteractiveDashboardDemo: React.FC = () => {
               gap: 'clamp(0.25rem, 0.8vw, 0.35rem)',
               fontSize: 'clamp(0.7rem, 1.5vw, 0.8rem)',
               fontWeight: 600,
-              color: '#10B981',
+              color: '#4C9A7A',
               whiteSpace: 'nowrap',
               flexShrink: 0
             }}>
@@ -259,9 +260,9 @@ export const InteractiveDashboardDemo: React.FC = () => {
 
           {/* ECharts — key forces full remount on preset change to prevent chart overlap */}
           <div style={{
-            height: 'clamp(280px, 45vw, 360px)',
+            height: 'clamp(230px, 32vw, 290px)',
             width: '100%',
-            minHeight: '280px',
+            minHeight: '230px',
             position: 'relative',
             overflow: 'hidden'
           }}>

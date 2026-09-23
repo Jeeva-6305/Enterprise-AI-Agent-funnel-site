@@ -17,7 +17,7 @@ export const ProofStats: React.FC = () => {
 
   const stats: Stat[] = [
     {
-      icon: <TrendingUp size={28} color="#0F766E" />,
+      icon: <TrendingUp size={28} color="#2B2D6E" />,
       value: '10,000+',
       endValue: 10000,
       suffix: '+',
@@ -25,7 +25,7 @@ export const ProofStats: React.FC = () => {
       description: 'Daily queries processed'
     },
     {
-      icon: <CheckCircle size={28} color="#10B981" />,
+      icon: <CheckCircle size={28} color="#4C9A7A" />,
       value: '99.2%',
       endValue: 99.2,
       suffix: '%',
@@ -33,7 +33,7 @@ export const ProofStats: React.FC = () => {
       description: 'Verified and validated'
     },
     {
-      icon: <Users size={28} color="#F59E0B" />,
+      icon: <Users size={28} color="#E8664C" />,
       value: '50+',
       endValue: 50,
       suffix: '+',
@@ -41,7 +41,7 @@ export const ProofStats: React.FC = () => {
       description: 'Across 3 continents'
     },
     {
-      icon: <Zap size={28} color="#0EA5E9" />,
+      icon: <Zap size={28} color="#2B2D6E" />,
       value: '< 5 min',
       endValue: 5,
       label: 'Average Setup Time',
@@ -127,7 +127,7 @@ export const ProofStats: React.FC = () => {
           className="stats-grid"
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
             gap: 'clamp(1.25rem, 3vw, 2rem)',
             maxWidth: '1200px',
             margin: '0 auto'
@@ -141,54 +141,34 @@ export const ProofStats: React.FC = () => {
                 padding: 'clamp(1.75rem, 3vw, 2.25rem) clamp(1.25rem, 2vw, 1.5rem)',
                 textAlign: 'center',
                 opacity: isVisible ? 1 : 0,
-                transform: isVisible ? 'translateY(0) scale(1)' : 'translateY(50px) scale(0.92)',
+                transform: isVisible ? 'translateY(0) scale(1)' : 'translateY(40px) scale(0.95)',
                 transition: `all 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 0.12}s`,
                 position: 'relative',
                 overflow: 'hidden'
               }}
             >
-              {/* Animated background pulse */}
-              <div
-                style={{
-                  position: 'absolute',
-                  top: '50%',
-                  left: '50%',
-                  width: '200%',
-                  height: '200%',
-                  transform: 'translate(-50%, -50%)',
-                  background: 'radial-gradient(circle, var(--color-primary) 0%, transparent 70%)',
-                  opacity: isVisible ? 0.03 : 0,
-                  transition: 'opacity 1s ease',
-                  pointerEvents: 'none'
-                }}
-              />
-
-              {/* Icon with pulse animation */}
               <div
                 style={{
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  width: '64px',
-                  height: '64px',
+                  width: '60px',
+                  height: '60px',
                   margin: '0 auto 1.25rem auto',
                   borderRadius: '14px',
                   background: 'var(--bg-alt)',
-                  position: 'relative',
-                  transform: isVisible ? 'scale(1)' : 'scale(0.5)',
-                  transition: `transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 0.15 + 0.2}s`
+                  position: 'relative'
                 }}
               >
                 {stat.icon}
               </div>
 
-              {/* Animated Value */}
               <div
                 style={{
-                  fontSize: 'clamp(2rem, 4vw, 2.75rem)',
+                  fontSize: 'clamp(1.85rem, 3.5vw, 2.5rem)',
                   fontWeight: 800,
                   color: 'var(--color-primary)',
-                  marginBottom: '0.65rem',
+                  marginBottom: '0.5rem',
                   lineHeight: 1,
                   fontVariantNumeric: 'tabular-nums'
                 }}
@@ -196,20 +176,18 @@ export const ProofStats: React.FC = () => {
                 {isVisible ? formatValue(idx) : '0'}
               </div>
 
-              {/* Label */}
               <div
                 style={{
                   fontSize: 'clamp(0.95rem, 1.5vw, 1.05rem)',
                   fontWeight: 700,
                   color: 'var(--text-heading)',
-                  marginBottom: '0.4rem',
+                  marginBottom: '0.35rem',
                   lineHeight: 1.3
                 }}
               >
                 {stat.label}
               </div>
 
-              {/* Description */}
               <div
                 style={{
                   fontSize: '0.875rem',
@@ -223,34 +201,6 @@ export const ProofStats: React.FC = () => {
           ))}
         </div>
       </div>
-
-      {/* Responsive Styles */}
-      <style>{`
-        @media (max-width: 1024px) {
-          /* Tablet: 2x2 grid */
-          .stats-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
-            gap: 1.5rem !important;
-          }
-        }
-
-        @media (max-width: 640px) {
-          /* Mobile: 1 column */
-          .stats-grid {
-            grid-template-columns: 1fr !important;
-            gap: 1.25rem !important;
-          }
-
-          .card {
-            padding: 1.75rem 1.25rem !important;
-          }
-        }
-
-        /* Subtle hover effect */
-        .card:hover {
-          transform: translateY(-4px) scale(1.02) !important;
-        }
-      `}</style>
     </section>
   );
 };

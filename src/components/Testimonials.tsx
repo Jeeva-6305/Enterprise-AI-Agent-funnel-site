@@ -134,7 +134,7 @@ export const Testimonials: React.FC = () => {
                 marginBottom: '1rem'
               }}>
                 {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} size={16} fill="#F59E0B" color="#F59E0B" />
+                  <Star key={i} size={16} fill="#E8664C" color="#E8664C" />
                 ))}
               </div>
 

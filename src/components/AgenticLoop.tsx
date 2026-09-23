@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { MessageSquare, Brain, ShieldCheck, BarChart2 } from 'lucide-react';
 
 export const AgenticLoop: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -26,41 +25,25 @@ export const AgenticLoop: React.FC = () => {
 
   const steps = [
     {
-      icon: <MessageSquare size={22} color="#2563EB" />,
-      iconBg: 'icon-badge-blue',
       num: '01',
       title: 'You Ask',
-      tagline: 'In plain English — no training required',
-      description: 'Type your question exactly as you\'d ask a colleague. "What were our top 5 revenue markets last quarter?" or "Compare this month\'s sales to last year." No SQL. No dashboards. No complexity.',
-      outcome: 'Your whole team can ask questions — not just analysts',
+      description: 'Ask any question in plain English — no SQL, code, or analyst queue required.'
     },
     {
-      icon: <Brain size={22} color="#0EA5E9" />,
-      iconBg: 'icon-badge-blue',
       num: '02',
       title: 'It Understands',
-      tagline: 'Your business context, your data, your metrics',
-      description: 'Adople AI understands the meaning behind your question — not just the words. It knows your business definitions, data locations, and the relationships between different numbers across all your systems.',
-      outcome: 'Complex questions get accurate, context-aware answers',
+      description: 'Understands your business context, metrics, and data across all connected sources.'
     },
     {
-      icon: <ShieldCheck size={22} color="#10B981" />,
-      iconBg: 'icon-badge-green',
       num: '03',
       title: 'It Self-Checks',
-      tagline: 'Every answer verified before you see it',
-      description: 'Before returning anything, Adople AI validates its own answer. If it detects a problem or inconsistency, it corrects itself automatically. If it genuinely can\'t be certain, it tells you — clearly.',
-      outcome: 'You can trust every number and share it with confidence',
+      description: 'Validates and double-checks every answer automatically before displaying it.'
     },
     {
-      icon: <BarChart2 size={22} color="#F59E0B" />,
-      iconBg: 'icon-badge-amber',
       num: '04',
       title: 'You Act',
-      tagline: 'Clear answers, ready-to-share charts',
-      description: 'You receive a clean, accurate answer alongside relevant charts or tables. Share it with your team in one click, dig deeper with follow-up questions, or export to your existing tools.',
-      outcome: 'From question to decision in seconds, not days',
-    },
+      description: 'Receive clean answers, ready-to-share charts, and actionable insights in seconds.'
+    }
   ];
 
   return (
@@ -69,177 +52,192 @@ export const AgenticLoop: React.FC = () => {
       id="how-it-works"
       style={{
         background: 'var(--bg-root)',
-        padding: 'clamp(3rem, 6vw, 4.5rem) 0'
+        padding: 'clamp(3.5rem, 7vw, 5rem) 0',
+        borderBottom: '1px solid var(--border-default)'
       }}
     >
       <div className="container">
+        {/* Header section matching screenshot */}
         <div
           style={{
             textAlign: 'center',
-            maxWidth: '750px',
+            maxWidth: '900px',
             margin: '0 auto clamp(2.5rem, 5vw, 3.5rem) auto',
             padding: '0 1rem',
             opacity: isVisible ? 1 : 0,
-            transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
+            transform: isVisible ? 'translateY(0)' : 'translateY(25px)',
             transition: 'all 0.7s cubic-bezier(0.16, 1, 0.3, 1)'
           }}
         >
-          <span className="badge-tag" style={{ marginBottom: '1rem', display: 'inline-flex' }}>
-            How It Works
+          <span
+            style={{
+              display: 'inline-block',
+              background: 'rgba(232, 102, 76, 0.08)',
+              border: '1px solid rgba(232, 102, 76, 0.25)',
+              color: '#E8664C',
+              fontSize: '0.75rem',
+              fontWeight: 700,
+              letterSpacing: '0.08em',
+              textTransform: 'uppercase',
+              padding: '0.35rem 1.15rem',
+              borderRadius: '9999px',
+              marginBottom: '1rem'
+            }}
+          >
+            HOW DOES IT WORK
           </span>
           <h2
             style={{
-              fontSize: 'clamp(1.75rem, 4vw, 2.4rem)',
+              fontSize: 'clamp(1.6rem, 3.8vw, 2.5rem)',
               fontWeight: 800,
               color: 'var(--text-heading)',
-              marginBottom: 'clamp(0.75rem, 2vw, 1rem)',
-              lineHeight: 1.2
+              whiteSpace: 'nowrap',
+              marginBottom: '0.75rem',
+              lineHeight: 1.2,
+              letterSpacing: '-0.02em'
             }}
           >
-            Reliable Answers in Four Simple Steps
+            Turn Any Question into Verified Answers in 4 Steps
           </h2>
-          <p style={{
-            fontSize: 'clamp(1rem, 1.8vw, 1.05rem)',
-            color: 'var(--text-muted)',
-            lineHeight: 1.65
-          }}>
-            Adople AI handles all the complexity behind the scenes. You just ask your question.
+          <p
+            style={{
+              fontSize: 'clamp(0.95rem, 1.7vw, 1.05rem)',
+              color: 'var(--text-muted)',
+              lineHeight: 1.6,
+              maxWidth: '680px',
+              margin: '0 auto'
+            }}
+          >
+            Adople AI's agentic pipeline handles all the complexity behind the scenes so your team gets reliable, audit-ready data in seconds.
           </p>
         </div>
 
+        {/* Stepper Timeline Container matching screenshot */}
         <div
           style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))',
-            gap: 'clamp(1.25rem, 3vw, 1.75rem)',
-            marginBottom: 'clamp(2rem, 4vw, 2.5rem)'
+            maxWidth: '1100px',
+            margin: '0 auto',
+            position: 'relative',
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? 'translateY(0)' : 'translateY(35px)',
+            transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s'
           }}
         >
-          {steps.map((step, idx) => (
-            <div
-              key={idx}
-              className="glass-card"
-              style={{
-                padding: 'clamp(1.5rem, 3vw, 1.75rem)',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                minHeight: '100%',
-                transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
-                position: 'relative',
-                opacity: isVisible ? 1 : 0,
-                transform: isVisible ? 'translateY(0) scale(1)' : 'translateY(50px) scale(0.92)',
-                transitionDelay: `${idx * 0.12}s`
-              }}
-            >
-              <div>
-                {/* Step num */}
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
-                  <div className={`icon-badge ${step.iconBg}`} style={{ marginBottom: 0 }}>
-                    {step.icon}
-                  </div>
-                  <span style={{
-                    fontSize: '0.7rem', fontWeight: 800,
-                    color: 'var(--text-placeholder)',
-                    letterSpacing: '0.06em'
-                  }}>
-                    STEP {step.num}
-                  </span>
+          {/* Connecting Horizontal Line */}
+          <div
+            className="stepper-line"
+            style={{
+              position: 'absolute',
+              top: '21px',
+              left: '12%',
+              right: '12%',
+              height: '2px',
+              background: 'linear-gradient(to right, #E8664C 0%, #2B2D6E 50%, #4C9A7A 100%)',
+              zIndex: 1
+            }}
+          />
+
+          {/* Stepper Grid (4 Columns) */}
+          <div
+            className="stepper-grid"
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(4, 1fr)',
+              gap: 'clamp(1rem, 2.5vw, 1.75rem)',
+              position: 'relative',
+              zIndex: 2
+            }}
+          >
+            {steps.map((step, idx) => (
+              <div
+                key={idx}
+                className="step-item"
+                style={{
+                  textAlign: 'center',
+                  padding: '0 0.5rem'
+                }}
+              >
+                {/* Numbered Circle */}
+                <div
+                  className="step-circle"
+                  style={{
+                    width: '42px',
+                    height: '42px',
+                    borderRadius: '50%',
+                    background: '#FFFFFF',
+                    border: '2px solid var(--color-primary)',
+                    color: 'var(--color-primary)',
+                    fontSize: '0.875rem',
+                    fontWeight: 800,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    margin: '0 auto 1.25rem auto',
+                    boxShadow: '0 2px 8px rgba(15, 23, 42, 0.08)',
+                    transition: 'all 0.3s ease'
+                  }}
+                >
+                  {step.num}
                 </div>
-                <h3 style={{
-                  fontSize: '1.15rem', fontWeight: 800,
-                  color: 'var(--text-heading)', marginBottom: '0.2rem'
-                }}>
+
+                {/* Step Title */}
+                <h3
+                  style={{
+                    fontSize: 'clamp(1rem, 1.6vw, 1.1rem)',
+                    fontWeight: 800,
+                    color: 'var(--text-heading)',
+                    marginBottom: '0.5rem',
+                    lineHeight: 1.3
+                  }}
+                >
                   {step.title}
                 </h3>
-                <div style={{ fontSize: '0.82rem', color: 'var(--color-primary)', fontWeight: 600, marginBottom: '0.65rem' }}>
-                  {step.tagline}
-                </div>
-                <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: 1.55, marginBottom: '1.25rem' }}>
+
+                {/* Step Description */}
+                <p
+                  style={{
+                    fontSize: '0.875rem',
+                    color: 'var(--text-muted)',
+                    lineHeight: 1.55,
+                    margin: 0
+                  }}
+                >
                   {step.description}
                 </p>
-              </div>
-
-              {/* Outcome Box - Visible on all cards for fixed uniform layout */}
-              <div style={{
-                marginTop: 'auto',
-                padding: '0.75rem 0.9rem',
-                background: '#F8FAFC',
-                border: '1px solid var(--border-default)',
-                borderRadius: '8px',
-                fontSize: '0.81rem', fontWeight: 700,
-                color: 'var(--text-body)',
-                display: 'flex', alignItems: 'center', gap: '0.4rem',
-                transition: 'all 0.2s ease'
-              }}>
-                <span style={{ color: '#10B981', fontWeight: 800 }}>✓</span>
-                <span>{step.outcome}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Bottom outcome summary */}
-        <div
-          className="glass-card"
-          style={{
-            background: 'var(--glass-bg-teal)',
-            border: '1px solid var(--color-primary-mid)',
-            borderRadius: 'var(--radius-xl)',
-            padding: 'clamp(1.5rem, 4vw, 2rem) clamp(1.75rem, 4vw, 2.5rem)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            flexWrap: 'wrap',
-            gap: 'clamp(1.25rem, 3vw, 1.5rem)',
-            opacity: isVisible ? 1 : 0,
-            transform: isVisible ? 'translateY(0) scale(1)' : 'translateY(30px) scale(0.95)',
-            transition: 'all 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.6s'
-          }}
-        >
-          <div style={{ flex: '1 1 300px' }}>
-            <div style={{
-              fontSize: 'clamp(1.05rem, 2vw, 1.2rem)',
-              fontWeight: 800,
-              color: 'var(--text-heading)',
-              marginBottom: '0.3rem'
-            }}>
-              The result: your team makes better decisions, faster
-            </div>
-            <p style={{
-              fontSize: 'clamp(0.9rem, 1.5vw, 0.95rem)',
-              color: 'var(--text-muted)'
-            }}>
-              Without writing code, waiting for reports, or second-guessing your numbers.
-            </p>
-          </div>
-          <div style={{
-            display: 'flex',
-            gap: 'clamp(1.5rem, 3vw, 2rem)',
-            flexWrap: 'wrap',
-            justifyContent: 'center'
-          }}>
-            {[
-              { val: 'Seconds', label: 'Time to answer' },
-              { val: 'Verified', label: 'Every result' },
-              { val: 'Any Source', label: 'One interface' },
-            ].map((m, i) => (
-              <div key={i} style={{ textAlign: 'center' }}>
-                <div style={{
-                  fontSize: 'clamp(1.15rem, 2vw, 1.3rem)',
-                  fontWeight: 800,
-                  color: 'var(--color-primary)'
-                }}>{m.val}</div>
-                <div style={{
-                  fontSize: 'clamp(0.75rem, 1.3vw, 0.78rem)',
-                  color: 'var(--text-muted)',
-                  fontWeight: 600
-                }}>{m.label}</div>
               </div>
             ))}
           </div>
         </div>
       </div>
+
+      <style>{`
+        .step-circle:hover {
+          transform: scale(1.12);
+          border-color: var(--color-accent) !important;
+          color: var(--color-accent) !important;
+          box-shadow: 0 4px 14px rgba(245, 158, 11, 0.3) !important;
+        }
+
+        @media (max-width: 768px) {
+          .stepper-line {
+            display: none !important;
+          }
+          .stepper-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 2rem 1rem !important;
+          }
+          #how-it-works h2 {
+            white-space: normal !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .stepper-grid {
+            grid-template-columns: 1fr !important;
+            gap: 2rem !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };

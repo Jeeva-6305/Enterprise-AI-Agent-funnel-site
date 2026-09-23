@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Play, ArrowRight } from 'lucide-react';
+import { Play, ArrowRight, Zap, CheckCircle, Users, ShieldCheck } from 'lucide-react';
 import { GatedVideoPlayer } from './GatedVideoPlayer';
 
 interface HeroProps {
@@ -47,7 +47,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenForm, isUnlocked }) => {
       <div style={{
         position: 'absolute', top: '-120px', right: '-80px',
         width: '520px', height: '520px', borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(15,118,110,0.1) 0%, transparent 70%)',
+        background: 'radial-gradient(circle, rgba(43,45,110,0.08) 0%, transparent 70%)',
         pointerEvents: 'none',
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? 'scale(1)' : 'scale(0.8)',
@@ -56,7 +56,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenForm, isUnlocked }) => {
       <div style={{
         position: 'absolute', bottom: '-80px', left: '-60px',
         width: '360px', height: '360px', borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(245,158,11,0.08) 0%, transparent 70%)',
+        background: 'radial-gradient(circle, rgba(232,102,76,0.06) 0%, transparent 70%)',
         pointerEvents: 'none',
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? 'scale(1)' : 'scale(0.8)',
@@ -78,13 +78,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenForm, isUnlocked }) => {
         </div>
 
         {/* Headline with animation */}
-        <div style={{ textAlign: 'center', maxWidth: '1000px', margin: '0 auto', padding: '0 1rem' }}>
+        <div style={{ textAlign: 'center', maxWidth: '980px', margin: '0 auto', padding: '0 1rem' }}>
           <h1
             style={{
-              fontSize: 'clamp(2rem, 5vw, 3.75rem)',
-              fontWeight: 800,
-              lineHeight: 1.15,
-              letterSpacing: '-0.03em',
+              fontSize: 'clamp(1.75rem, 3.8vw, 2.75rem)',
+              fontWeight: 700,
+              lineHeight: 1.2,
+              letterSpacing: '-0.02em',
               color: 'var(--text-heading)',
               marginBottom: 'clamp(1rem, 2vw, 1.25rem)',
               opacity: isVisible ? 1 : 0,
@@ -96,12 +96,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenForm, isUnlocked }) => {
             <br />
             <span
               style={{
-                background: 'linear-gradient(135deg, #0F766E 0%, #F59E0B 100%)',
+                background: 'linear-gradient(135deg, #2B2D6E 0%, #E8664C 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundSize: '200% 200%',
                 animation: isVisible ? 'gradient-shift 3s ease infinite' : 'none',
-                display: 'inline-block'
+                display: 'inline-block',
+                fontWeight: 700
               }}
             >
               Instant, Accurate Answer
@@ -110,11 +111,11 @@ export const Hero: React.FC<HeroProps> = ({ onOpenForm, isUnlocked }) => {
 
           <p
             style={{
-              fontSize: 'clamp(1rem, 2vw, 1.2rem)',
+              fontSize: 'clamp(0.95rem, 1.8vw, 1.1rem)',
               color: 'var(--text-muted)',
-              maxWidth: '700px',
+              maxWidth: '680px',
               margin: '0 auto clamp(2rem, 4vw, 2.5rem) auto',
-              lineHeight: 1.7,
+              lineHeight: 1.65,
               padding: '0 1rem',
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
@@ -124,6 +125,131 @@ export const Hero: React.FC<HeroProps> = ({ onOpenForm, isUnlocked }) => {
             Adople AI lets your team ask questions about your business data in plain English — and get reliable, verified answers in seconds, without waiting for analysts or writing a single line of code.
           </p>
 
+          {/* Proof pill badges: 3 in top row, 4th centered directly below */}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: '0.75rem',
+              maxWidth: '1050px',
+              margin: '0 auto clamp(2.25rem, 4.5vw, 3rem) auto',
+              opacity: isVisible ? 1 : 0,
+              transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
+              transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s'
+            }}
+          >
+            {/* Top row: first 3 items in a single line */}
+            <div
+              className="hero-pills-top-row"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '0.75rem',
+                flexWrap: 'wrap'
+              }}
+            >
+              {[
+                {
+                  icon: <Zap size={17} color="#E8664C" />,
+                  value: '10,000+',
+                  label: 'Business Questions Answered'
+                },
+                {
+                  icon: <CheckCircle size={17} color="#4C9A7A" />,
+                  value: '99.2%',
+                  label: 'Answer Accuracy Rate'
+                },
+                {
+                  icon: <Users size={17} color="#2B2D6E" />,
+                  value: '50+',
+                  label: 'Enterprise Customers'
+                }
+              ].map((pill, idx) => (
+                <div
+                  key={idx}
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    background: '#FFFFFF',
+                    border: '1.5px solid rgba(232, 102, 76, 0.35)',
+                    borderRadius: '9999px',
+                    padding: '0.6rem 1.25rem',
+                    boxShadow: '0 2px 10px rgba(28, 27, 46, 0.04)',
+                    fontSize: 'clamp(0.825rem, 1.3vw, 0.925rem)',
+                    fontWeight: 600,
+                    color: 'var(--text-heading)',
+                    transition: 'all 0.3s ease',
+                    whiteSpace: 'nowrap'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.borderColor = 'var(--color-primary)';
+                    e.currentTarget.style.boxShadow = '0 6px 18px rgba(43, 45, 110, 0.15)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.borderColor = 'rgba(232, 102, 76, 0.35)';
+                    e.currentTarget.style.boxShadow = '0 2px 10px rgba(28, 27, 46, 0.04)';
+                  }}
+                >
+                  <span style={{ display: 'inline-flex', alignItems: 'center' }}>
+                    {pill.icon}
+                  </span>
+                  <span>
+                    <strong style={{ color: 'var(--color-primary)', fontWeight: 800 }}>
+                      {pill.value}
+                    </strong>{' '}
+                    {pill.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            {/* Bottom row: 4th item centered directly below */}
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <div
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  background: '#FFFFFF',
+                  border: '1.5px solid rgba(232, 102, 76, 0.35)',
+                  borderRadius: '9999px',
+                  padding: '0.6rem 1.25rem',
+                  boxShadow: '0 2px 10px rgba(28, 27, 46, 0.04)',
+                  fontSize: 'clamp(0.825rem, 1.3vw, 0.925rem)',
+                  fontWeight: 600,
+                  color: 'var(--text-heading)',
+                  transition: 'all 0.3s ease',
+                  whiteSpace: 'nowrap'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.borderColor = 'var(--color-primary)';
+                  e.currentTarget.style.boxShadow = '0 6px 18px rgba(43, 45, 110, 0.15)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.borderColor = 'rgba(232, 102, 76, 0.35)';
+                  e.currentTarget.style.boxShadow = '0 2px 10px rgba(28, 27, 46, 0.04)';
+                }}
+              >
+                <span style={{ display: 'inline-flex', alignItems: 'center' }}>
+                  <ShieldCheck size={17} color="#4C9A7A" />
+                </span>
+                <span>
+                  <strong style={{ color: 'var(--color-primary)', fontWeight: 800 }}>
+                    &lt; 5 min
+                  </strong>{' '}
+                  Average Setup Time
+                </span>
+              </div>
+            </div>
+          </div>
+
           {/* CTAs with staggered animation */}
           <div
             style={{
@@ -132,11 +258,11 @@ export const Hero: React.FC<HeroProps> = ({ onOpenForm, isUnlocked }) => {
               justifyContent: 'center',
               gap: 'clamp(0.75rem, 2vw, 1rem)',
               flexWrap: 'wrap',
-              marginBottom: 'clamp(2.5rem, 5vw, 3.5rem)',
+              marginBottom: 'clamp(1.5rem, 3vw, 2rem)',
               padding: '0 1rem',
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-              transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s'
+              transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s'
             }}
           >
             <button
@@ -170,62 +296,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenForm, isUnlocked }) => {
               See How It Works
             </a>
           </div>
-
-          {/* Glass trust metric strip */}
-          <div
-            className="glass-card"
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-              gap: '0',
-              maxWidth: '800px',
-              margin: '0 auto',
-              overflow: 'hidden',
-              opacity: isVisible ? 1 : 0,
-              transform: isVisible ? 'translateY(0) scale(1)' : 'translateY(30px) scale(0.95)',
-              transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s'
-            }}
-          >
-            {[
-              { value: 'Instant Answers', label: 'No more analyst backlogs' },
-              { value: 'Always Verified', label: 'Every answer double-checked' },
-              { value: 'Works Today', label: 'Connects in minutes, not months' }
-            ].map((item, idx) => (
-              <div
-                key={idx}
-                style={{
-                  padding: 'clamp(1rem, 3vw, 1.4rem) clamp(0.75rem, 2vw, 1.25rem)',
-                  textAlign: 'center',
-                  borderLeft: idx > 0 ? '1px solid var(--glass-border)' : 'none',
-                  transition: 'all 0.3s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = 'rgba(15, 118, 110, 0.05)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = 'transparent';
-                }}
-              >
-                <div
-                  style={{
-                    fontSize: 'clamp(1rem, 2vw, 1.15rem)',
-                    fontWeight: 800,
-                    color: 'var(--color-primary)',
-                    marginBottom: '0.2rem'
-                  }}
-                >
-                  {item.value}
-                </div>
-                <div style={{
-                  fontSize: 'clamp(0.75rem, 1.5vw, 0.8rem)',
-                  color: 'var(--text-muted)',
-                  fontWeight: 500
-                }}>
-                  {item.label}
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
 
         {/* Keyframe animations */}
@@ -250,7 +320,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenForm, isUnlocked }) => {
         <div
           id="demo-video-section"
           style={{
-            marginTop: 'clamp(3rem, 6vw, 4rem)',
+            maxWidth: '850px',
+            margin: 'clamp(2rem, 4vw, 2.5rem) auto 0 auto',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(40px)',
             transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s'

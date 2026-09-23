@@ -492,8 +492,8 @@ html {
 .country-selector-trigger:hover { background: #E2E8F0; }
 
 .flag-icon { font-size: 1.3rem; line-height: 1; }
-.dial-code { font-size: 0.9rem; font-weight: 600; color: #1E293B; }
-.chevron-down { color: #64748B; }
+.dial-code { font-size: 0.9rem; font-weight: 600; color: var(--text-heading); }
+.chevron-down { color: var(--text-muted); }
 
 .phone-number-field {
   flex: 1;
@@ -516,7 +516,7 @@ html {
   max-height: 260px;
   overflow-y: auto;
   background: #FFFFFF;
-  border: 1px solid #E2E8F0;
+  border: 1px solid var(--border-default);
   border-radius: var(--radius-md);
   box-shadow: 0 12px 30px rgba(0,0,0,0.12);
   z-index: 200;
@@ -526,11 +526,11 @@ html {
   width: 100%;
   padding: 0.5rem 0.75rem;
   font-size: 0.85rem;
-  border: 1px solid #E2E8F0;
+  border: 1px solid var(--border-default);
   border-radius: 6px;
   margin-bottom: 0.35rem;
   outline: none;
-  color: #0F172A;
+  color: var(--text-heading);
 }
 .country-option {
   display: flex;
@@ -540,7 +540,7 @@ html {
   border-radius: 6px;
   cursor: pointer;
   font-size: 0.88rem;
-  color: #1E293B;
+  color: var(--text-body);
   transition: background 0.12s;
 }
 .country-option:hover { background: #F1F5F9; }

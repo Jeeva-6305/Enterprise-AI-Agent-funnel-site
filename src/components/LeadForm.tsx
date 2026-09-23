@@ -82,10 +82,10 @@ export const LeadForm: React.FC<LeadFormProps> = ({ onSuccess }) => {
           alignItems: 'center',
           gap: 'clamp(0.3rem, 1vw, 0.4rem)',
           padding: 'clamp(0.3rem, 1vw, 0.35rem) clamp(0.7rem, 1.5vw, 0.85rem)',
-          background: '#EFF6FF',
-          border: '1px solid #BFDBFE',
+          background: 'rgba(43, 45, 110, 0.08)',
+          border: '1px solid rgba(43, 45, 110, 0.22)',
           borderRadius: '999px',
-          color: '#1D4ED8',
+          color: '#2B2D6E',
           fontSize: 'clamp(0.7rem, 1.3vw, 0.78rem)',
           fontWeight: 700,
           marginBottom: 'clamp(0.7rem, 1.5vw, 0.85rem)',
@@ -199,7 +199,7 @@ export const LeadForm: React.FC<LeadFormProps> = ({ onSuccess }) => {
           textAlign: 'center',
           flexWrap: 'wrap'
         }}>
-          <CheckCircle2 size={13} color="#10B981" />
+          <CheckCircle2 size={13} color="#4C9A7A" />
           <span>No spam. Your details are stored securely and never shared.</span>
         </div>
       </form>

@@ -3,14 +3,11 @@ import './styles/global.css';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { CustomerLogos } from './components/CustomerLogos';
-import { ProofStats } from './components/ProofStats';
 import { ProblemSolution } from './components/ProblemSolution';
 import { AgenticLoop } from './components/AgenticLoop';
 import { InteractiveDashboardDemo } from './components/InteractiveDashboardDemo';
 import { ConnectorsGrid } from './components/ConnectorsGrid';
-import { Testimonials } from './components/Testimonials';
 import { EnterpriseSecurity } from './components/EnterpriseSecurity';
-import { FAQ } from './components/FAQ';
 import { FinalCTABanner } from './components/FinalCTABanner';
 import { Footer } from './components/Footer';
 import { LeadModal } from './components/LeadModal';
@@ -46,12 +43,11 @@ export const App: React.FC = () => {
       <Header onOpenForm={openForm} isUnlocked={isUnlocked} />
 
       <main style={{ flex: 1 }}>
+        {/* Trusted By / Partnership Logos Carousel */}
+        <CustomerLogos />
+
         {/* Stage 1: AWARENESS - Capture attention with problem + solution */}
         <Hero onOpenForm={openForm} isUnlocked={isUnlocked} />
-
-        {/* Customer Logos & Proof */}
-        <CustomerLogos />
-        <ProofStats />
 
         {/* Stage 2: CONSIDERATION - Show how it works & demonstrate value */}
         <ProblemSolution />
@@ -59,14 +55,8 @@ export const App: React.FC = () => {
         <InteractiveDashboardDemo />
         <ConnectorsGrid />
 
-        {/* Social Proof */}
-        <Testimonials />
-
         {/* Stage 3: DECISION - Build trust & address concerns */}
         <EnterpriseSecurity />
-
-        {/* FAQ */}
-        <FAQ />
 
         {/* Stage 4: ACTION - Convert with final CTA */}
         <FinalCTABanner onOpenForm={openForm} />

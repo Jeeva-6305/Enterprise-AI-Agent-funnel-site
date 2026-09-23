@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { TrendingDown, Clock, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 export const ProblemSolution: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -23,31 +23,20 @@ export const ProblemSolution: React.FC = () => {
       }
     };
   }, []);
-  const items = [
+
+  const comparisons = [
     {
-      icon: <TrendingDown size={22} color="#EF4444" />,
-      iconBg: 'icon-badge-red',
-      problem: 'Your data is in 10 different places',
-      problemDetail: 'Your business data is scattered across databases, spreadsheets, CRMs, and cloud platforms — with no single place to ask questions and get a unified answer.',
-      solutionLabel: 'How Adople AI helps:',
-      solution: 'One interface connects to every source you use. Ask a single question and get an answer that draws from all your data — instantly.',
+      today: 'Data scattered across 10+ tools, with no single place to ask',
+      adople: 'One question, searched across every connected source'
     },
     {
-      icon: <Clock size={22} color="#F59E0B" />,
-      iconBg: 'icon-badge-amber',
-      problem: 'You wait days for analyst reports',
-      problemDetail: 'Every data request means a support ticket, a queue, and a two-day wait. By the time the report arrives, the moment to act has passed.',
-      solutionLabel: 'How Adople AI helps:',
-      solution: 'Your team gets answers in seconds — not days. Ask follow-up questions immediately, without filing a single request.',
+      today: 'Analyst reports take days to come back',
+      adople: 'Answers return in seconds, no queue'
     },
     {
-      icon: <AlertCircle size={22} color="#2563EB" />,
-      iconBg: 'icon-badge-blue',
-      problem: 'You can\'t fully trust AI-generated numbers',
-      problemDetail: 'Generic AI tools produce answers that sound confident but are wrong. One bad number passed to a board meeting can cost credibility.',
-      solutionLabel: 'How Adople AI helps:',
-      solution: 'Every answer is automatically verified before you see it. If Adople AI is uncertain, it tells you — instead of guessing.',
-    },
+      today: 'Generic AI answers sound confident, but can\'t be checked',
+      adople: 'Every answer verified, with the source shown'
+    }
   ];
 
   return (
@@ -56,100 +45,153 @@ export const ProblemSolution: React.FC = () => {
       id="problem"
       style={{
         background: 'var(--bg-surface)',
-        padding: 'clamp(3rem, 6vw, 4.5rem) 0'
+        padding: 'clamp(3.5rem, 7vw, 5rem) 0',
+        borderTop: '1px solid var(--border-default)',
+        borderBottom: '1px solid var(--border-default)'
       }}
     >
       <div className="container">
+        {/* Section Header */}
         <div
           style={{
             textAlign: 'center',
-            maxWidth: '750px',
+            maxWidth: '900px',
             margin: '0 auto clamp(2.5rem, 5vw, 3.5rem) auto',
             padding: '0 1rem',
             opacity: isVisible ? 1 : 0,
-            transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
+            transform: isVisible ? 'translateY(0)' : 'translateY(25px)',
             transition: 'all 0.7s cubic-bezier(0.16, 1, 0.3, 1)'
           }}
         >
-          <span className="badge-tag" style={{ marginBottom: '1rem', display: 'inline-flex' }}>
-            Sound Familiar?
+          <span
+            style={{
+              fontSize: '0.875rem',
+              fontWeight: 600,
+              color: 'var(--color-accent)',
+              textTransform: 'none',
+              letterSpacing: '0.02em',
+              marginBottom: '0.65rem',
+              display: 'inline-block'
+            }}
+          >
+            Sound familiar?
           </span>
           <h2
             style={{
-              fontSize: 'clamp(1.75rem, 4vw, 2.4rem)',
-              fontWeight: 800,
+              fontSize: 'clamp(1.75rem, 4vw, 2.5rem)',
+              fontWeight: 700,
               color: 'var(--text-heading)',
-              marginBottom: 'clamp(0.75rem, 2vw, 1rem)',
-              lineHeight: 1.2
+              whiteSpace: 'nowrap',
+              lineHeight: 1.25,
+              letterSpacing: '-0.02em'
             }}
           >
-            The Problems Every Data-Driven Team Faces
+            The old way, and the Adople way
           </h2>
-          <p style={{
-            fontSize: 'clamp(1rem, 1.8vw, 1.05rem)',
-            color: 'var(--text-muted)',
-            lineHeight: 1.65
-          }}>
-            Adople AI was built specifically to solve the bottlenecks that slow down decisions at enterprise scale.
-          </p>
         </div>
 
+        {/* Before/After Comparison Table Layout matching Screenshot 2 */}
         <div
           style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))',
-            gap: 'clamp(1.25rem, 3vw, 1.75rem)'
+            maxWidth: '850px',
+            margin: '0 auto',
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? 'translateY(0)' : 'translateY(35px)',
+            transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s'
           }}
         >
-          {items.map((item, idx) => (
-            <div
-              key={idx}
-              className="glass-card"
-              style={{
-                padding: 'clamp(1.5rem, 3vw, 2rem)',
-                opacity: isVisible ? 1 : 0,
-                transform: isVisible ? 'translateY(0)' : 'translateY(50px)',
-                transition: `all 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 0.15}s`
-              }}
-            >
-              {/* Problem Icon */}
-              <div className={`icon-badge ${item.iconBg}`}>
-                {item.icon}
-              </div>
+          {/* Table Column Headers */}
+          <div
+            className="comparison-header-row"
+            style={{
+              display: 'grid',
+              gridTemplateColumns: '1fr 40px 1fr',
+              alignItems: 'center',
+              paddingBottom: '0.85rem',
+              borderBottom: '1px solid var(--border-default)',
+              fontSize: '0.78rem',
+              fontWeight: 700,
+              letterSpacing: '0.08em',
+              textTransform: 'uppercase'
+            }}
+          >
+            <div style={{ color: 'var(--text-muted)' }}>TODAY</div>
+            <div></div>
+            <div style={{ color: 'var(--color-primary)' }}>WITH ADOPLE AI</div>
+          </div>
 
-              {/* Problem */}
-              <h3 style={{
-                fontSize: '1.2rem', fontWeight: 700,
-                color: 'var(--text-heading)', marginBottom: '0.6rem'
-              }}>
-                {item.problem}
-              </h3>
-              <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '1.5rem', lineHeight: 1.6 }}>
-                {item.problemDetail}
-              </p>
-
-              {/* Solution */}
-              <div style={{
-                borderTop: '1px solid var(--border-default)',
-                paddingTop: '1.25rem'
-              }}>
-                <div style={{
-                  display: 'flex', alignItems: 'center', gap: '0.4rem',
-                  fontSize: '0.78rem', fontWeight: 700,
-                  color: 'var(--color-primary)',
-                  textTransform: 'uppercase', letterSpacing: '0.04em',
-                  marginBottom: '0.5rem'
-                }}>
-                  <CheckCircle2 size={14} /> {item.solutionLabel}
+          {/* Comparison Rows */}
+          <div className="comparison-rows">
+            {comparisons.map((item, idx) => (
+              <div
+                key={idx}
+                className="comparison-row"
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: '1fr 40px 1fr',
+                  alignItems: 'center',
+                  padding: 'clamp(1.25rem, 3vw, 1.65rem) 0',
+                  borderBottom: '1px solid rgba(226, 232, 240, 0.7)',
+                  transition: 'background 0.3s ease'
+                }}
+              >
+                {/* Left: Today (Old Way) */}
+                <div
+                  style={{
+                    fontSize: 'clamp(0.925rem, 1.6vw, 1rem)',
+                    color: 'var(--text-muted)',
+                    fontWeight: 400,
+                    lineHeight: 1.55,
+                    paddingRight: '0.5rem'
+                  }}
+                >
+                  {item.today}
                 </div>
-                <p style={{ fontSize: '0.9rem', color: 'var(--text-body)', lineHeight: 1.6 }}>
-                  {item.solution}
-                </p>
+
+                {/* Arrow indicator */}
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'var(--text-placeholder)'
+                  }}
+                >
+                  <ArrowRight size={16} opacity={0.6} />
+                </div>
+
+                {/* Right: With Adople AI (New Way) */}
+                <div
+                  style={{
+                    fontSize: 'clamp(0.95rem, 1.6vw, 1.025rem)',
+                    color: 'var(--text-heading)',
+                    fontWeight: 700,
+                    lineHeight: 1.5,
+                    paddingLeft: '0.5rem'
+                  }}
+                >
+                  {item.adople}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 640px) {
+          .comparison-header-row {
+            grid-template-columns: 1fr 24px 1fr !important;
+            font-size: 0.7rem !important;
+          }
+          .comparison-row {
+            grid-template-columns: 1fr 24px 1fr !important;
+          }
+          #problem h2 {
+            white-space: normal !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };

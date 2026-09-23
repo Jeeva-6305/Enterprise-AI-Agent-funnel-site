@@ -62,8 +62,8 @@ export const GatedVideoPlayer: React.FC<GatedVideoPlayerProps> = ({ isUnlocked, 
             width: 'clamp(7px, 1.5vw, 9px)',
             height: 'clamp(7px, 1.5vw, 9px)',
             borderRadius: '50%',
-            background: isUnlocked ? '#10B981' : '#F59E0B',
-            boxShadow: isUnlocked ? '0 0 6px #10B981' : '0 0 6px #F59E0B',
+            background: isUnlocked ? '#4C9A7A' : '#E8664C',
+            boxShadow: isUnlocked ? '0 0 6px #4C9A7A' : '0 0 6px #E8664C',
             flexShrink: 0
           }} />
           <span style={{
@@ -78,9 +78,9 @@ export const GatedVideoPlayer: React.FC<GatedVideoPlayerProps> = ({ isUnlocked, 
             fontSize: 'clamp(0.65rem, 1.3vw, 0.72rem)',
             padding: 'clamp(0.15rem, 0.5vw, 0.2rem) clamp(0.5rem, 1vw, 0.6rem)',
             borderRadius: 'var(--radius-full)',
-            background: isUnlocked ? '#F0FDF4' : '#FFFBEB',
-            color: isUnlocked ? '#15803D' : '#92400E',
-            border: isUnlocked ? '1px solid #BBF7D0' : '1px solid #FDE68A',
+            background: isUnlocked ? 'rgba(76, 154, 122, 0.12)' : 'rgba(232, 102, 76, 0.12)',
+            color: isUnlocked ? '#4C9A7A' : '#E8664C',
+            border: isUnlocked ? '1px solid rgba(76, 154, 122, 0.3)' : '1px solid rgba(232, 102, 76, 0.3)',
             fontWeight: 700,
             whiteSpace: 'nowrap',
             flexShrink: 0
@@ -99,8 +99,8 @@ export const GatedVideoPlayer: React.FC<GatedVideoPlayerProps> = ({ isUnlocked, 
         {!isUnlocked ? (
           /* Locked state preview overlay */
           <div style={{
-            minHeight: 'clamp(400px, 60vw, 460px)',
-            background: 'linear-gradient(180deg, rgba(15,23,42,0.72) 0%, rgba(7,10,16,0.92) 100%), url("https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1600&auto=format&fit=crop") center/cover no-repeat',
+            minHeight: 'clamp(320px, 45vw, 380px)',
+            background: 'linear-gradient(180deg, rgba(28,27,46,0.85) 0%, rgba(12,11,26,0.95) 100%), url("https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1600&auto=format&fit=crop") center/cover no-repeat',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -114,14 +114,14 @@ export const GatedVideoPlayer: React.FC<GatedVideoPlayerProps> = ({ isUnlocked, 
                 width: 'clamp(56px, 12vw, 76px)',
                 height: 'clamp(56px, 12vw, 76px)',
                 borderRadius: '50%',
-                background: 'rgba(37,99,235,0.85)',
+                background: 'rgba(43,45,110,0.9)',
                 border: '3px solid rgba(255,255,255,0.9)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 marginBottom: 'clamp(1rem, 3vw, 1.5rem)',
                 cursor: 'pointer',
-                boxShadow: '0 0 30px rgba(37,99,235,0.5)',
+                boxShadow: '0 0 30px rgba(43,45,110,0.5)',
                 transition: 'all 0.3s ease',
                 flexShrink: 0
               }}
@@ -162,7 +162,7 @@ export const GatedVideoPlayer: React.FC<GatedVideoPlayerProps> = ({ isUnlocked, 
                 padding: 'clamp(0.75rem, 2vw, 0.95rem) clamp(1.5rem, 3vw, 2rem)',
                 fontSize: 'clamp(0.9rem, 2vw, 1.05rem)',
                 background: '#FFFFFF',
-                color: '#1D4ED8',
+                color: '#2B2D6E',
                 boxShadow: '0 4px 20px rgba(0,0,0,0.2)',
                 whiteSpace: 'nowrap'
               }}
@@ -179,9 +179,9 @@ export const GatedVideoPlayer: React.FC<GatedVideoPlayerProps> = ({ isUnlocked, 
               justifyContent: 'center'
             }}>
               {[
-                { icon: <CheckCircle size={14} color="#A7F3D0" />, label: 'Instant access' },
-                { icon: <Shield size={14} color="#A7F3D0" />, label: 'No credit card required' },
-                { icon: <Sparkles size={14} color="#A7F3D0" />, label: 'Full product overview' },
+                { icon: <CheckCircle size={14} color="#4C9A7A" />, label: 'Instant access' },
+                { icon: <Shield size={14} color="#4C9A7A" />, label: 'No credit card required' },
+                { icon: <Sparkles size={14} color="#4C9A7A" />, label: 'Full product overview' },
               ].map((item, idx) => (
                 <div
                   key={idx}

@@ -32,7 +32,7 @@ export const FinalCTABanner: React.FC<FinalCTABannerProps> = ({ onOpenForm }) =>
     <section
       ref={sectionRef}
       style={{
-        background: 'linear-gradient(135deg, #042F2E 0%, #0F766E 50%, #115E59 100%)',
+        background: 'linear-gradient(135deg, #1C1B2E 0%, #2B2D6E 100%)',
         padding: 'clamp(3.5rem, 7vw, 5rem) 0',
         position: 'relative',
         overflow: 'hidden'
@@ -119,7 +119,7 @@ export const FinalCTABanner: React.FC<FinalCTABannerProps> = ({ onOpenForm }) =>
               padding: 'clamp(0.85rem, 2vw, 1rem) clamp(1.75rem, 3vw, 2.25rem)',
               background: 'rgba(255, 255, 255, 0.98)',
               backdropFilter: 'blur(10px)',
-              color: '#0F766E',
+              color: '#2B2D6E',
               fontSize: 'clamp(0.95rem, 1.8vw, 1.05rem)',
               fontWeight: 800,
               borderRadius: 'clamp(8px, 2vw, 10px)',
@@ -170,7 +170,7 @@ export const FinalCTABanner: React.FC<FinalCTABannerProps> = ({ onOpenForm }) =>
                 transition: `all 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${0.5 + idx * 0.1}s`
               }}
             >
-              <span style={{ color: '#A7F3D0', fontSize: 'clamp(0.95rem, 1.8vw, 1rem)' }}>✓</span> {item}
+              <span style={{ color: '#4C9A7A', fontSize: 'clamp(0.95rem, 1.8vw, 1rem)' }}>✓</span> {item}
             </div>
           ))}
         </div>

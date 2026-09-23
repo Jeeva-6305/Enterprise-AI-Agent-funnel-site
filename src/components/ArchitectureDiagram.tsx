@@ -9,7 +9,7 @@ export const ArchitectureDiagram: React.FC = () => {
       id: 'ui',
       name: 'User Interface Layer',
       icon: Terminal,
-      color: '#00F0FF',
+      color: '#2B2D6E',
       tech: ['React.js / Nuxt.js', 'ECharts Dynamic Builder', 'WebSockets / REST'],
       desc: 'Conversational data UI rendering live charts, tables, and team dashboard widgets.'
     },
@@ -17,7 +17,7 @@ export const ArchitectureDiagram: React.FC = () => {
       id: 'gateway',
       name: 'API Gateway & Security',
       icon: Shield,
-      color: '#3B82F6',
+      color: '#2B2D6E',
       tech: ['FastAPI Server', 'Active Directory / OAuth SSO', 'RBAC & Rate Limiter'],
       desc: 'Authenticates enterprise users, enforces row/column permission policies, and handles query routing.'
     },
@@ -25,7 +25,7 @@ export const ArchitectureDiagram: React.FC = () => {
       id: 'orchestration',
       name: 'Agent Orchestration & Context Engine',
       icon: Cpu,
-      color: '#6366F1',
+      color: '#2B2D6E',
       tech: ['Plan-Act-Observe Loop', 'LLM Judge', 'Context Builder', 'dbt Semantic Graph'],
       desc: 'Core intelligence layer parsing natural language, building context, and executing self-repair loops.'
     },
@@ -33,7 +33,7 @@ export const ArchitectureDiagram: React.FC = () => {
       id: 'execution',
       name: 'Async Workers & LLM Sandbox',
       icon: Server,
-      color: '#F59E0B',
+      color: '#E8664C',
       tech: ['Celery Workers', 'Redis Task Queue', 'Isolated SQL Execution Sandbox'],
       desc: 'Asynchronous task queue executing queries concurrently without blocking main application looper threads.'
     },
@@ -41,18 +41,18 @@ export const ArchitectureDiagram: React.FC = () => {
       id: 'storage',
       name: 'Enterprise Persistence & Data Sources',
       icon: Database,
-      color: '#10B981',
+      color: '#4C9A7A',
       tech: ['PostgreSQL Meta Store', 'Snowflake / BigQuery', 'Postgres / MSSQL / MySQL'],
       desc: 'Stores metric definitions, user audit logs, and connects directly to cloud data warehouses.'
     }
   ];
 
   return (
-    <section id="architecture" className="section-padding" style={{ background: '#090E1A', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+    <section id="architecture" className="section-padding" style={{ background: '#1C1B2E', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
       <div className="container">
         <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto 3.5rem auto' }}>
           <div className="badge-tag" style={{ marginBottom: '1rem' }}>
-            <Layers size={14} color="#00F0FF" />
+            <Layers size={14} color="#E8664C" />
             <span>ENTERPRISE SYSTEM ARCHITECTURE</span>
           </div>
           <h2 style={{ fontSize: '2.5rem', fontWeight: 800, color: '#FFFFFF', marginBottom: '1rem' }}>
@@ -170,7 +170,7 @@ export const ArchitectureDiagram: React.FC = () => {
                     Component Tech Stack:
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-                    {current.tech.map((t, idx) => (
+                    {current.tech.map((t) => (
                       <div key={t} style={{
                         fontSize: '0.85rem',
                         color: '#E2E8F0',
@@ -181,7 +181,7 @@ export const ArchitectureDiagram: React.FC = () => {
                         fontFamily: 'var(--font-mono)',
                         display: 'flex', alignItems: 'center', gap: '0.35rem'
                       }}>
-                        <Zap size={12} color="#F59E0B" /> {t}
+                        <Zap size={12} color="#E8664C" /> {t}
                       </div>
                     ))}
                   </div>
@@ -190,9 +190,9 @@ export const ArchitectureDiagram: React.FC = () => {
                 <div style={{
                   padding: '0.75rem',
                   borderRadius: '8px',
-                  background: 'rgba(16, 185, 129, 0.1)',
-                  border: '1px solid rgba(16, 185, 129, 0.25)',
-                  color: '#10B981',
+                  background: 'rgba(76, 154, 122, 0.1)',
+                  border: '1px solid rgba(76, 154, 122, 0.25)',
+                  color: '#4C9A7A',
                   fontSize: '0.8rem',
                   fontWeight: 600
                 }}>

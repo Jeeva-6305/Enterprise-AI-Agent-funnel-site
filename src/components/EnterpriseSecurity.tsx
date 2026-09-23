@@ -23,31 +23,32 @@ export const EnterpriseSecurity: React.FC = () => {
       }
     };
   }, []);
+
   const cards = [
     {
-      icon: <Users size={22} color="#2563EB" />,
-      iconBg: 'icon-badge-blue',
+      icon: <Users size={22} color="#2B2D6E" />,
+      iconBg: 'rgba(43, 45, 110, 0.08)',
       title: 'Everyone Sees Only What They Should',
-      body: 'Fine-grained access control ensures each team member — from junior analyst to C-suite — only sees the data they are authorised to view. No accidental exposure. No manual permission sheets.',
+      body: 'Fine-grained access control ensures team members only view data they are authorized to access.'
     },
     {
-      icon: <ShieldCheck size={22} color="#10B981" />,
-      iconBg: 'icon-badge-green',
+      icon: <ShieldCheck size={22} color="#4C9A7A" />,
+      iconBg: 'rgba(76, 154, 122, 0.08)',
       title: 'Sign In With What You Already Use',
-      body: 'Works seamlessly with your company\'s existing login system — Microsoft, Google Workspace, Okta, and more. No new passwords, no separate user management.',
+      body: 'Seamless integration with Okta, Google Workspace, Microsoft, and your existing SSO providers.'
     },
     {
-      icon: <FileText size={22} color="#F59E0B" />,
-      iconBg: 'icon-badge-amber',
+      icon: <FileText size={22} color="#E8664C" />,
+      iconBg: 'rgba(232, 102, 76, 0.08)',
       title: 'A Complete Record of Every Action',
-      body: 'Every question asked and every answer delivered is automatically logged with a timestamp, user identity, and full audit trail — ready for compliance reviews and regulatory requirements.',
+      body: 'Automated audit logs track every query, timestamp, and user identity for full regulatory compliance.'
     },
     {
-      icon: <Server size={22} color="#0EA5E9" />,
-      iconBg: 'icon-badge-blue',
+      icon: <Server size={22} color="#2B2D6E" />,
+      iconBg: 'rgba(43, 45, 110, 0.08)',
       title: 'Your Data Never Leaves Your Environment',
-      body: 'Adople Agentic Data Analyst runs entirely within your own infrastructure — your cloud account, your network, your rules. Your sensitive business data stays exactly where it is today.',
-    },
+      body: 'Runs entirely inside your private cloud or infrastructure. Your sensitive data stays under your control.'
+    }
   ];
 
   return (
@@ -56,122 +57,190 @@ export const EnterpriseSecurity: React.FC = () => {
       id="security"
       style={{
         background: 'var(--bg-surface)',
-        padding: 'clamp(3rem, 6vw, 4.5rem) 0'
+        padding: 'clamp(3.5rem, 7vw, 5rem) 0',
+        borderBottom: '1px solid var(--border-default)'
       }}
     >
       <div className="container">
+        {/* Section Header */}
         <div
           style={{
             textAlign: 'center',
-            maxWidth: '750px',
+            maxWidth: '900px',
             margin: '0 auto clamp(2.5rem, 5vw, 3.5rem) auto',
             padding: '0 1rem',
             opacity: isVisible ? 1 : 0,
-            transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
+            transform: isVisible ? 'translateY(0)' : 'translateY(25px)',
             transition: 'all 0.7s cubic-bezier(0.16, 1, 0.3, 1)'
           }}
         >
-          <span className="badge-tag" style={{ marginBottom: '1rem', display: 'inline-flex' }}>
-            Security & Compliance
+          <span
+            style={{
+              display: 'inline-block',
+              background: 'rgba(43, 45, 110, 0.08)',
+              border: '1px solid rgba(43, 45, 110, 0.22)',
+              color: '#2B2D6E',
+              fontSize: '0.75rem',
+              fontWeight: 700,
+              letterSpacing: '0.08em',
+              textTransform: 'uppercase',
+              padding: '0.35rem 1.15rem',
+              borderRadius: '9999px',
+              marginBottom: '1rem'
+            }}
+          >
+            SECURITY & COMPLIANCE
           </span>
-          <h2 style={{
-            fontSize: 'clamp(1.75rem, 4vw, 2.4rem)',
-            fontWeight: 800,
-            color: 'var(--text-heading)',
-            marginBottom: 'clamp(0.75rem, 2vw, 1rem)',
-            lineHeight: 1.2
-          }}>
+          <h2
+            style={{
+              fontSize: 'clamp(1.6rem, 3.8vw, 2.4rem)',
+              fontWeight: 800,
+              color: 'var(--text-heading)',
+              whiteSpace: 'nowrap',
+              marginBottom: '0.75rem',
+              lineHeight: 1.2,
+              letterSpacing: '-0.02em'
+            }}
+          >
             Built for Enterprise Teams That Can't Compromise
           </h2>
-          <p style={{
-            fontSize: 'clamp(1rem, 1.8vw, 1.05rem)',
-            color: 'var(--text-muted)',
-            lineHeight: 1.65
-          }}>
-            Trusted by teams in Financial Services, Healthcare, and regulated industries where data security is non-negotiable. Every aspect of Adople is designed with enterprise governance in mind.
+          <p
+            style={{
+              fontSize: 'clamp(0.95rem, 1.7vw, 1.05rem)',
+              color: 'var(--text-muted)',
+              lineHeight: 1.6,
+              maxWidth: '680px',
+              margin: '0 auto'
+            }}
+          >
+            Trusted by teams in regulated industries where data security and governance are non-negotiable.
           </p>
         </div>
 
+        {/* 2x2 Grid Layout */}
         <div
-          className="grid-2x2"
+          className="security-2x2-grid"
           style={{
-            marginBottom: 'clamp(2rem, 4vw, 2.5rem)',
-            gap: 'clamp(1.25rem, 3vw, 1.75rem)'
+            display: 'grid',
+            gridTemplateColumns: 'repeat(2, 1fr)',
+            gap: 'clamp(1.25rem, 3vw, 1.75rem)',
+            maxWidth: '960px',
+            margin: '0 auto clamp(2.5rem, 4vw, 3rem) auto'
           }}
         >
           {cards.map((card, idx) => (
             <div
               key={idx}
-              className="glass-card"
               style={{
+                background: '#FFFFFF',
+                border: '1px solid var(--border-default)',
+                borderRadius: '12px',
                 padding: 'clamp(1.5rem, 3vw, 1.75rem)',
+                boxShadow: '0 2px 10px rgba(15, 23, 42, 0.04)',
                 opacity: isVisible ? 1 : 0,
-                transform: isVisible ? 'translateY(0)' : 'translateY(40px)',
-                transition: `all 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${0.2 + idx * 0.12}s`
+                transform: isVisible ? 'translateY(0)' : 'translateY(35px)',
+                transition: `all 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${0.15 + idx * 0.1}s`,
+                display: 'flex',
+                flexDirection: 'column'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-3px)';
+                e.currentTarget.style.borderColor = 'var(--color-primary)';
+                e.currentTarget.style.boxShadow = '0 10px 24px rgba(15, 23, 42, 0.08)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.borderColor = 'var(--border-default)';
+                e.currentTarget.style.boxShadow = '0 2px 10px rgba(15, 23, 42, 0.04)';
               }}
             >
-              <div className={`icon-badge ${card.iconBg}`}>
+              <div
+                style={{
+                  width: '44px',
+                  height: '44px',
+                  borderRadius: '10px',
+                  background: card.iconBg,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginBottom: '1rem',
+                  flexShrink: 0
+                }}
+              >
                 {card.icon}
               </div>
-              <h3 style={{
-                fontSize: 'clamp(1.05rem, 2vw, 1.1rem)',
-                fontWeight: 700,
-                color: 'var(--text-heading)',
-                marginBottom: '0.6rem'
-              }}>
+              <h3
+                style={{
+                  fontSize: 'clamp(1.05rem, 1.8vw, 1.15rem)',
+                  fontWeight: 800,
+                  color: 'var(--text-heading)',
+                  marginBottom: '0.5rem',
+                  lineHeight: 1.3
+                }}
+              >
                 {card.title}
               </h3>
-              <p style={{
-                fontSize: 'clamp(0.85rem, 1.5vw, 0.88rem)',
-                color: 'var(--text-muted)',
-                lineHeight: 1.6
-              }}>
+              <p
+                style={{
+                  fontSize: '0.875rem',
+                  color: 'var(--text-muted)',
+                  lineHeight: 1.55,
+                  margin: 0
+                }}
+              >
                 {card.body}
               </p>
             </div>
           ))}
         </div>
 
-        {/* Compliance badge strip */}
+        {/* Compliance Badges */}
         <div
           style={{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             flexWrap: 'wrap',
-            gap: 'clamp(0.5rem, 1.5vw, 0.75rem)',
+            gap: '0.65rem',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-            transition: 'all 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.6s'
+            transition: 'all 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.5s'
           }}
         >
-          {['SOC 2 Type II', 'HIPAA Ready', 'GDPR Compliant', 'ISO 27001 Aligned', 'Zero Data Retention'].map((badge, idx) => (
+          {['SOC 2 Type II', 'HIPAA Ready', 'GDPR Compliant', 'ISO 27001 Aligned', 'Zero Data Retention'].map((badge) => (
             <div
               key={badge}
               style={{
-                display: 'flex',
+                display: 'inline-flex',
                 alignItems: 'center',
-                gap: 'clamp(0.3rem, 1vw, 0.4rem)',
-                padding: 'clamp(0.35rem, 1vw, 0.4rem) clamp(0.7rem, 1.5vw, 0.9rem)',
-                background: 'var(--glass-bg-strong)',
-                backdropFilter: 'blur(8px)',
-                border: '1px solid var(--glass-border)',
-                borderRadius: 'var(--radius-full)',
-                fontSize: 'clamp(0.75rem, 1.3vw, 0.8rem)',
+                gap: '0.4rem',
+                padding: '0.4rem 0.95rem',
+                background: '#FFFFFF',
+                border: '1px solid var(--border-default)',
+                borderRadius: '9999px',
+                fontSize: '0.78rem',
                 fontWeight: 700,
                 color: 'var(--text-body)',
-                boxShadow: 'var(--shadow-glass)',
-                opacity: isVisible ? 1 : 0,
-                transform: isVisible ? 'scale(1)' : 'scale(0.9)',
-                transition: `all 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${0.7 + idx * 0.08}s`,
+                boxShadow: '0 2px 6px rgba(15, 23, 42, 0.03)',
                 whiteSpace: 'nowrap'
               }}
             >
-              <ShieldCheck size={13} color="#10B981" /> {badge}
+              <ShieldCheck size={13} color="#4C9A7A" /> {badge}
             </div>
           ))}
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 640px) {
+          .security-2x2-grid {
+            grid-template-columns: 1fr !important;
+          }
+          #security h2 {
+            white-space: normal !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };
