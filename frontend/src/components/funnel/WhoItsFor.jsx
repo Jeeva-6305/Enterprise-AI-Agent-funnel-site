@@ -63,6 +63,15 @@ export default function WhoItsFor() {
     return () => observer.disconnect();
   }, []);
 
+  // 3-second automatic switching sequence for the 4 points
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveTab((prevTab) => (prevTab + 1) % audiences.length);
+    }, 3000);
+
+    return () => clearInterval(timer);
+  }, [activeTab]);
+
   const activeAudience = audiences[activeTab];
   const ActiveIcon = activeAudience.icon;
 

@@ -82,30 +82,30 @@ textarea::placeholder {
   padding: 0 1.5rem;
 }
 
-/* Primary Button (Ink + Gold Theme) */
+/* Primary Button (Ink + Teal Theme) */
 .btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background: var(--brand, #F5B301);
-  color: var(--cta-text, #111827);
+  background: var(--brand, #0EA5A6);
+  color: var(--cta-text, #ffffff);
   font-weight: 800;
   font-size: 1rem;
   padding: 0.875rem 1.75rem;
   border-radius: var(--radius-md);
-  border: 1px solid #E0A000;
-  box-shadow: 0 4px 14px rgba(245, 179, 1, 0.28);
+  border: 1px solid #098384;
+  box-shadow: 0 4px 14px rgba(14, 165, 166, 0.28);
   transition: all var(--transition-fast);
   width: 100%;
 }
 
 .btn-primary:hover:not(:disabled) {
-  background: var(--brand-hover, #D99A00);
-  border-color: #C78B00;
-  color: var(--cta-text, #111827);
+  background: var(--brand-hover, #0C8B8C);
+  border-color: #076B6C;
+  color: var(--cta-text, #ffffff);
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(245, 179, 1, 0.4);
+  box-shadow: 0 6px 20px rgba(14, 165, 166, 0.4);
 }
 
 .btn-primary:active:not(:disabled) {

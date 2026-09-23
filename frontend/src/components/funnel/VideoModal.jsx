@@ -42,11 +42,11 @@ export default function VideoModal({ isOpen, onClose }) {
           alignItems: 'center',
           justifyContent: 'space-between',
           padding: '1rem 1.5rem',
-          borderBottom: '1px solid rgba(245, 179, 1, 0.25)',
+          borderBottom: '1px solid rgba(14, 165, 166, 0.25)',
           backgroundColor: '#111827'
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#F5B301', boxShadow: '0 0 8px rgba(245, 179, 1, 0.8)' }}></div>
+            <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#0EA5A6', boxShadow: '0 0 8px rgba(14, 165, 166, 0.8)' }}></div>
             <span style={{ fontWeight: 700, fontSize: '0.9375rem', letterSpacing: '0.02em', color: '#ffffff' }}>
               SEC Analyzer — Platform Demonstration
             </span>
@@ -108,10 +108,10 @@ export default function VideoModal({ isOpen, onClose }) {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          borderTop: '1px solid rgba(245, 179, 1, 0.25)'
+          borderTop: '1px solid rgba(14, 165, 166, 0.25)'
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#94a3b8', fontSize: '0.8125rem' }}>
-            <ShieldCheck size={16} color="#F5B301" />
+            <ShieldCheck size={16} color="#0EA5A6" />
             <span>Enterprise-Grade Security &amp; SOC2 Type II Architecture</span>
           </div>
           <button

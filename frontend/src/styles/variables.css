@@ -1,23 +1,23 @@
 [data-theme="sec"] {
-  --brand: #F5B301;
-  --brand-hover: #D99A00;
+  --brand: #0EA5A6;
+  --brand-hover: #0C8B8C;
   --brand-deep: #111827;
-  --accent: #B45309;
+  --accent: #0EA5A6;
   --tint: #FAF7F0;
-  --cta-text: #111827;
-  --highlight: #FEF3C7;
+  --cta-text: #ffffff;
+  --highlight: #E6F6F6;
   --hero-grad: linear-gradient(180deg, #FAF7F0 0%, #FFFFFF 100%);
 }
 
 :root {
-  /* SEC Filing Analysis – Ink + Gold Theme Variables */
-  --brand: #F5B301;
-  --brand-hover: #D99A00;
+  /* SEC Filing Analysis – Ink + Teal Theme Variables */
+  --brand: #0EA5A6;
+  --brand-hover: #0C8B8C;
   --brand-deep: #111827;
-  --accent: #B45309;
+  --accent: #0EA5A6;
   --tint: #FAF7F0;
-  --cta-text: #111827;
-  --highlight: #FEF3C7;
+  --cta-text: #ffffff;
+  --highlight: #E6F6F6;
   --hero-grad: linear-gradient(180deg, #FAF7F0 0%, #FFFFFF 100%);
 
   /* Dark Sections & Headlines (Ink & Deep) */
@@ -27,36 +27,36 @@
   --color-navy-muted: #374151;
   --color-top-banner: #111827;
 
-  /* Primary CTA (Gold) */
-  --color-blue-primary: #F5B301;
-  --color-blue-hover: #D99A00;
-  --color-blue-light: #FEF3C7;
-  --color-blue-border: #FDE68A;
-  --color-blue-glow: rgba(245, 179, 1, 0.32);
+  /* Primary CTA (Teal) */
+  --color-blue-primary: #0EA5A6;
+  --color-blue-hover: #0C8B8C;
+  --color-blue-light: #E6F6F6;
+  --color-blue-border: #B2E4E4;
+  --color-blue-glow: rgba(14, 165, 166, 0.32);
 
   /* Aliases for components */
-  --color-violet-primary: #F5B301;
-  --color-violet-hover: #D99A00;
-  --color-violet-light: #FEF3C7;
-  --color-violet-border: #FDE68A;
-  --color-violet-glow: rgba(245, 179, 1, 0.32);
+  --color-violet-primary: #0EA5A6;
+  --color-violet-hover: #0C8B8C;
+  --color-violet-light: #E6F6F6;
+  --color-violet-border: #B2E4E4;
+  --color-violet-glow: rgba(14, 165, 166, 0.32);
 
-  --color-orange-primary: #F5B301;
-  --color-orange-hover: #D99A00;
-  --color-orange-light: #FEF3C7;
-  --color-orange-border: #FDE68A;
-  --color-orange-glow: rgba(245, 179, 1, 0.32);
+  --color-orange-primary: #0EA5A6;
+  --color-orange-hover: #0C8B8C;
+  --color-orange-light: #E6F6F6;
+  --color-orange-border: #B2E4E4;
+  --color-orange-glow: rgba(14, 165, 166, 0.32);
 
   /* Status & Accents */
-  --color-secondary-copper: #B45309;
+  --color-secondary-copper: #0EA5A6;
   --color-danger-red: #dc2626;
   --color-danger-bg: #fef2f2;
   --color-success-green: #16a34a;
   --color-success-bg: #f0fdf4;
-  --color-blue-info: #B45309;
-  --color-blue-bg: #FEF3C7;
-  --color-gold-warning: #B45309;
-  --color-gold-bg: #FEF3C7;
+  --color-blue-info: #0EA5A6;
+  --color-blue-bg: #E6F6F6;
+  --color-gold-warning: #0EA5A6;
+  --color-gold-bg: #E6F6F6;
 
   /* Neutrals & Text (Ink + Paper) */
   --color-text-heading: #1F2937;
