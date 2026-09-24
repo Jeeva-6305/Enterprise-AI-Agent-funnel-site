@@ -6,6 +6,8 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 9070,
+    host: '0.0.0.0',
+    allowedHosts: true,
     watch: {
       // Exclude backend directory from file watching to avoid ENOSPC error
       ignored: ['**/backend/**', '**/node_modules/**']
@@ -16,5 +18,10 @@ export default defineConfig({
         changeOrigin: true,
       },
     },
+  },
+  preview: {
+    port: 9070,
+    host: '0.0.0.0',
+    allowedHosts: true,
   },
 });
