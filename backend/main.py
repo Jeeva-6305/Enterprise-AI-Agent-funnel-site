@@ -103,10 +103,10 @@ def init_db():
         cursor.execute("""
             CREATE TABLE IF NOT EXISTS leads (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                funnel_id TEXT NOT NULL,
-                funnel_source TEXT NOT NULL,
-                full_name TEXT NOT NULL,
-                email TEXT NOT NULL,
+                funnel_id TEXT,
+                funnel_source TEXT,
+                full_name TEXT,
+                email TEXT,
                 phone TEXT,
                 company TEXT,
                 job_title TEXT,
@@ -121,6 +121,30 @@ def init_db():
                 raw_payload TEXT DEFAULT '{}'
             );
         """)
+        # Auto-migrate any missing columns if table already existed
+        cursor.execute("PRAGMA table_info(leads)")
+        existing_cols = {row[1] for row in cursor.fetchall()}
+        cols_to_add = [
+            ("funnel_id", "TEXT DEFAULT 'agentic-data-analyst'"),
+            ("funnel_source", "TEXT DEFAULT 'Agentic Data Analyst'"),
+            ("email", "TEXT"),
+            ("phone", "TEXT"),
+            ("company", "TEXT"),
+            ("use_case", "TEXT"),
+            ("message", "TEXT"),
+            ("campaign", "TEXT"),
+            ("status", "TEXT DEFAULT 'New'"),
+            ("source_url", "TEXT"),
+            ("updated_at", "TIMESTAMP DEFAULT CURRENT_TIMESTAMP"),
+            ("raw_payload", "TEXT DEFAULT '{}'"),
+            ("access_token", "TEXT")
+        ]
+        for col_name, col_def in cols_to_add:
+            if col_name not in existing_cols:
+                try:
+                    cursor.execute(f"ALTER TABLE leads ADD COLUMN {col_name} {col_def}")
+                except Exception as e:
+                    pass
     conn.commit()
     conn.close()
 
@@ -218,8 +242,8 @@ def submit_lead(lead: LeadCreate, request: Request):
                 INSERT INTO leads (
                     funnel_id, funnel_source, full_name, email, phone,
                     company, job_title, use_case, message, campaign, status,
-                    source_url, ip_address, raw_payload
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    source_url, ip_address, access_token, raw_payload
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """, (
                 lead.funnel_id,
                 lead.funnel_source,
@@ -234,6 +258,7 @@ def submit_lead(lead: LeadCreate, request: Request):
                 "New",
                 "http://localhost:9070",
                 client_ip,
+                access_token,
                 json.dumps(raw_payload)
             ))
             lead_id = cursor.lastrowid

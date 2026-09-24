@@ -57,7 +57,7 @@ export const EnterpriseSecurity: React.FC = () => {
       id="security"
       style={{
         background: 'var(--bg-surface)',
-        padding: 'clamp(3.5rem, 7vw, 5rem) 0',
+        padding: 'clamp(2rem, 3.5vw, 2.75rem) 0',
         borderBottom: '1px solid var(--border-default)'
       }}
     >
@@ -66,12 +66,12 @@ export const EnterpriseSecurity: React.FC = () => {
         <div
           style={{
             textAlign: 'center',
-            maxWidth: '900px',
-            margin: '0 auto clamp(2.5rem, 5vw, 3.5rem) auto',
+            maxWidth: '800px',
+            margin: '0 auto clamp(1.25rem, 2.5vw, 1.6rem) auto',
             padding: '0 1rem',
             opacity: isVisible ? 1 : 0,
-            transform: isVisible ? 'translateY(0)' : 'translateY(25px)',
-            transition: 'all 0.7s cubic-bezier(0.16, 1, 0.3, 1)'
+            transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+            transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)'
           }}
         >
           <span
@@ -80,25 +80,24 @@ export const EnterpriseSecurity: React.FC = () => {
               background: 'rgba(43, 45, 110, 0.08)',
               border: '1px solid rgba(43, 45, 110, 0.22)',
               color: '#2B2D6E',
-              fontSize: '0.75rem',
+              fontSize: '0.7rem',
               fontWeight: 700,
               letterSpacing: '0.08em',
               textTransform: 'uppercase',
-              padding: '0.35rem 1.15rem',
+              padding: '0.22rem 0.85rem',
               borderRadius: '9999px',
-              marginBottom: '1rem'
+              marginBottom: '0.5rem'
             }}
           >
             SECURITY & COMPLIANCE
           </span>
           <h2
             style={{
-              fontSize: 'clamp(1.6rem, 3.8vw, 2.4rem)',
+              fontSize: 'clamp(1.35rem, 2.6vw, 1.85rem)',
               fontWeight: 800,
               color: 'var(--text-heading)',
-              whiteSpace: 'nowrap',
-              marginBottom: '0.75rem',
-              lineHeight: 1.2,
+              marginBottom: '0.4rem',
+              lineHeight: 1.25,
               letterSpacing: '-0.02em'
             }}
           >
@@ -106,10 +105,10 @@ export const EnterpriseSecurity: React.FC = () => {
           </h2>
           <p
             style={{
-              fontSize: 'clamp(0.95rem, 1.7vw, 1.05rem)',
+              fontSize: 'clamp(0.85rem, 1.3vw, 0.925rem)',
               color: 'var(--text-muted)',
-              lineHeight: 1.6,
-              maxWidth: '680px',
+              lineHeight: 1.5,
+              maxWidth: '620px',
               margin: '0 auto'
             }}
           >
@@ -117,15 +116,15 @@ export const EnterpriseSecurity: React.FC = () => {
           </p>
         </div>
 
-        {/* 2x2 Grid Layout */}
+        {/* 4-column compact Grid Layout */}
         <div
-          className="security-2x2-grid"
+          className="security-grid"
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(2, 1fr)',
-            gap: 'clamp(1.25rem, 3vw, 1.75rem)',
-            maxWidth: '960px',
-            margin: '0 auto clamp(2.5rem, 4vw, 3rem) auto'
+            gridTemplateColumns: 'repeat(4, 1fr)',
+            gap: '0.875rem',
+            maxWidth: '1120px',
+            margin: '0 auto clamp(1.25rem, 2.2vw, 1.6rem) auto'
           }}
         >
           {cards.map((card, idx) => (
@@ -134,47 +133,47 @@ export const EnterpriseSecurity: React.FC = () => {
               style={{
                 background: '#FFFFFF',
                 border: '1px solid var(--border-default)',
-                borderRadius: '12px',
-                padding: 'clamp(1.5rem, 3vw, 1.75rem)',
-                boxShadow: '0 2px 10px rgba(15, 23, 42, 0.04)',
+                borderRadius: '10px',
+                padding: '1rem 1.05rem',
+                boxShadow: '0 2px 8px rgba(15, 23, 42, 0.03)',
                 opacity: isVisible ? 1 : 0,
-                transform: isVisible ? 'translateY(0)' : 'translateY(35px)',
-                transition: `all 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${0.15 + idx * 0.1}s`,
+                transform: isVisible ? 'translateY(0)' : 'translateY(25px)',
+                transition: `all 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${0.1 + idx * 0.08}s`,
                 display: 'flex',
                 flexDirection: 'column'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-3px)';
+                e.currentTarget.style.transform = 'translateY(-2px)';
                 e.currentTarget.style.borderColor = 'var(--color-primary)';
-                e.currentTarget.style.boxShadow = '0 10px 24px rgba(15, 23, 42, 0.08)';
+                e.currentTarget.style.boxShadow = '0 8px 18px rgba(15, 23, 42, 0.06)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)';
                 e.currentTarget.style.borderColor = 'var(--border-default)';
-                e.currentTarget.style.boxShadow = '0 2px 10px rgba(15, 23, 42, 0.04)';
+                e.currentTarget.style.boxShadow = '0 2px 8px rgba(15, 23, 42, 0.03)';
               }}
             >
               <div
                 style={{
-                  width: '44px',
-                  height: '44px',
-                  borderRadius: '10px',
+                  width: '36px',
+                  height: '36px',
+                  borderRadius: '8px',
                   background: card.iconBg,
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  marginBottom: '1rem',
+                  marginBottom: '0.65rem',
                   flexShrink: 0
                 }}
               >
-                {card.icon}
+                {React.cloneElement(card.icon as React.ReactElement, { size: 18 })}
               </div>
               <h3
                 style={{
-                  fontSize: 'clamp(1.05rem, 1.8vw, 1.15rem)',
-                  fontWeight: 800,
+                  fontSize: '0.92rem',
+                  fontWeight: 700,
                   color: 'var(--text-heading)',
-                  marginBottom: '0.5rem',
+                  marginBottom: '0.35rem',
                   lineHeight: 1.3
                 }}
               >
@@ -182,9 +181,9 @@ export const EnterpriseSecurity: React.FC = () => {
               </h3>
               <p
                 style={{
-                  fontSize: '0.875rem',
+                  fontSize: '0.8rem',
                   color: 'var(--text-muted)',
-                  lineHeight: 1.55,
+                  lineHeight: 1.45,
                   margin: 0
                 }}
               >
@@ -201,10 +200,10 @@ export const EnterpriseSecurity: React.FC = () => {
             alignItems: 'center',
             justifyContent: 'center',
             flexWrap: 'wrap',
-            gap: '0.65rem',
+            gap: '0.5rem',
             opacity: isVisible ? 1 : 0,
-            transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-            transition: 'all 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.5s'
+            transform: isVisible ? 'translateY(0)' : 'translateY(15px)',
+            transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.4s'
           }}
         >
           {['SOC 2 Type II', 'HIPAA Ready', 'GDPR Compliant', 'ISO 27001 Aligned', 'Zero Data Retention'].map((badge) => (
@@ -213,31 +212,33 @@ export const EnterpriseSecurity: React.FC = () => {
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '0.4rem',
-                padding: '0.4rem 0.95rem',
+                gap: '0.35rem',
+                padding: '0.3rem 0.75rem',
                 background: '#FFFFFF',
                 border: '1px solid var(--border-default)',
                 borderRadius: '9999px',
-                fontSize: '0.78rem',
-                fontWeight: 700,
+                fontSize: '0.74rem',
+                fontWeight: 600,
                 color: 'var(--text-body)',
-                boxShadow: '0 2px 6px rgba(15, 23, 42, 0.03)',
+                boxShadow: '0 1px 4px rgba(15, 23, 42, 0.03)',
                 whiteSpace: 'nowrap'
               }}
             >
-              <ShieldCheck size={13} color="#4C9A7A" /> {badge}
+              <ShieldCheck size={12} color="#4C9A7A" /> {badge}
             </div>
           ))}
         </div>
       </div>
 
       <style>{`
-        @media (max-width: 640px) {
-          .security-2x2-grid {
-            grid-template-columns: 1fr !important;
+        @media (max-width: 960px) and (min-width: 601px) {
+          .security-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
           }
-          #security h2 {
-            white-space: normal !important;
+        }
+        @media (max-width: 600px) {
+          .security-grid {
+            grid-template-columns: 1fr !important;
           }
         }
       `}</style>
