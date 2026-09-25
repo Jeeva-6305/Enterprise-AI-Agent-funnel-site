@@ -11,7 +11,6 @@ import PainPointsCard from './components/funnel/PainPointsCard';
 import WhyChooseSection from './components/funnel/WhyChooseSection';
 import HowItWorksSection from './components/funnel/HowItWorksSection';
 import TrustSection from './components/funnel/TrustSection';
-import FaqSection from './components/funnel/FaqSection';
 import SuccessModal from './components/funnel/SuccessModal';
 import VideoModal from './components/funnel/VideoModal';
 
@@ -112,7 +111,7 @@ export default function App() {
           </div>
         </section>
 
-        {/* 3. Purpose-Built Section (Horizontal 3-Card Grid below Form + Video) */}
+        {/* 3. Our Solutions Section */}
         <section className="purpose-built-standalone-section">
           <div className="container">
             <PainPointsCard />
@@ -137,13 +136,6 @@ export default function App() {
         <section className="trust-standalone-section">
           <div className="container">
             <TrustSection />
-          </div>
-        </section>
-
-        {/* 7. Common Questions (FAQ Section) */}
-        <section className="faq-standalone-section">
-          <div className="container">
-            <FaqSection />
           </div>
         </section>
       </main>
