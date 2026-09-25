@@ -5,71 +5,42 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="screenshot-footer">
-      <div className="container screenshot-footer-container">
-        {/* Main Footer Columns */}
-        <div className="footer-main-grid">
-          {/* Brand Col */}
-          <div className="footer-brand-col">
-            <div className="footer-brand-header">
-              <BrandLogo size={32} />
-              <span className="footer-brand-name">Adople AI</span>
-            </div>
-            <p className="footer-brand-desc">
-              SEC-Mind empowers financial analysts, investors, and executives to transform complex 10-K and 10-Q disclosures into structured, queryable intelligence with cited references.
-            </p>
-            <div className="footer-security-badge">
-              <span className="footer-security-dot" aria-hidden="true">•</span>
-              <span>Enterprise-Grade Data Security</span>
-            </div>
+    <footer className="minimal-footer">
+      <div className="container">
+        {/* Top Row: Brand Logo + Compliance Badges */}
+        <div className="minimal-footer-top">
+          <div className="minimal-footer-brand">
+            <BrandLogo size={30} />
+            <span className="minimal-footer-brand-title">Adople AI</span>
           </div>
 
-          {/* Product Links */}
-          <div className="footer-links-col">
-            <h4 className="footer-col-title">Platform</h4>
-            <ul className="footer-links-list">
-              <li><a href="#lead-form-section">Watch a Demo</a></li>
-              <li><a href="#categories-title">10 Intelligence Categories</a></li>
-              <li><a href="#interactive-qa-title">Filing Q&amp;A Engine</a></li>
-              <li><a href="#workflow-title">Multi-Agent Workflow</a></li>
-              <li><a href="#faq-section-title">Frequently Asked Questions</a></li>
-            </ul>
-          </div>
-
-          {/* Who It's For */}
-          <div className="footer-links-col">
-            <h4 className="footer-col-title">Who It's For</h4>
-            <ul className="footer-links-list">
-              <li><a href="#who-its-for-title">Financial Analysts</a></li>
-              <li><a href="#who-its-for-title">Institutional Investors</a></li>
-              <li><a href="#who-its-for-title">Auditors &amp; Accounting</a></li>
-              <li><a href="#who-its-for-title">Executive Leadership</a></li>
-            </ul>
-          </div>
-
-          {/* Coverage & Filings */}
-          <div className="footer-links-col">
-            <h4 className="footer-col-title">Filing Coverage</h4>
-            <ul className="footer-links-list">
-              <li><span>SEC EDGAR Live Ingestion</span></li>
-              <li><span>Form 10-K (Annual Disclosures)</span></li>
-              <li><span>Form 10-Q (Quarterly Reports)</span></li>
-              <li><span>Direct Source Grounding</span></li>
-            </ul>
+          <div className="minimal-footer-compliance">
+            <span>CMMI Level 3 Dev &amp; SVC</span>
+            <span className="compliance-dot" aria-hidden="true">•</span>
+            <span>ISO 9001, 20000, 27001</span>
+            <span className="compliance-dot" aria-hidden="true">•</span>
+            <span>SOC 2 Type II</span>
+            <span className="compliance-dot" aria-hidden="true">•</span>
+            <span>FedRAMP Ready</span>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="footer-bottom-bar">
-          <p className="footer-copyright">
-            &copy; {currentYear} Adople AI. All rights reserved.
-          </p>
-          <div className="footer-bottom-links">
-            <a href="#privacy">Privacy Policy</a>
-            <span className="footer-separator" aria-hidden="true">•</span>
-            <a href="#terms">Terms of Service</a>
-            <span className="footer-separator" aria-hidden="true">•</span>
-            <a href="#security">Security Notice</a>
+        {/* Bottom Row: Copyright + Minimal Legal Links */}
+        <div className="minimal-footer-bottom">
+          <div className="minimal-footer-copyright">
+            &copy; {currentYear} Adople AI. All rights reserved. Serving organizations since 2016.
+          </div>
+
+          <div className="minimal-footer-links">
+            <a href="#privacy" onClick={(e) => e.preventDefault()}>
+              Privacy Policy
+            </a>
+            <a href="#terms" onClick={(e) => e.preventDefault()}>
+              Terms of Service
+            </a>
+            <a href="#security" onClick={(e) => e.preventDefault()}>
+              Security Architecture
+            </a>
           </div>
         </div>
       </div>

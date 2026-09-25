@@ -24,12 +24,19 @@ body {
 }
 
 h1,
-h2,
+h2 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: #000000;
+  line-height: 1.25;
+}
+
 h3,
 h4,
 h5,
 h6 {
   font-family: var(--font-heading);
+  font-weight: 600;
   color: #000000;
   line-height: 1.25;
 }
@@ -90,7 +97,7 @@ textarea::placeholder {
   gap: 0.5rem;
   background: var(--brand, #0EA5A6);
   color: var(--cta-text, #ffffff);
-  font-weight: 800;
+  font-weight: 600;
   font-size: 1rem;
   padding: 0.875rem 1.75rem;
   border-radius: var(--radius-md);

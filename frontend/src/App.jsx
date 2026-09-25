@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './components/common/Navbar';
 import AnnouncementBar from './components/common/AnnouncementBar';
 import TrustBar from './components/common/TrustBar';
 import Footer from './components/common/Footer';
 import Toast from './components/common/Toast';
 import FunnelHero from './components/funnel/FunnelHero';
+import ChecklistPoints from './components/funnel/ChecklistPoints';
 import VideoPlayer from './components/funnel/VideoPlayer';
-import LeadForm from './components/funnel/LeadForm';
 import PainPointsCard from './components/funnel/PainPointsCard';
 import AnalysisCategories from './components/funnel/AnalysisCategories';
 import MultiAgentWorkflow from './components/funnel/MultiAgentWorkflow';
 import WhoItsFor from './components/funnel/WhoItsFor';
-import FaqSection from './components/funnel/FaqSection';
 import FinalCta from './components/funnel/FinalCta';
 import InteractiveQa from './components/funnel/InteractiveQa';
 import SuccessModal from './components/funnel/SuccessModal';
@@ -39,13 +38,49 @@ export default function App() {
   };
 
   /**
+   * Scroll Reveal Entrance Animations:
+   * Observes landing page sections and adds .is-visible class when entering viewport.
+   */
+  useEffect(() => {
+    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) return;
+
+    const sections = document.querySelectorAll(
+      '.screenshot-problems-section, .analysis-categories-section, .interactive-qa-section, .demo-video-section'
+    );
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.12,
+        rootMargin: '0px 0px -40px 0px'
+      }
+    );
+
+    sections.forEach((sec) => observer.observe(sec));
+
+    return () => observer.disconnect();
+  }, []);
+
+  /**
    * Video & "Get a Demo" trigger handler:
-   * - If unlocked: opens video player modal directly.
+   * - If unlocked: opens video player modal directly or scrolls to player.
    * - If locked: prompts user to complete lead form and scrolls to form.
    */
   const handleAccessDemo = () => {
     if (isDemoUnlocked) {
-      setIsVideoModalOpen(true);
+      const videoSection = document.getElementById('demo-video-section');
+      if (videoSection) {
+        videoSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        setIsVideoModalOpen(true);
+      }
     } else {
       showToast('The demo video is locked. Please fill in and submit the form to unlock and watch.', 'info');
       const formInput = document.getElementById('input-full-name');
@@ -79,62 +114,60 @@ export default function App() {
 
       {/* Main Funnel Page Content */}
       <main className="screenshot-template-root">
-        {/* 1. Hero Section */}
+        {/* 1. Hero Section (Left Headline/CTAs | Right Lead Form matching Screenshot 1) */}
         <section className="screenshot-hero-section">
           <div className="container">
-            <FunnelHero onCtaClick={handleAccessDemo} />
+            <FunnelHero 
+              onCtaClick={handleAccessDemo} 
+              onSuccessLead={handleLeadSuccess} 
+              showToast={showToast} 
+            />
           </div>
         </section>
 
-        {/* 2. Video Section and Lead Form */}
-        <section className="screenshot-demo-form-section" id="lead-form-section">
-          <div className="container">
-            <div className="screenshot-action-split-grid">
-              {/* Left Column: Video Box */}
-              <div className="screenshot-split-left">
-                <VideoPlayer 
-                  isUnlocked={isDemoUnlocked} 
-                  onPlayClick={handleAccessDemo} 
-                />
-              </div>
-
-              {/* Right Column: Lead Form Card */}
-              <div className="screenshot-split-right">
-                <LeadForm 
-                  onSuccessLead={handleLeadSuccess} 
-                  showToast={showToast} 
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 3. Problem Section */}
+        {/* 2. Problem Section */}
         <section className="screenshot-problems-section">
           <PainPointsCard />
         </section>
 
-        {/* 5. Analysis Categories Section */}
+        {/* 4. Analysis Categories Section */}
         <AnalysisCategories />
 
-        {/* 6. Interactive Q&A Section */}
+        {/* 5. Interactive Q&A Section */}
         <InteractiveQa />
 
-        {/* 7. Multi-Agent Workflow Section */}
+        {/* 6. Multi-Agent Workflow Section */}
         <MultiAgentWorkflow />
 
-        {/* 8. Who It's For Section */}
+        {/* 7. Who It's For Section */}
         <WhoItsFor />
 
-        {/* 9. Frequently Asked Questions Section */}
-        <FaqSection />
+        {/* 8. Demo Video Section directly above Final CTA matching Screenshot 2 */}
+        <section className="demo-video-section" id="demo-video-section">
+          <div className="container">
+            <div className="demo-section-header">
+              <span className="demo-section-badge">PLATFORM DEMO</span>
+              <h2 className="demo-section-title">See SEC-Mind in Action</h2>
+              <p className="demo-section-subtitle">
+                Watch how SEC-Mind analyzes 10-K and 10-Q filings with live source grounding and automated multi-agent synthesis.
+              </p>
+            </div>
 
-        {/* 10. Final CTA Section */}
+            <div className="demo-video-card-wrapper">
+              <VideoPlayer 
+                isUnlocked={isDemoUnlocked} 
+                onPlayClick={handleAccessDemo} 
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* 9. Final CTA Section */}
         <FinalCta onRequestDemo={handleAccessDemo} />
 
       </main>
 
-      {/* Footer with Centered Brand */}
+      {/* Footer */}
       <Footer />
 
       {/* Success Modal */}
@@ -143,7 +176,12 @@ export default function App() {
         onClose={() => setSubmittedLead(null)}
         onOpenVideo={() => {
           setSubmittedLead(null);
-          setIsVideoModalOpen(true);
+          const videoSection = document.getElementById('demo-video-section');
+          if (videoSection) {
+            videoSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          } else {
+            setIsVideoModalOpen(true);
+          }
         }}
       />
 
@@ -158,5 +196,3 @@ export default function App() {
     </div>
   );
 }
-
-

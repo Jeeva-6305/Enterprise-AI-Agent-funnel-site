@@ -1,54 +1,77 @@
 import React from 'react';
-import { Check } from 'lucide-react';
+import { Sparkles, Play, ArrowRight, Check } from 'lucide-react';
+import LeadForm from './LeadForm';
 
-export default function FunnelHero() {
-  const checklistItems = [
-    {
-      title: 'Ask about any 10-K or 10-Q',
-      description: 'Get immediate answers with references.'
-    },
-    {
-      title: 'Every file, organized',
-      description: 'Automatically sorted into ready-to-analyze categories.'
-    },
-    {
-      title: 'Continuous context',
-      description: 'The next question always relates to the report — no re-upload needed.'
-    },
-    {
-      title: 'Works alongside you',
-      description: 'Progress and saved session state, always in sync.'
-    }
-  ];
-
+export default function FunnelHero({ onCtaClick, onSuccessLead, showToast }) {
   return (
-    <div className="screenshot-hero-content">
-      {/* Main Headline */}
-      <h1 className="screenshot-hero-title">
-        Turning SEC Documents<br />
-        <span className="screenshot-highlight-accent">
-          Into Decisions, Answers<br />&amp; Insights
-        </span>
-      </h1>
+    <div className="hero-editorial-two-col">
+      {/* Left Column: Headline, Subtext & Action CTAs */}
+      <div className="hero-editorial-left-col">
+        {/* Pill Eyebrow Badge */}
+        <div className="screenshot-badge-pill">
+          <Sparkles size={14} className="hero-badge-icon" />
+          <span>TRUSTED SEC FILING INTELLIGENCE</span>
+        </div>
 
-      {/* Subtext Paragraph */}
-      <p className="screenshot-hero-subtext">
-        SEC-Mind uses an organized set of agents to automate the fetching, analyzing, and structuring of 10-K and 10-Q documents.
-      </p>
+        {/* Main Headline */}
+        <h1 className="screenshot-hero-title">
+          Turning SEC Documents<br />
+          <span className="screenshot-highlight-accent">
+            Into Decisions, Answers &amp; Insights
+          </span>
+        </h1>
 
-      {/* Option 5: Icon-Left Badges Card Container */}
-      <div className="hero-checklist-card">
-        {checklistItems.map((item, idx) => (
-          <div key={idx} className="hero-checklist-item">
-            <div className="hero-checklist-icon-box" aria-hidden="true">
-              <Check size={14} strokeWidth={3} />
+        {/* Subtext Paragraph */}
+        <p className="screenshot-hero-subtext">
+          SEC-Mind uses an organized set of agents to automate the fetching, analyzing, and structuring of 10-K and 10-Q documents.
+        </p>
+
+        {/* 4 Tick Points (2x2 Pill Grid matching Screenshot 2) */}
+        <div className="hero-ticks-grid">
+          {[
+            'Ask about any 10-K or 10-Q',
+            'Every file, organized',
+            'Continuous context',
+            'Works alongside you'
+          ].map((point, idx) => (
+            <div key={idx} className="hero-tick-pill">
+              <div className="hero-tick-check" aria-hidden="true">
+                <Check size={13} strokeWidth={3} />
+              </div>
+              <span className="hero-tick-label">{point}</span>
             </div>
-            <div className="hero-checklist-text-wrap">
-              <h3 className="hero-checklist-item-title">{item.title}</h3>
-              <p className="hero-checklist-item-desc">{item.description}</p>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
+
+        {/* Side-by-Side CTAs */}
+        <div className="hero-cta-group">
+          <button 
+            type="button"
+            className="btn-hero-primary" 
+            onClick={onCtaClick}
+            id="hero-btn-watch-demo"
+          >
+            <Play size={16} fill="currentColor" />
+            <span>Watch Demo</span>
+          </button>
+
+          <a 
+            href="#categories-title" 
+            className="btn-hero-secondary"
+            id="hero-btn-explore"
+          >
+            <span>Explore Intelligence</span>
+            <ArrowRight size={15} />
+          </a>
+        </div>
+      </div>
+
+      {/* Right Column: Lead Form Card matching Screenshot 1 */}
+      <div className="hero-editorial-right-col" id="lead-form-section">
+        <LeadForm 
+          onSuccessLead={onSuccessLead} 
+          showToast={showToast} 
+        />
       </div>
     </div>
   );
