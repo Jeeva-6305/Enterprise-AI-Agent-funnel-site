@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './components/common/Navbar';
 import AnnouncementBar from './components/common/AnnouncementBar';
 import TrustBar from './components/common/TrustBar';
@@ -10,19 +10,33 @@ import LeadForm from './components/funnel/LeadForm';
 import LeadFormModal from './components/funnel/LeadFormModal';
 import SuccessModal from './components/funnel/SuccessModal';
 import VideoModal from './components/funnel/VideoModal';
+import VideoPlayer from './components/funnel/VideoPlayer';
 import WhatItDoes from './components/funnel/WhatItDoes';
 import UseCases from './components/funnel/UseCases';
-import { Check } from 'lucide-react';
+import WhyEnterpriseSection from './components/funnel/WhyEnterpriseSection';
+import HowItWorksSection from './components/funnel/HowItWorksSection';
+import AdminDashboard from './components/admin/AdminDashboard';
 
 import './styles/global.css';
 import './styles/funnel.css';
 
 export default function App() {
+  const [currentView, setCurrentView] = useState(() => {
+    return window.location.hash === '#admin' ? 'admin' : 'funnel';
+  });
   const [submittedLead, setSubmittedLead] = useState(null);
   const [isDemoUnlocked, setIsDemoUnlocked] = useState(false);
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
   const [isLeadModalOpen, setIsLeadModalOpen] = useState(false);
   const [toasts, setToasts] = useState([]);
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      setCurrentView(window.location.hash === '#admin' ? 'admin' : 'funnel');
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
 
   const bulletPoints = [
     'Get precise answers immediately without wading through hundreds of documents and tabs',
@@ -80,6 +94,21 @@ export default function App() {
     setSubmittedLead(lead);
   };
 
+  if (currentView === 'admin') {
+    return (
+      <div className="app-root" data-theme="enterprise">
+        <AdminDashboard 
+          onBackToFunnel={() => {
+            window.location.hash = '';
+            setCurrentView('funnel');
+          }}
+          showToast={showToast}
+        />
+        <Toast toasts={toasts} onDismiss={handleDismissToast} />
+      </div>
+    );
+  }
+
   return (
     <div className="app-root" data-theme="enterprise">
       {/* Top Global Navigation with Brand & "Get a Demo" Button */}
@@ -93,12 +122,14 @@ export default function App() {
 
       {/* Main Funnel Page Content */}
       <main className="funnel-main-content">
-        {/* 1. Hero Section (Editorial 2-Column Grid: Headline & CTAs | Interactive Video Mockup Window) */}
+        {/* 1. Hero Section (Editorial 2-Column Grid: Headline & CTAs | Hero Form on Right matching Screenshot 2) */}
         <section className="hero-section">
           <div className="container">
             <FunnelHero 
               onWatchDemo={handleAccessDemo}
               onSeeHowItWorks={handleSeeHowItWorks}
+              onSuccessLead={handleLeadSuccess}
+              showToast={showToast}
             />
           </div>
         </section>
@@ -110,48 +141,45 @@ export default function App() {
           </div>
         </section>
 
-        {/* 3. Section: Left "Why Enterprise AI Agent?" (4 Value Points) | Right: Lead Form */}
+        {/* 3. Section: Why Enterprise AI Agent? (Comparison Table Layout) */}
         <section className="below-hero-section" id="purpose-built-section">
           <div className="container">
-            <div className="below-hero-grid">
-              {/* Left Column: Why Enterprise AI Agent? (4 Checklist Feature Cards) */}
-              <div className="below-hero-col">
-                <div className="hero-benefits-card">
-                  <div className="benefits-card-header">
-                    <h3 className="benefits-card-title">Why Enterprise AI Agent?</h3>
-                    <p className="benefits-card-subtitle">Engineered to transform messy enterprise unstructured data into confident action.</p>
-                  </div>
-                  <div className="hero-benefits-list">
-                    {bulletPoints.map((point, index) => (
-                      <div key={index} className="hero-benefit-item">
-                        <div className="benefit-check-icon-wrap">
-                          <Check size={15} strokeWidth={3.2} />
-                        </div>
-                        <p className="benefit-item-text">{point}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Right Column: Lead Form Card */}
-              <div className="below-hero-col">
-                <div className="hero-form-card" id="lead-form-section">
-                  <LeadForm 
-                    onSuccessLead={handleLeadSuccess} 
-                    showToast={showToast} 
-                  />
-                </div>
-              </div>
-            </div>
+            <WhyEnterpriseSection />
           </div>
         </section>
 
-        {/* 4. Section: What It Does */}
+        {/* 4. Section: How It Works (Timeline Stepper Layout matching Screenshot) */}
+        <section className="hiw-standalone-section" id="how-it-works-section">
+          <div className="container">
+            <HowItWorksSection />
+          </div>
+        </section>
+
+        {/* 5. Section: What It Does */}
         <WhatItDoes />
 
         {/* 5. Section: Use Cases */}
         <UseCases />
+
+        {/* 6. Demo Video Section (Just above the footer, matching Screenshot 1 layout) */}
+        <section className="demo-video-section" id="demo-video-section">
+          <div className="container">
+            <div className="demo-section-header">
+              <span className="demo-section-badge">PLATFORM DEMO</span>
+              <h2 className="demo-section-title">See Enterprise AI Agent in Action</h2>
+              <p className="demo-section-subtitle">
+                Watch an Enterprise AI Agent answer questions across your docs and apps in real time.
+              </p>
+            </div>
+
+            <div className="demo-video-card-wrapper">
+              <VideoPlayer 
+                isUnlocked={isDemoUnlocked} 
+                onPlayClick={handleAccessDemo} 
+              />
+            </div>
+          </div>
+        </section>
       </main>
 
       {/* Enterprise Product Funnel Footer */}

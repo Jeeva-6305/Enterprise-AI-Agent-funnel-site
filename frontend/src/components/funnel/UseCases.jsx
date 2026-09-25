@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Headphones, FileSearch, MessagesSquare, GitPullRequest, Landmark, HeartPulse } from 'lucide-react';
 
 export default function UseCases() {
+  const [activeTab, setActiveTab] = useState(0);
+
   const useCases = [
     {
       title: 'Customer support',
@@ -25,9 +27,13 @@ export default function UseCases() {
     }
   ];
 
+  const activeItem = useCases[activeTab];
+  const ActiveIcon = activeItem.icon;
+
   return (
     <section className="use-cases-section">
       <div className="container">
+        {/* Section Heading */}
         <div className="section-header-center">
           <h2 className="section-title">Built for the teams that need answers fast</h2>
           <p className="section-subtitle">
@@ -35,44 +41,61 @@ export default function UseCases() {
           </p>
         </div>
 
-        {/* 4 Cards in 2x2 Grid */}
-        <div className="use-cases-grid">
-          {useCases.map((item, index) => {
-            const Icon = item.icon;
-            return (
-              <div key={index} className="use-case-card">
-                <div className="use-case-icon-box">
-                  <Icon size={18} className="use-case-icon" />
-                </div>
-                <div className="use-case-content">
-                  <h3 className="use-case-card-title">{item.title}</h3>
-                  <p className="use-case-card-text">{item.description}</p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Slim strip below the cards with two small boxes */}
-        <div className="use-cases-industry-strip">
-          <div className="industry-box">
-            <div className="industry-tag-wrap">
-              <Landmark size={15} className="industry-icon" />
-              <span className="industry-tag">Banking</span>
-            </div>
-            <p className="industry-text">
-              Search policies, KYC/AML rules, loan guidelines, and audit documents.
-            </p>
+        <div className="use-cases-tabbed-wrapper">
+          {/* 4 Pill-Shaped Tabs in a Row */}
+          <div className="use-case-tabs-bar" role="tablist" aria-label="Use Case Tabs">
+            {useCases.map((item, index) => {
+              const TabIcon = item.icon;
+              const isActive = activeTab === index;
+              return (
+                <button
+                  key={index}
+                  role="tab"
+                  aria-selected={isActive}
+                  className={`use-case-tab-btn ${isActive ? 'active' : ''}`}
+                  onClick={() => setActiveTab(index)}
+                >
+                  <TabIcon size={16} className="use-case-tab-icon" />
+                  <span>{item.title}</span>
+                </button>
+              );
+            })}
           </div>
 
-          <div className="industry-box">
-            <div className="industry-tag-wrap">
-              <HeartPulse size={15} className="industry-icon" />
-              <span className="industry-tag">Healthcare</span>
+          {/* Substantial Content Panel for Active Tab with Smooth Transition */}
+          <div className="use-case-panel" role="tabpanel">
+            <div key={activeTab} className="use-case-panel-inner">
+              <div className="use-case-panel-icon-wrap">
+                <ActiveIcon size={34} className="use-case-panel-icon" />
+              </div>
+              <div className="use-case-panel-text">
+                <h3 className="use-case-panel-title">{activeItem.title}</h3>
+                <p className="use-case-panel-desc">{activeItem.description}</p>
+              </div>
             </div>
-            <p className="industry-text">
-              Search clinical documents, payer policies, and coding guidelines.
-            </p>
+          </div>
+
+          {/* Two Smaller Highlight Strips Side by Side for Banking and Healthcare */}
+          <div className="use-case-industry-row">
+            <div className="use-case-industry-strip">
+              <div className="industry-tag-pill">
+                <Landmark size={15} className="industry-icon" />
+                <span>Banking</span>
+              </div>
+              <p className="industry-strip-text">
+                Search policies, KYC/AML rules, loan guidelines, and audit documents.
+              </p>
+            </div>
+
+            <div className="use-case-industry-strip">
+              <div className="industry-tag-pill">
+                <HeartPulse size={15} className="industry-icon" />
+                <span>Healthcare</span>
+              </div>
+              <p className="industry-strip-text">
+                Search clinical documents, payer policies, and coding guidelines.
+              </p>
+            </div>
           </div>
         </div>
       </div>

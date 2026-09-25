@@ -4,6 +4,7 @@ import LeadStats from './LeadStats';
 import LeadTable from './LeadTable';
 import LeadDetailModal from './LeadDetailModal';
 import { leadsApi } from '../../api/leadsApi';
+import '../../styles/admin.css';
 
 export default function AdminDashboard({ onBackToFunnel, showToast }) {
   const [leads, setLeads] = useState([]);
