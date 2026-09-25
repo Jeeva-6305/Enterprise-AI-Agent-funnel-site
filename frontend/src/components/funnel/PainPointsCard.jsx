@@ -6,17 +6,17 @@ export default function PainPointsCard() {
     {
       title: 'Manual data entry',
       description: 'Stop spending hours re-keying document data by hand across systems.',
-      icon: <Clock size={16} className="solutions-card-icon" />
+      icon: <Clock size={18} className="solutions-card-icon" />
     },
     {
       title: 'Messy documents',
       description: 'Process PDFs, scans, invoices, and forms — even low-quality faxes — without the usual hassle.',
-      icon: <FileText size={16} className="solutions-card-icon" />
+      icon: <FileText size={18} className="solutions-card-icon" />
     },
     {
       title: 'Unreliable data',
       description: 'Get accurate, structured information you can actually trust downstream.',
-      icon: <Check size={16} className="solutions-card-icon" />
+      icon: <Check size={18} className="solutions-card-icon" />
     }
   ];
 
