@@ -4,10 +4,11 @@ import { DEFAULT_COUNTRY, CountryCode } from '../data/countryCodes';
 import { PhoneInput } from './PhoneInput';
 
 interface LeadFormProps {
-  onSuccess: (accessToken: string) => void;
+  onSuccess: (accessToken: string, email?: string) => void;
+  onAlreadyWatched?: () => void;
 }
 
-export const LeadForm: React.FC<LeadFormProps> = ({ onSuccess }) => {
+export const LeadForm: React.FC<LeadFormProps> = ({ onSuccess, onAlreadyWatched }) => {
   const [fullName, setFullName] = useState('');
   const [workEmail, setWorkEmail] = useState('');
   const [jobTitle, setJobTitle] = useState('');
@@ -40,6 +41,16 @@ export const LeadForm: React.FC<LeadFormProps> = ({ onSuccess }) => {
     e.preventDefault();
     setError(null);
     if (!companySize) { setError('Please select your company size.'); return; }
+
+    const cleanEmail = workEmail.trim().toLowerCase();
+
+    // Check local storage for quick pre-validation
+    if (localStorage.getItem(`adople_watched_${cleanEmail}`) === 'true') {
+      setError('You have already watched the demo video with this email address. Each user receives one-time access, and the video is currently locked.');
+      if (onAlreadyWatched) onAlreadyWatched();
+      return;
+    }
+
     setLoading(true);
 
     const fallbackToken = `demo_${Date.now()}_${Math.random().toString(36).substring(7)}`;
@@ -48,6 +59,7 @@ export const LeadForm: React.FC<LeadFormProps> = ({ onSuccess }) => {
       const apiKey = import.meta.env.VITE_FUNNEL_API_KEY || 'sk_live_agenticdo_878a80ac90a06d3bb61ae527fdc59d4e24c06582ada81a70';
       const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:9075';
       let finalToken = fallbackToken;
+      let alreadyWatched = false;
 
       try {
         const res = await fetch(`${backendUrl}/api/ingest/leads`, {
@@ -59,11 +71,11 @@ export const LeadForm: React.FC<LeadFormProps> = ({ onSuccess }) => {
           body: JSON.stringify({
             funnel_id: "agentic-data-analyst",
             funnel_source: "Agentic Data Analyst",
-            full_name: fullName,
-            email: workEmail,
+            full_name: fullName.trim(),
+            email: cleanEmail,
             phone: phoneNumber,
-            company: companyName,
-            job_title: jobTitle,
+            company: companyName.trim(),
+            job_title: jobTitle.trim(),
             use_case: `Company Size: ${companySize}`,
             message: ""
           }),
@@ -71,6 +83,15 @@ export const LeadForm: React.FC<LeadFormProps> = ({ onSuccess }) => {
 
         if (res.ok) {
           const data = await res.json();
+          if (data.status === 'already_watched' || data.video_watched === true) {
+            alreadyWatched = true;
+            setError(data.message || 'You have already watched the demo video with this email address. Your one-time demo access has expired, and the video is locked.');
+            localStorage.setItem('adople_demo_watched', 'true');
+            localStorage.setItem(`adople_watched_${cleanEmail}`, 'true');
+            localStorage.removeItem('adople_demo_access_token');
+            if (onAlreadyWatched) onAlreadyWatched();
+            return;
+          }
           if (data && data.access_token) {
             finalToken = data.access_token;
           }
@@ -83,9 +104,12 @@ export const LeadForm: React.FC<LeadFormProps> = ({ onSuccess }) => {
         storeLeadLocally();
       }
 
-      localStorage.setItem('adople_demo_access_token', finalToken);
-      localStorage.setItem('adople_user_name', fullName);
-      onSuccess(finalToken);
+      if (!alreadyWatched) {
+        localStorage.setItem('adople_demo_access_token', finalToken);
+        localStorage.setItem('adople_user_email', cleanEmail);
+        localStorage.setItem('adople_user_name', fullName.trim());
+        onSuccess(finalToken, cleanEmail);
+      }
     } catch (err: any) {
       setError(err.message || 'Something went wrong. Please try again.');
     } finally {
@@ -136,14 +160,15 @@ export const LeadForm: React.FC<LeadFormProps> = ({ onSuccess }) => {
 
       {error && (
         <div style={{
-          padding: '0.4rem 0.7rem',
+          padding: '0.5rem 0.75rem',
           background: '#FEF2F2',
           border: '1px solid #FCA5A5',
-          borderRadius: '6px',
+          borderRadius: '8px',
           color: '#991B1B',
           fontSize: '0.75rem',
-          marginBottom: '0.5rem',
-          lineHeight: 1.4
+          marginBottom: '0.65rem',
+          lineHeight: 1.45,
+          fontWeight: 500
         }}>
           {error}
         </div>
@@ -219,7 +244,7 @@ export const LeadForm: React.FC<LeadFormProps> = ({ onSuccess }) => {
           color: 'var(--text-muted)', textAlign: 'center', flexWrap: 'wrap'
         }}>
           <CheckCircle2 size={11} color="#4C9A7A" />
-          <span>100% Secure. No spam. No obligation. Your data is never shared.</span>
+          <span>100% Secure. No spam. One-time access.</span>
         </div>
 
       </form>

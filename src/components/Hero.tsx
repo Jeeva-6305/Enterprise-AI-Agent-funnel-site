@@ -1,15 +1,23 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Play, ArrowRight, Zap, CheckCircle, Users, ShieldCheck } from 'lucide-react';
+import { Play, ArrowRight, Zap, CheckCircle, Users, ShieldCheck, Lock } from 'lucide-react';
 import { GatedVideoPlayer } from './GatedVideoPlayer';
 import { LeadForm } from './LeadForm';
 
 interface HeroProps {
   onOpenForm: () => void;
   isUnlocked: boolean;
-  onUnlockSuccess: (token: string) => void;
+  hasWatched?: boolean;
+  onUnlockSuccess: (token: string, email?: string) => void;
+  onAlreadyWatched?: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onOpenForm, isUnlocked, onUnlockSuccess }) => {
+export const Hero: React.FC<HeroProps> = ({ 
+  onOpenForm, 
+  isUnlocked, 
+  hasWatched = false, 
+  onUnlockSuccess, 
+  onAlreadyWatched 
+}) => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -33,8 +41,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenForm, isUnlocked, onUnlockSucc
   }, []);
 
   // Inline form success handler — properly unlocks via App state, then scrolls to video
-  const handleInlineFormSuccess = (token: string) => {
-    onUnlockSuccess(token);
+  const handleInlineFormSuccess = (token: string, email?: string) => {
+    onUnlockSuccess(token, email);
     setTimeout(() => {
       document.getElementById('demo-video-section')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }, 300);
@@ -218,7 +226,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenForm, isUnlocked, onUnlockSucc
                 style={{ padding: '0.7rem 1.5rem', fontSize: '0.9rem', whiteSpace: 'nowrap' }}
               >
                 {isUnlocked ? <Play size={16} /> : null}
-                {isUnlocked ? 'Watch Full Demo' : 'Watch 5-Min Demo'}
+                {isUnlocked ? 'Watch Full Demo' : hasWatched ? 'Schedule Live Demo' : 'Watch 5-Min Demo'}
                 <ArrowRight size={16} />
               </button>
               <a
@@ -272,7 +280,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenForm, isUnlocked, onUnlockSucc
                   lineHeight: 1.6,
                   marginBottom: '1.5rem'
                 }}>
-                  Your demo access is active. Scroll down to watch the full product walkthrough.
+                  Your one-time demo access is active. Scroll down to watch the full product walkthrough.
                 </p>
                 <button
                   onClick={() => document.getElementById('demo-video-section')?.scrollIntoView({ behavior: 'smooth', block: 'center' })}
@@ -282,8 +290,50 @@ export const Hero: React.FC<HeroProps> = ({ onOpenForm, isUnlocked, onUnlockSucc
                   <Play size={18} /> Watch the Demo <ArrowRight size={18} />
                 </button>
               </div>
+            ) : hasWatched ? (
+              /* When user has already watched the one-time video */
+              <div style={{
+                background: '#FFFFFF',
+                borderRadius: 'clamp(12px, 3vw, 16px)',
+                padding: 'clamp(2rem, 5vw, 2.75rem)',
+                boxShadow: '0 24px 56px rgba(15, 23, 42, 0.14)',
+                textAlign: 'center',
+                border: '1.5px solid #CBD5E1'
+              }}>
+                <div style={{
+                  width: 60, height: 60, borderRadius: '50%',
+                  background: '#F1F5F9',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  margin: '0 auto 1.25rem auto'
+                }}>
+                  <Lock size={26} color="#475569" />
+                </div>
+                <h3 style={{
+                  fontSize: 'clamp(1.1rem, 2.5vw, 1.3rem)',
+                  fontWeight: 800,
+                  color: 'var(--text-heading)',
+                  marginBottom: '0.6rem'
+                }}>
+                  Demo Completed & Locked
+                </h3>
+                <p style={{
+                  fontSize: 'clamp(0.85rem, 1.5vw, 0.92rem)',
+                  color: 'var(--text-muted)',
+                  lineHeight: 1.6,
+                  marginBottom: '1.5rem'
+                }}>
+                  You have watched your one-time product demo. To explore live connections on your database or custom enterprise features:
+                </p>
+                <button
+                  onClick={onOpenForm}
+                  className="btn-primary"
+                  style={{ width: '100%', justifyContent: 'center', height: '50px', fontSize: '0.95rem' }}
+                >
+                  Schedule a Live 1-on-1 Demo <ArrowRight size={18} />
+                </button>
+              </div>
             ) : (
-              <LeadForm onSuccess={handleInlineFormSuccess} />
+              <LeadForm onSuccess={handleInlineFormSuccess} onAlreadyWatched={onAlreadyWatched} />
             )}
           </div>
         </div>

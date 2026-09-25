@@ -1,13 +1,14 @@
 import React from 'react';
-import { Play, ShieldCheck } from 'lucide-react';
+import { Play, ShieldCheck, Lock } from 'lucide-react';
 import AdopleLogo from '../assets/Adople-logo.webp';
 
 interface HeaderProps {
   onOpenForm: () => void;
   isUnlocked: boolean;
+  hasWatched?: boolean;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onOpenForm, isUnlocked }) => {
+export const Header: React.FC<HeaderProps> = ({ onOpenForm, isUnlocked, hasWatched = false }) => {
   return (
     <header style={{
       position: 'sticky',
@@ -26,68 +27,64 @@ export const Header: React.FC<HeaderProps> = ({ onOpenForm, isUnlocked }) => {
         justifyContent: 'space-between',
         gap: '1rem'
       }}>
-
-        {/* Logo */}
+        {/* Brand / Logo */}
         <a href="#" style={{
           display: 'flex',
           alignItems: 'center',
-          gap: 'clamp(0.5rem, 1.5vw, 0.75rem)',
+          gap: '0.65rem',
           textDecoration: 'none',
-          flex: '0 0 auto'
+          color: 'var(--text-heading)'
         }}>
           <img
             src={AdopleLogo}
-            alt="Adople AI Logo"
+            alt="Adople AI"
             style={{
-              height: 'clamp(32px, 5vw, 38px)',
+              height: 'clamp(28px, 4vw, 36px)',
               width: 'auto',
               objectFit: 'contain'
             }}
           />
-          <div>
-            <div style={{
-              fontSize: 'clamp(1rem, 2vw, 1.1rem)',
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <span style={{
+              fontSize: 'clamp(1rem, 2vw, 1.2rem)',
               fontWeight: 800,
               letterSpacing: '-0.02em',
-              color: 'var(--text-heading)',
-              lineHeight: 1
+              color: 'var(--color-primary-dark)',
+              lineHeight: 1.15
             }}>
-              Adople <span style={{ color: 'var(--color-primary)' }}>AI</span>
-            </div>
-            <div style={{
-              fontSize: 'clamp(0.6rem, 1.2vw, 0.65rem)',
+              Adople AI
+            </span>
+            <span style={{
+              fontSize: '0.65rem',
               fontWeight: 600,
-              color: 'var(--text-muted)',
               letterSpacing: '0.04em',
-              lineHeight: 1,
-              marginTop: '2px'
+              color: 'var(--text-muted)',
+              textTransform: 'uppercase'
             }}>
               Agentic Data Analyst
-            </div>
+            </span>
           </div>
         </a>
 
-        {/* Nav */}
+        {/* Desktop Navigation Links */}
         <nav className="header-nav" style={{
           display: 'flex',
           alignItems: 'center',
-          gap: 'clamp(1rem, 2.5vw, 1.75rem)',
-          flex: '1 1 auto',
-          justifyContent: 'center'
+          gap: 'clamp(1rem, 2vw, 1.75rem)'
         }}>
           {[
-            { label: 'Why It Works', href: '#problem' },
+            { label: 'Why It Works', href: '#problem-solution' },
             { label: 'Key Features', href: '#how-it-works' },
-            { label: 'Integrations', href: '#connectors' },
             { label: 'Security', href: '#security' },
           ].map(link => (
             <a
-              key={link.href}
+              key={link.label}
               href={link.href}
               style={{
-                fontSize: 'clamp(0.85rem, 1.5vw, 0.9rem)',
+                fontSize: 'clamp(0.82rem, 1.3vw, 0.88rem)',
                 fontWeight: 600,
                 color: 'var(--text-muted)',
+                textDecoration: 'none',
                 transition: 'color 0.2s ease',
                 whiteSpace: 'nowrap'
               }}
@@ -116,7 +113,23 @@ export const Header: React.FC<HeaderProps> = ({ onOpenForm, isUnlocked }) => {
               fontWeight: 700,
               whiteSpace: 'nowrap'
             }}>
-              <ShieldCheck size={15} /> Demo Unlocked
+              <ShieldCheck size={15} /> Demo Unlocked (1-Time)
+            </div>
+          ) : hasWatched ? (
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.4rem',
+              padding: 'clamp(0.45rem, 1vw, 0.5rem) clamp(0.85rem, 1.5vw, 1rem)',
+              borderRadius: '8px',
+              background: 'rgba(241, 245, 249, 0.9)',
+              border: '1px solid #CBD5E1',
+              color: '#475569',
+              fontSize: 'clamp(0.8rem, 1.3vw, 0.85rem)',
+              fontWeight: 600,
+              whiteSpace: 'nowrap'
+            }}>
+              <Lock size={14} /> Demo Locked
             </div>
           ) : (
             <button

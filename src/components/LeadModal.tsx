@@ -5,10 +5,11 @@ import { LeadForm } from './LeadForm';
 interface LeadModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSuccess: (token: string) => void;
+  onSuccess: (token: string, email?: string) => void;
+  onAlreadyWatched?: () => void;
 }
 
-export const LeadModal: React.FC<LeadModalProps> = ({ isOpen, onClose, onSuccess }) => {
+export const LeadModal: React.FC<LeadModalProps> = ({ isOpen, onClose, onSuccess, onAlreadyWatched }) => {
   // Prevent body scroll when modal is open
   React.useEffect(() => {
     if (isOpen) {
@@ -84,7 +85,7 @@ export const LeadModal: React.FC<LeadModalProps> = ({ isOpen, onClose, onSuccess
         >
           <X size={18} />
         </button>
-        <LeadForm onSuccess={onSuccess} />
+        <LeadForm onSuccess={onSuccess} onAlreadyWatched={onAlreadyWatched} />
       </div>
 
       <style>{`
