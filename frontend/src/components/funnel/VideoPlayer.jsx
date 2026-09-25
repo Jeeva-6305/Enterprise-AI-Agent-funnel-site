@@ -65,15 +65,15 @@ export default function VideoPlayer({ isUnlocked = false, onPlayClick }) {
           {/* Trust badges row */}
           <div className="demo-locked-trust-badges">
             <div className="demo-trust-badge-item">
-              <CheckCircle size={14} color="#34D399" />
+              <CheckCircle size={14} color="var(--color-accent, #6C4FD1)" />
               <span>One-time instant access</span>
             </div>
             <div className="demo-trust-badge-item">
-              <Shield size={14} color="#34D399" />
+              <Shield size={14} color="var(--color-accent, #6C4FD1)" />
               <span>No credit card required</span>
             </div>
             <div className="demo-trust-badge-item">
-              <Sparkles size={14} color="#34D399" />
+              <Sparkles size={14} color="var(--color-accent, #6C4FD1)" />
               <span>Full product overview</span>
             </div>
           </div>

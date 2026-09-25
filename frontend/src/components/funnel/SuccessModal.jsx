@@ -18,8 +18,8 @@ export default function SuccessModal({ lead, onClose, onOpenVideo }) {
           width: '64px',
           height: '64px',
           borderRadius: '50%',
-          backgroundColor: '#eff6ff',
-          color: '#1D4ED8',
+          backgroundColor: 'var(--color-bg-light, #F2EFF7)',
+          color: 'var(--color-accent, #6C4FD1)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -28,11 +28,11 @@ export default function SuccessModal({ lead, onClose, onOpenVideo }) {
           <CheckCircle2 size={36} />
         </div>
 
-        <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#000000', marginBottom: '0.5rem' }}>
+        <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--color-text-primary, #1B1330)', marginBottom: '0.5rem' }}>
           Demo Access Unlocked!
         </h3>
 
-        <p style={{ color: '#475569', fontSize: '0.9375rem', marginBottom: '1.5rem', lineHeight: '1.5' }}>
+        <p style={{ color: 'var(--color-text-secondary, #5C5A72)', fontSize: '0.9375rem', marginBottom: '1.5rem', lineHeight: '1.5' }}>
           Thank you, <strong>{lead.full_name || lead.fullName}</strong>. Your organization (<strong>{lead.company_name || lead.companyName}</strong>) has been registered. You can now watch the full Enterprise AI Agents platform demonstration.
         </p>
 

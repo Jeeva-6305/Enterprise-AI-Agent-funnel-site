@@ -11,7 +11,7 @@ export default function Navbar({ onGetDemoClick }) {
         >
           {/* Adople AI Logo */}
           <BrandLogo size={36} />
-          <span className="brand-title" style={{ fontSize: '1.45rem', fontWeight: 800, letterSpacing: '-0.02em', color: '#000000' }}>
+          <span className="brand-title" style={{ fontSize: '1.45rem', fontWeight: 800, letterSpacing: '-0.02em', color: 'var(--color-text-primary, #1B1330)' }}>
             Adople AI
           </span>
         </div>

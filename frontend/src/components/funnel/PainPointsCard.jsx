@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Layers, SearchX, ShieldAlert } from 'lucide-react';
 
 export default function PainPointsCard() {
@@ -27,6 +27,14 @@ export default function PainPointsCard() {
       icon: ShieldAlert
     }
   ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % bottlenecks.length);
+    }, 3000);
+
+    return () => clearInterval(timer);
+  }, [activeIndex, bottlenecks.length]);
 
   const activeItem = bottlenecks[activeIndex];
   const ActiveIcon = activeItem.icon;
