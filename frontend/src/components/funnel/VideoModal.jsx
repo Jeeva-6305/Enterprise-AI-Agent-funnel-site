@@ -48,7 +48,7 @@ export default function VideoModal({ isOpen, onClose }) {
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: 'var(--color-accent, #6C4FD1)' }}></div>
-            <span style={{ fontWeight: 700, fontSize: '0.9375rem', letterSpacing: '0.02em', color: '#ffffff' }}>
+            <span style={{ fontFamily: 'var(--font-heading)', fontWeight: 600, fontSize: '0.9375rem', letterSpacing: '0.02em', color: '#ffffff' }}>
               Enterprise AI Agents — Platform Demonstration
             </span>
           </div>

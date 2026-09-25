@@ -9,8 +9,8 @@ export default function FunnelHero({ onWatchDemo, onSeeHowItWorks, onSuccessLead
       <div className="hero-editorial-left">
         {/* Pill Eyebrow Badge */}
         <div className="hero-editorial-badge">
-          <Sparkles size={14} className="hero-badge-icon" />
-          <span>ENTERPRISE AI AGENTS</span>
+          <Sparkles size={14} className="hero-badge-icon" color="#FFFFFF" />
+          <span style={{ color: '#FFFFFF' }}>ENTERPRISE AI AGENTS</span>
         </div>
 
         {/* Headline with Brand Blue Emphasis */}

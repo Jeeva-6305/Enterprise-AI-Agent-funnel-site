@@ -28,7 +28,7 @@ export default function SuccessModal({ lead, onClose, onOpenVideo }) {
           <CheckCircle2 size={36} />
         </div>
 
-        <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--color-text-primary, #1B1330)', marginBottom: '0.5rem' }}>
+        <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.5rem', fontWeight: 600, color: 'var(--color-text-primary, #1B1330)', marginBottom: '0.5rem' }}>
           Demo Access Unlocked!
         </h3>
 
