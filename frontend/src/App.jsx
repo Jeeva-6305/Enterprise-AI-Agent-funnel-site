@@ -63,13 +63,6 @@ export default function App() {
     return () => observer.disconnect();
   }, [currentView]);
 
-  const bulletPoints = [
-    'Get precise answers immediately without wading through hundreds of documents and tabs',
-    'All your knowledge base in one place and always up to date',
-    'Designed with enterprise-level security and control right from the start',
-    'Quick to implement and easy to integrate into existing processes'
-  ];
-
   const showToast = (message, type = 'info') => {
     const id = Date.now();
     setToasts((prev) => [...prev, { id, message, type }]);

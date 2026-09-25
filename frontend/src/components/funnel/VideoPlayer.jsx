@@ -4,13 +4,7 @@ import { Lock, ArrowRight, CheckCircle, Shield, Sparkles } from 'lucide-react';
 export default function VideoPlayer({ isUnlocked = false, onPlayClick }) {
   const videoRef = useRef(null);
 
-  useEffect(() => {
-    if (isUnlocked && videoRef.current) {
-      videoRef.current.play().catch((err) => {
-        console.log('Video autoplay deferred by browser:', err);
-      });
-    }
-  }, [isUnlocked]);
+  // Autoplay disabled per specification
 
   return (
     <div className="demo-video-player-container">
@@ -90,7 +84,7 @@ export default function VideoPlayer({ isUnlocked = false, onPlayClick }) {
           <video
             ref={videoRef}
             controls
-            autoPlay
+            
             playsInline
             preload="auto"
             className="demo-unlocked-video-elem"
