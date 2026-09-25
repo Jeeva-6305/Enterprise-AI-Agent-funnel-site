@@ -12,8 +12,7 @@ import {
 export default function WhyChooseSection() {
   const [activeTab, setActiveTab] = useState("revenue");
   const [animKey, setAnimKey] = useState(0);
-  const [selectedMonth, setSelectedMonth] = useState("Apr");
-  const [showGraphDetails, setShowGraphDetails] = useState(false);
+  const [hoveredPoint, setHoveredPoint] = useState(null);
 
   const trendPoints = [
     { month: "Jan", val: 8.2, x: 40, y: 126, display: "8.2" },
@@ -24,8 +23,26 @@ export default function WhyChooseSection() {
     { month: "Jun", val: 24.6, x: 460, y: 27, display: "24.6" },
   ];
 
-  const currentPoint =
-    trendPoints.find((p) => p.month === selectedMonth) || trendPoints[3];
+  const getTooltipStyle = (pt) => {
+    if (!pt) return {};
+    const leftPct = (pt.x / 500) * 100;
+    const topPct = (pt.y / 200) * 100;
+
+    let transform = "translate(-50%, -120%)";
+    if (pt.month === "Jan") {
+      transform = "translate(14px, -50%)";
+    } else if (pt.month === "Jun") {
+      transform = "translate(-102%, 10px)";
+    } else if (pt.month === "May") {
+      transform = "translate(-85%, -115%)";
+    }
+
+    return {
+      left: `${leftPct}%`,
+      top: `${topPct}%`,
+      transform,
+    };
+  };
 
   // Chart data for Revenue by Region
   const revenueChart = {
@@ -73,10 +90,6 @@ export default function WhyChooseSection() {
         "Structured output maps directly into your current workflow and tools with zero disruption to how your team already works.",
     },
   ];
-
-  const handleGraphClick = () => {
-    setShowGraphDetails((prev) => !prev);
-  };
 
   return (
     <div className="why-choose-inner">
@@ -134,7 +147,7 @@ export default function WhyChooseSection() {
               onClick={() => {
                 setActiveTab("growth");
                 setAnimKey((k) => k + 1);
-                setShowGraphDetails(false);
+                setHoveredPoint(null);
               }}
             >
               <BarChart3 size={15} className="why-tab-icon" />
@@ -167,21 +180,9 @@ export default function WhyChooseSection() {
 
         {/* Visual Chart Area */}
         {activeTab === "growth" ? (
-          /* Live-growing graph: animates on tab click; clicking the graph reveals month details directly on graph */
+          /* Live-growing graph: animates on tab click; hovering over points shows month-wise details */
           <div className="why-trend-area" key={animKey}>
-            <div
-              className="why-trend-box"
-              onClick={handleGraphClick}
-              role="button"
-              tabIndex={0}
-              aria-label="Growth trend chart - click to view month-wise details"
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  e.preventDefault();
-                  handleGraphClick();
-                }
-              }}
-            >
+            <div className="why-trend-box">
               {/* Y-Axis Percentage Labels */}
               <div className="why-trend-yaxis">
                 <span>25%</span>
@@ -192,8 +193,11 @@ export default function WhyChooseSection() {
                 <span>0%</span>
               </div>
 
-              {/* Plot Area with SVG and click-to-view month details */}
-              <div className="why-trend-plot">
+              {/* Plot Area with SVG and hover-to-view month details */}
+              <div
+                className="why-trend-plot"
+                onMouseLeave={() => setHoveredPoint(null)}
+              >
                 {/* Horizontal gridlines */}
                 <div className="why-gridline" style={{ top: "0%" }} />
                 <div className="why-gridline" style={{ top: "20%" }} />
@@ -236,12 +240,12 @@ export default function WhyChooseSection() {
                     className="why-trend-area-fill"
                   />
 
-                  {/* Vertical dashed line at active point (shown when graph is clicked) */}
-                  {showGraphDetails && (
+                  {/* Vertical dashed line at hovered point */}
+                  {hoveredPoint && (
                     <line
-                      x1={currentPoint.x}
+                      x1={hoveredPoint.x}
                       y1="10"
-                      x2={currentPoint.x}
+                      x2={hoveredPoint.x}
                       y2="185"
                       stroke="#94A3B8"
                       strokeWidth="1.5"
@@ -261,33 +265,57 @@ export default function WhyChooseSection() {
                     className="why-trend-line"
                   />
 
+                  {/* Hover zones covering each section of the graph */}
+                  {trendPoints.map((pt, idx) => {
+                    const prevX = idx > 0 ? trendPoints[idx - 1].x : 0;
+                    const nextX =
+                      idx < trendPoints.length - 1
+                        ? trendPoints[idx + 1].x
+                        : 500;
+                    const leftX = idx === 0 ? 0 : (prevX + pt.x) / 2;
+                    const rightX =
+                      idx === trendPoints.length - 1
+                        ? 500
+                        : (pt.x + nextX) / 2;
+                    const width = rightX - leftX;
+
+                    return (
+                      <rect
+                        key={`hover-zone-${pt.month}`}
+                        x={leftX}
+                        y="0"
+                        width={width}
+                        height="200"
+                        fill="transparent"
+                        onMouseEnter={() => setHoveredPoint(pt)}
+                        style={{ cursor: "pointer" }}
+                      />
+                    );
+                  })}
+
                   {/* Points on each month */}
                   {trendPoints.map((pt) => {
-                    const isActive = pt.month === selectedMonth;
+                    const isHovered = hoveredPoint?.month === pt.month;
                     return (
                       <g
                         key={pt.month}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setSelectedMonth(pt.month);
-                          setShowGraphDetails(true);
-                        }}
-                        style={{ cursor: "pointer" }}
                         className="why-trend-point-group"
+                        onMouseEnter={() => setHoveredPoint(pt)}
+                        style={{ cursor: "pointer" }}
                       >
                         <circle
                           cx={pt.x}
                           cy={pt.y}
-                          r="14"
+                          r="18"
                           fill="transparent"
                         />
                         <circle
                           cx={pt.x}
                           cy={pt.y}
-                          r={isActive && showGraphDetails ? "5" : "3.5"}
+                          r={isHovered ? "5.5" : "3.5"}
                           fill="#2B1108"
                           stroke="#ffffff"
-                          strokeWidth={isActive && showGraphDetails ? "2" : "1.5"}
+                          strokeWidth={isHovered ? "2.2" : "1.5"}
                           className="why-trend-point-dot"
                         />
                       </g>
@@ -295,17 +323,14 @@ export default function WhyChooseSection() {
                   })}
                 </svg>
 
-                {/* Month-wise details directly on the graph - shown ONLY when graph is clicked */}
-                {showGraphDetails ? (
+                {/* Month-wise details directly on the graph - shown automatically on hover */}
+                {hoveredPoint && (
                   <div
-                    className="why-trend-tooltip animated"
-                    style={{
-                      left: `${(currentPoint.x / 500) * 100}%`,
-                      top: `${(currentPoint.y / 200) * 100}%`,
-                    }}
+                    className="why-trend-tooltip"
+                    style={getTooltipStyle(hoveredPoint)}
                   >
                     <div className="why-tooltip-month">
-                      {currentPoint.month}
+                      {hoveredPoint.month}
                     </div>
                     <div className="why-tooltip-row">
                       <span className="why-tooltip-dot" />
@@ -313,35 +338,12 @@ export default function WhyChooseSection() {
                         YoY Revenue Growth
                       </span>
                       <strong className="why-tooltip-value">
-                        {currentPoint.display}%
+                        {hoveredPoint.display}%
                       </strong>
                     </div>
                   </div>
-                ) : (
-                  <div className="why-graph-click-hint">
-                    <span>Click graph for month details</span>
-                  </div>
                 )}
               </div>
-            </div>
-
-            {/* Static X-Axis Month Labels */}
-            <div className="why-trend-xaxis">
-              {trendPoints.map((pt) => (
-                <span
-                  key={pt.month}
-                  className={`why-trend-xlabel ${
-                    pt.month === selectedMonth && showGraphDetails ? "active" : ""
-                  }`}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setSelectedMonth(pt.month);
-                    setShowGraphDetails(true);
-                  }}
-                >
-                  {pt.month}
-                </span>
-              ))}
             </div>
           </div>
         ) : (

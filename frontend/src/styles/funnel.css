@@ -1651,7 +1651,7 @@
   background: #FAF8F5;
   border: 1px solid #FED7AA;
   border-radius: 12px;
-  padding: 0.85rem 1.15rem 0.65rem;
+  padding: 0.95rem 1.15rem 0.85rem;
   position: relative;
 }
 
@@ -1659,24 +1659,7 @@
   display: flex;
   gap: 0.75rem;
   height: 180px;
-  cursor: pointer;
   position: relative;
-}
-
-.why-graph-click-hint {
-  position: absolute;
-  top: 8px;
-  right: 10px;
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid #FED7AA;
-  border-radius: 9999px;
-  padding: 3px 10px;
-  font-size: 0.6875rem;
-  font-weight: 650;
-  color: var(--brand, #C2410C);
-  pointer-events: none;
-  box-shadow: 0 1px 4px rgba(67, 20, 7, 0.06);
-  z-index: 5;
 }
 
 .why-trend-yaxis {
@@ -1758,15 +1741,13 @@
   }
 }
 
-@keyframes floatInTooltip {
+@keyframes fadeInTooltip {
   0% {
     opacity: 0;
-    transform: translate(-78%, -25%);
   }
 
   100% {
     opacity: 1;
-    transform: translate(-78%, -42%);
   }
 }
 
@@ -1783,8 +1764,7 @@
 }
 
 .why-trend-svg-animated .why-trend-guide-line {
-  animation: fadeInGuide 0.4s ease 0.85s forwards;
-  opacity: 0;
+  animation: fadeInGuide 0.4s ease forwards;
 }
 
 .why-trend-svg-animated .why-trend-point-dot {
@@ -1792,37 +1772,9 @@
   opacity: 0;
 }
 
-.why-trend-tooltip.animated {
-  animation: floatInTooltip 0.45s ease 0.9s forwards;
-  opacity: 0;
-}
-
-.why-trend-xaxis {
-  display: flex;
-  justify-content: space-between;
-  margin-left: calc(32px + 0.75rem);
-  padding: 6px 8% 0 8%;
-}
-
-.why-trend-xlabel {
-  font-size: 0.72rem;
-  font-weight: 650;
-  color: #78350F;
-  cursor: pointer;
-  transition: color 0.15s ease;
-  user-select: none;
-}
-
-.why-trend-xlabel:hover,
-.why-trend-xlabel.active {
-  color: var(--brand-deep, #431407);
-  font-weight: 800;
-}
-
 /* Tooltip Card matching screenshot */
 .why-trend-tooltip {
   position: absolute;
-  transform: translate(-78%, -42%);
   background: #ffffff;
   border: 1px solid #E2E8F0;
   border-radius: 8px;
@@ -1831,6 +1783,8 @@
   pointer-events: none;
   z-index: 10;
   min-width: 165px;
+  transition: left 0.16s cubic-bezier(0.2, 0.8, 0.4, 1), top 0.16s cubic-bezier(0.2, 0.8, 0.4, 1), transform 0.16s ease;
+  animation: fadeInTooltip 0.15s ease forwards;
 }
 
 .why-tooltip-month {
