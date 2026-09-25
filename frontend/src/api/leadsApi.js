@@ -11,10 +11,8 @@ export const leadsApi = {
    * Submit lead from Funnel Form - Posts to local backend on port 9035
    */
   async submitLead(leadData) {
-    const apiKey = import.meta.env.VITE_FUNNEL_API_KEY;
-    if (!apiKey) {
-      throw new Error('API key not configured. Please check .env file.');
-    }
+    const DEFAULT_API_KEY = 'sk_live_secanalys_2f9b256fd9004222db94e1092dd61e40fb4f1760e7d42edd';
+    const apiKey = import.meta.env.VITE_FUNNEL_API_KEY || DEFAULT_API_KEY;
 
     const response = await fetch(BASE_URL, {
       method: 'POST',

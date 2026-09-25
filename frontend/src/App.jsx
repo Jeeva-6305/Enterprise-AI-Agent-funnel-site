@@ -11,7 +11,6 @@ import PainPointsCard from './components/funnel/PainPointsCard';
 import AnalysisCategories from './components/funnel/AnalysisCategories';
 import MultiAgentWorkflow from './components/funnel/MultiAgentWorkflow';
 import WhoItsFor from './components/funnel/WhoItsFor';
-import FinalCta from './components/funnel/FinalCta';
 import InteractiveQa from './components/funnel/InteractiveQa';
 import SuccessModal from './components/funnel/SuccessModal';
 import VideoModal from './components/funnel/VideoModal';
@@ -161,9 +160,6 @@ export default function App() {
             </div>
           </div>
         </section>
-
-        {/* 9. Final CTA Section */}
-        <FinalCta onRequestDemo={handleAccessDemo} />
 
       </main>
 

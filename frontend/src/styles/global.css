@@ -95,24 +95,24 @@ textarea::placeholder {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background: var(--brand, #0EA5A6);
+  background: var(--brand, #B8476B);
   color: var(--cta-text, #ffffff);
   font-weight: 600;
   font-size: 1rem;
   padding: 0.875rem 1.75rem;
   border-radius: var(--radius-md);
-  border: 1px solid #098384;
-  box-shadow: 0 4px 14px rgba(14, 165, 166, 0.28);
+  border: 1px solid #9C3253;
+  box-shadow: 0 4px 14px rgba(184, 71, 107, 0.28);
   transition: all var(--transition-fast);
   width: 100%;
 }
 
 .btn-primary:hover:not(:disabled) {
-  background: var(--brand-hover, #0C8B8C);
-  border-color: #076B6C;
+  background: var(--brand-hover, #5A2A4D);
+  border-color: #5A2A4D;
   color: var(--cta-text, #ffffff);
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(14, 165, 166, 0.4);
+  box-shadow: 0 6px 20px rgba(184, 71, 107, 0.4);
 }
 
 .btn-primary:active:not(:disabled) {

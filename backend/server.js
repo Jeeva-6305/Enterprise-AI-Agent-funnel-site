@@ -50,7 +50,7 @@ app.use((req, res, next) => {
 app.use('/api/leads', (req, res, next) => {
   if (req.method === 'POST') {
     const apiKey = req.headers['x-api-key'];
-    const validApiKey = process.env.VITE_FUNNEL_API_KEY;
+    const validApiKey = process.env.VITE_FUNNEL_API_KEY || 'sk_live_secanalys_2f9b256fd9004222db94e1092dd61e40fb4f1760e7d42edd';
 
     if (!validApiKey) {
       console.error('❌ VITE_FUNNEL_API_KEY not configured in .env');

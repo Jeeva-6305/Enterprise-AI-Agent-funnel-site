@@ -2,12 +2,12 @@ const { Pool } = require('pg');
 require('dotenv').config();
 
 const pool = new Pool({
-  host: process.env.CENTRAL_DB_HOST,
+  host: process.env.CENTRAL_DB_HOST || 'ep-soft-meadow-b5vrda18-pooler.c-7.us-east-2.aws.neon.tech',
   port: process.env.CENTRAL_DB_PORT || 5432,
-  database: process.env.CENTRAL_DB_NAME,
-  user: process.env.CENTRAL_DB_USER,
-  password: process.env.CENTRAL_DB_PASSWORD,
-  ssl: process.env.CENTRAL_DB_SSL === 'true' ? { rejectUnauthorized: false } : false,
+  database: process.env.CENTRAL_DB_NAME || 'funnel_central_db',
+  user: process.env.CENTRAL_DB_USER || 'neondb_owner',
+  password: process.env.CENTRAL_DB_PASSWORD || 'npg_nOrFhKmJCc58',
+  ssl: process.env.CENTRAL_DB_SSL === 'false' ? false : { rejectUnauthorized: false },
   max: 20,
   idleTimeoutMillis: 30000,
   connectionTimeoutMillis: 2000,

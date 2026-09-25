@@ -1,73 +1,73 @@
 [data-theme="sec"] {
-  --brand: #0EA5A6;
-  --brand-hover: #0C8B8C;
-  --brand-deep: #111827;
-  --accent: #0EA5A6;
-  --tint: #FAF7F0;
+  --brand: #B8476B;
+  --brand-hover: #5A2A4D;
+  --brand-deep: #2B1F23;
+  --accent: #B8476B;
+  --tint: #FBF7F5;
   --cta-text: #ffffff;
-  --highlight: #E6F6F6;
-  --hero-grad: linear-gradient(180deg, #FAF7F0 0%, #FFFFFF 100%);
+  --highlight: #F7EAEF;
+  --hero-grad: linear-gradient(180deg, #FBF7F5 0%, #FFFFFF 100%);
 }
 
 :root {
-  /* SEC Filing Analysis – Ink + Teal Theme Variables */
-  --brand: #0EA5A6;
-  --brand-hover: #0C8B8C;
-  --brand-deep: #111827;
-  --accent: #0EA5A6;
-  --tint: #FAF7F0;
+  /* SEC Filing Analysis – Plum & Rose Palette */
+  --brand: #B8476B;
+  --brand-hover: #5A2A4D;
+  --brand-deep: #2B1F23;
+  --accent: #B8476B;
+  --tint: #FBF7F5;
   --cta-text: #ffffff;
-  --highlight: #E6F6F6;
-  --hero-grad: linear-gradient(180deg, #FAF7F0 0%, #FFFFFF 100%);
+  --highlight: #F7EAEF;
+  --hero-grad: linear-gradient(180deg, #FBF7F5 0%, #FFFFFF 100%);
 
-  /* Dark Sections & Headlines (Ink & Deep) */
-  --color-primary-navy: #1F2937;
-  --color-primary-dark: #111827;
-  --color-navy-surface: #1F2937;
-  --color-navy-muted: #374151;
-  --color-top-banner: #111827;
+  /* Dark Sections & Headlines (Deep plum-black #2B1F23 & Rich plum #5A2A4D) */
+  --color-primary-navy: #2B1F23;
+  --color-primary-dark: #2B1F23;
+  --color-navy-surface: #2B1F23;
+  --color-navy-muted: #5A2A4D;
+  --color-top-banner: #2B1F23;
 
-  /* Primary CTA (Teal) */
-  --color-blue-primary: #0EA5A6;
-  --color-blue-hover: #0C8B8C;
-  --color-blue-light: #E6F6F6;
-  --color-blue-border: #B2E4E4;
-  --color-blue-glow: rgba(14, 165, 166, 0.32);
+  /* Primary CTA (Rose #B8476B) */
+  --color-blue-primary: #B8476B;
+  --color-blue-hover: #5A2A4D;
+  --color-blue-light: #F7EAEF;
+  --color-blue-border: #E8B8C8;
+  --color-blue-glow: rgba(184, 71, 107, 0.32);
 
   /* Aliases for components */
-  --color-violet-primary: #0EA5A6;
-  --color-violet-hover: #0C8B8C;
-  --color-violet-light: #E6F6F6;
-  --color-violet-border: #B2E4E4;
-  --color-violet-glow: rgba(14, 165, 166, 0.32);
+  --color-violet-primary: #B8476B;
+  --color-violet-hover: #5A2A4D;
+  --color-violet-light: #F7EAEF;
+  --color-violet-border: #E8B8C8;
+  --color-violet-glow: rgba(184, 71, 107, 0.32);
 
-  --color-orange-primary: #0EA5A6;
-  --color-orange-hover: #0C8B8C;
-  --color-orange-light: #E6F6F6;
-  --color-orange-border: #B2E4E4;
-  --color-orange-glow: rgba(14, 165, 166, 0.32);
+  --color-orange-primary: #B8476B;
+  --color-orange-hover: #5A2A4D;
+  --color-orange-light: #F7EAEF;
+  --color-orange-border: #E8B8C8;
+  --color-orange-glow: rgba(184, 71, 107, 0.32);
 
   /* Status & Accents */
-  --color-secondary-copper: #0EA5A6;
+  --color-secondary-copper: #5A2A4D;
   --color-danger-red: #dc2626;
   --color-danger-bg: #fef2f2;
   --color-success-green: #16a34a;
   --color-success-bg: #f0fdf4;
-  --color-blue-info: #0EA5A6;
-  --color-blue-bg: #E6F6F6;
-  --color-gold-warning: #0EA5A6;
-  --color-gold-bg: #E6F6F6;
+  --color-blue-info: #B8476B;
+  --color-blue-bg: #F7EAEF;
+  --color-gold-warning: #B8476B;
+  --color-gold-bg: #F7EAEF;
 
-  /* Neutrals & Text (Ink + Paper) */
-  --color-text-heading: #1F2937;
-  --color-text-body: #374151;
-  --color-text-muted: #64748b;
-  --color-text-light: #94a3b8;
-  --color-bg-page: #FAF7F0;
-  --color-bg-card: #ffffff;
-  --color-bg-subtle: #f5f1e8;
-  --color-border: #e7e5e0;
-  --color-border-hover: #cbd5e1;
+  /* Neutrals & Text (Plum & Rose: Neutral Light #FBF7F5, Base White #FFFFFF) */
+  --color-text-heading: #2B1F23;
+  --color-text-body: #3E3236;
+  --color-text-muted: #6E5F64;
+  --color-text-light: #9B8E93;
+  --color-bg-page: #FBF7F5;
+  --color-bg-card: #FFFFFF;
+  --color-bg-subtle: #F4ECE8;
+  --color-border: #EADFD9;
+  --color-border-hover: #D4C3BB;
 
   /* Typography */
   --font-heading: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
