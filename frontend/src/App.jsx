@@ -38,6 +38,31 @@ export default function App() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
+  // Smooth lightweight scroll reveal entrance animations
+  useEffect(() => {
+    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.08,
+        rootMargin: '0px 0px -40px 0px'
+      }
+    );
+
+    const elements = document.querySelectorAll('.scroll-reveal');
+    elements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, [currentView]);
+
   const bulletPoints = [
     'Get precise answers immediately without wading through hundreds of documents and tabs',
     'All your knowledge base in one place and always up to date',
@@ -136,21 +161,21 @@ export default function App() {
 
         {/* 2. Bottlenecks / Pain Points Section */}
         <section className="pain-points-section">
-          <div className="container">
+          <div className="container scroll-reveal">
             <PainPointsCard />
           </div>
         </section>
 
         {/* 3. Section: Why Enterprise AI Agent? (Comparison Table Layout) */}
         <section className="below-hero-section" id="purpose-built-section">
-          <div className="container">
+          <div className="container scroll-reveal">
             <WhyEnterpriseSection />
           </div>
         </section>
 
         {/* 4. Section: How It Works (Timeline Stepper Layout matching Screenshot) */}
         <section className="hiw-standalone-section" id="how-it-works-section">
-          <div className="container">
+          <div className="container scroll-reveal">
             <HowItWorksSection />
           </div>
         </section>
@@ -164,7 +189,7 @@ export default function App() {
         {/* 6. Demo Video Section (Just above the footer, matching Screenshot 1 layout) */}
         <section className="demo-video-section" id="demo-video-section">
           <div className="container">
-            <div className="demo-section-header">
+            <div className="demo-section-header scroll-reveal">
               <span className="demo-section-badge">PLATFORM DEMO</span>
               <h2 className="demo-section-title">See Enterprise AI Agent in Action</h2>
               <p className="demo-section-subtitle">
@@ -172,7 +197,7 @@ export default function App() {
               </p>
             </div>
 
-            <div className="demo-video-card-wrapper">
+            <div className="demo-video-card-wrapper scroll-reveal delay-1">
               <VideoPlayer 
                 isUnlocked={isDemoUnlocked} 
                 onPlayClick={handleAccessDemo} 

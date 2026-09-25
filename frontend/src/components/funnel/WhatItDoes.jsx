@@ -29,7 +29,7 @@ export default function WhatItDoes() {
     <section className="what-it-does-section" id="what-it-does">
       <div className="container">
         {/* Left-Aligned Editorial Section Header */}
-        <div className="what-it-does-header-left">
+        <div className="what-it-does-header-left scroll-reveal">
           <h2 className="what-it-does-main-title">
             One assistant for everything your company knows
           </h2>
@@ -43,7 +43,7 @@ export default function WhatItDoes() {
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
-              <div key={index} className="what-it-does-feature-card">
+              <div key={index} className={`what-it-does-feature-card scroll-reveal delay-${index + 1}`}>
                 <div className="feature-card-icon-box">
                   <Icon size={20} className="feature-card-icon" />
                 </div>

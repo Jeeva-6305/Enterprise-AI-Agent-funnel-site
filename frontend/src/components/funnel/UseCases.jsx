@@ -34,14 +34,14 @@ export default function UseCases() {
     <section className="use-cases-section">
       <div className="container">
         {/* Section Heading */}
-        <div className="section-header-center">
+        <div className="section-header-center scroll-reveal">
           <h2 className="section-title">Built for the teams that need answers fast</h2>
           <p className="section-subtitle">
             See how different teams use Enterprise AI Agent every day.
           </p>
         </div>
 
-        <div className="use-cases-tabbed-wrapper">
+        <div className="use-cases-tabbed-wrapper scroll-reveal delay-1">
           {/* 4 Pill-Shaped Tabs in a Row */}
           <div className="use-case-tabs-bar" role="tablist" aria-label="Use Case Tabs">
             {useCases.map((item, index) => {

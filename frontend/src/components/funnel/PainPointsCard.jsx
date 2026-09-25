@@ -80,7 +80,7 @@ export default function PainPointsCard() {
             <ActiveIcon size={130} strokeWidth={1} />
           </div>
 
-          <div className="detail-content-inner">
+          <div key={activeIndex} className="detail-content-inner detail-content-animated">
             {/* Top Icon Badge */}
             <div className="detail-icon-badge">
               <ActiveIcon size={20} />

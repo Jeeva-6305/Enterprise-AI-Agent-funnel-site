@@ -28,7 +28,7 @@ export default function WhyEnterpriseSection() {
   return (
     <div className="solutions-section-container">
       {/* Section Header */}
-      <div className="solutions-header-block">
+      <div className="solutions-header-block scroll-reveal">
         <span className="benefits-badge-pill">ENTERPRISE ADVANTAGE</span>
         <h2 className="solutions-section-title">
           Why Enterprise AI Agent?
@@ -39,7 +39,7 @@ export default function WhyEnterpriseSection() {
       </div>
 
       {/* Comparison Layout matching reference screenshot */}
-      <div className="solutions-comparison-card">
+      <div className="solutions-comparison-card scroll-reveal delay-1">
         {/* Table Header */}
         <div className="solutions-table-header">
           <div className="solutions-col-header solutions-today-header">

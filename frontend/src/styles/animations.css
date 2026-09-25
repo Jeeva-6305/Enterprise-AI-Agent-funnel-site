@@ -1,0 +1,247 @@
+/* ==========================================================================
+   SMOOTH TRANSITIONS & PROFESSIONAL ENTRANCE ANIMATIONS
+   ========================================================================== */
+
+/* Hero Section Smooth Load Animations */
+@keyframes heroEntranceFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-editorial-left {
+  animation: heroEntranceFadeUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hero-editorial-right {
+  animation: heroEntranceFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+}
+
+/* Scroll-Triggered Reveal Animations */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-reveal-left {
+  opacity: 0;
+  transform: translateX(-24px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal-left.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.scroll-reveal-right {
+  opacity: 0;
+  transform: translateX(24px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal-right.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Stagger Delay Helpers */
+.delay-1 { transition-delay: 80ms; }
+.delay-2 { transition-delay: 160ms; }
+.delay-3 { transition-delay: 240ms; }
+.delay-4 { transition-delay: 320ms; }
+
+/* 3-Second Automatic Detail Item Transition Animation */
+@keyframes detailFadeSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.detail-content-animated {
+  animation: detailFadeSlideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: opacity, transform;
+}
+
+/* Smooth Micro-Interactions: Buttons */
+.btn-hero-primary,
+.navbar-get-demo-btn,
+.form-submit-btn,
+.btn-light-form-submit,
+.demo-locked-cta-btn {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease !important;
+}
+
+.btn-hero-primary:hover,
+.navbar-get-demo-btn:hover,
+.form-submit-btn:hover:not(:disabled),
+.btn-light-form-submit:hover:not(:disabled),
+.demo-locked-cta-btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-hero-primary:active,
+.navbar-get-demo-btn:active,
+.form-submit-btn:active:not(:disabled),
+.btn-light-form-submit:active:not(:disabled),
+.demo-locked-cta-btn:active {
+  transform: translateY(0) scale(0.985);
+}
+
+.btn-hero-secondary {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.25s ease !important;
+}
+
+.btn-hero-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(108, 79, 209, 0.12);
+}
+
+.btn-hero-secondary svg,
+.demo-locked-cta-btn svg {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-hero-secondary:hover svg,
+.demo-locked-cta-btn:hover svg {
+  transform: translateX(3px);
+}
+
+.btn-hero-secondary:active {
+  transform: translateY(0) scale(0.985);
+}
+
+/* Smooth Micro-Interactions: Cards & Interactive Containers */
+.what-it-does-feature-card {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.what-it-does-feature-card:hover {
+  transform: translateY(-5px);
+}
+
+.feature-card-icon-box {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, border-color 0.2s ease !important;
+}
+
+.what-it-does-feature-card:hover .feature-card-icon-box {
+  transform: scale(1.08);
+}
+
+.solutions-row-item {
+  transition: background-color 0.2s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), padding 0.2s ease !important;
+}
+
+.solutions-row-item:hover {
+  transform: translateX(4px);
+}
+
+.solutions-icon-wrapper {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.solutions-row-item:hover .solutions-icon-wrapper {
+  transform: scale(1.08);
+}
+
+.solutions-row-arrow-wrap {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s ease !important;
+}
+
+.solutions-row-item:hover .solutions-row-arrow-wrap {
+  transform: translateX(4px);
+}
+
+.hiw-step {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.hiw-step:hover {
+  transform: translateY(-3px);
+}
+
+.hiw-step-bubble {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease, box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease !important;
+}
+
+.hiw-step:hover .hiw-step-bubble {
+  transform: scale(1.08);
+}
+
+.use-case-tab-btn {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.use-case-tab-btn:hover {
+  transform: translateY(-2px);
+}
+
+.use-case-tab-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.use-case-industry-strip {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.25s ease !important;
+}
+
+.use-case-industry-strip:hover {
+  transform: translateY(-3px);
+}
+
+.demo-video-player-container {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.demo-locked-icon-badge {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease !important;
+}
+
+.demo-gated-locked-card:hover .demo-locked-icon-badge {
+  transform: scale(1.08) rotate(-3deg);
+}
+
+.pain-points-tab-btn {
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.tab-number-badge {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease !important;
+}
+
+.pain-points-tab-btn:hover .tab-number-badge {
+  transform: scale(1.08);
+}
+
+/* Accessibility: Support Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero-editorial-left,
+  .hero-editorial-right,
+  .scroll-reveal,
+  .scroll-reveal-left,
+  .scroll-reveal-right,
+  .detail-content-animated {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

@@ -22,7 +22,7 @@ export default function HowItWorksSection() {
   return (
     <div className="hiw-inner">
       {/* Section Header - centered */}
-      <div className="hiw-header hiw-header--centered">
+      <div className="hiw-header hiw-header--centered scroll-reveal">
         <span className="hiw-eyebrow">HOW IT WORKS</span>
         <h2 className="hiw-title">How it works</h2>
         <p className="hiw-subtitle">
@@ -36,7 +36,7 @@ export default function HowItWorksSection() {
         <div className="hiw-connector-line" aria-hidden="true" />
 
         {steps.map((step, idx) => (
-          <div key={step.number} className="hiw-step" data-index={idx}>
+          <div key={step.number} className={`hiw-step scroll-reveal delay-${idx + 1}`} data-index={idx}>
             {/* Number bubble */}
             <div className="hiw-step-bubble">
               <span className="hiw-step-number">{step.number}</span>
